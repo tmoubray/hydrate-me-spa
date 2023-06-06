@@ -1,0 +1,166 @@
+/**
+ * Dropdown Component
+ * -----------------------------------------------------------------------------
+ *
+ * Note: This component is only used in the CourseLeaf Course Teaser snippet.
+ */
+.dropdown-group {
+  & + & {
+    margin-top: $spacing-sm;
+  }
+
+  .columns {
+    &:last-child {
+      margin-bottom: 0;
+    }
+    @include mq( $break-sm ) {
+      margin-bottom: $spacing-md;
+    }
+  }
+
+  .columns__item {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    display: flex;
+    align-items: flex-end;
+
+    @include mq( $break-sm ) {
+      margin-top: 0;
+      margin-bottom: 0;
+      width: 33%;
+    }
+  }
+}
+
+.dropdown {
+  position: relative;
+  width: 100%;
+
+  // MODIFIERS
+  &--active {
+
+    // This creates the top portion of the white container element.
+    &:before {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 100%;
+      transform: scale( 1.1 );
+      background-color: $white;
+      @include box-shadow;
+    }
+  }
+}
+
+.dropdown__toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  width: 100%;
+  border-radius: 0;
+  text-align: left;
+
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background-color: rgba( $black, 0.5 );
+
+    // .module--green &,
+    .tint-themed & {
+      background-color: rgba( $gray-light, 0.5 );
+    }
+
+    // .module--green .dropdown--active &,
+    .tint-themed .dropdown--active & {
+      background-color: rgba( $black, 0.5 );
+    }
+  }
+
+  // Legacy Program page design used `h3`s, the 2020 design removed them. 2020
+  // design styles are scoped to the updated CourseLeaf Course Teasers Snippet
+  // to prevent conflicts. Once all legacy program pages are retired, remove
+  // `h3` selector and scoped selector. Apply scoped selector styles directly to
+  // `.dropdown__toggle`.
+  h3 {
+    margin: 0;
+    padding: 1rem 0 0.5rem 0;
+  }
+
+  .p-courseleaf-course-teasers & {
+    margin: 0;
+    padding: 1rem 0 0.5rem 0;
+  }
+
+  .dropdown--active & {
+    z-index: 10;
+
+    @include tint-component( 'themed' ) {
+      color: $blue;
+    }
+  }
+}
+
+.dropdown__toggle__icon {
+  width: 0.65rem;
+  flex-shrink: 0;
+  color: $blue;
+  margin-right: 1rem;
+  transition: transform $transition--base;
+
+  .dropdown--active & {
+    transform: rotate( 90deg );
+    .module--green &,
+    .tint-themed & {
+      color: $blue;
+    }
+  }
+
+  .module--green &,
+  .tint-themed & {
+    color: $white;
+  }
+}
+
+.dropdown__list {
+  background-color: $white;
+  padding-top: 1rem;
+  @include sr-hide;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity $transition--base;
+  width: 100%;
+
+  .dropdown--active & {
+    left: 0;
+    visibility: visible;
+    opacity: 1;
+
+    // This creates the bottom portion of the white container element.
+    &:after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 100%;
+      top: 0;
+      transform: scale( 1.1 );
+      background-color: $white;
+      z-index: -1;
+      @include box-shadow;
+    }
+  }
+}
+
+.dropdown__list__overflow {
+  max-height: 20rem;
+  overflow-x: auto;
+}

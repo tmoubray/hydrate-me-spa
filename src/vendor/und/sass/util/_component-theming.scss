@@ -1,0 +1,96 @@
+/**
+ * Component Level Theming Utility Classes
+ * -----------------------------------------------------------------------------
+ *
+ * Scoping classes used to theme a component and its contents.
+ */
+
+// Base tint scoping classes.
+@each $tint-name, $tint-values in $component-tints {
+
+  .tint-#{$tint-name} {
+    color: map-get( $tint-values, 'textColor' );
+    background-color: map-get( $tint-values, 'backgroundColor' );
+  }
+
+}
+
+// Center Theme Overrides.
+.tint-themed {
+  @include themify() {
+    color: theme( 'textColorOnThemeColor' );
+    background-color: theme( 'themeColor' );
+  }
+}
+
+/* Hide snippets that have not been component themed. ----------------------- */
+
+/**
+ * Note: As of 6/2/20, almost all snippets have not been reviewed for
+ * compatibility with component themes. As a result, some snippets may be
+ * "disabled" when they do not need to be. As needed, we will review the
+ * compatibly of a desired snippet and make any required changes at that time.
+ *
+ * For now, we are going to hide all snippets within a tint and enable specific
+ * snippets, one-by-one.
+ *
+ * All deprecated `ous-` (with dash) snippets are hidden. To enable this version
+ * of a snippet, update snippet to `.ous` (without dash), then add to the
+ * enabled snippets list.
+ */
+$disable-snippets-for-tints:  tint-themed, tint-black;
+
+$enabled-snippets:      columns,
+                        sidebar-main-content,
+                        stats,
+                        embedded-media-basic,
+                        callout-grid,
+                        program-grid,
+                        p-courseleaf-course-teasers;
+$enabled-snippets-list: '';
+
+// `.ous-contact` here is not officially component themed for "themed" or
+// "black" tints. It's inclusion here is for a special case use where the
+// Program Pre-Footer snippet includes a contact include file (`_contact.pcf`).
+$enabled-snippets-deprecated:      ous-contact;
+$enabled-snippets-list-deprecated: '';
+
+
+
+@each $snippet-class in $enabled-snippets {
+  $enabled-snippets-list: $enabled-snippets-list + ':not(.' + $snippet-class + ')';
+}
+
+@each $snippet-class in $enabled-snippets-deprecated {
+  $enabled-snippets-list-deprecated: $enabled-snippets-list-deprecated + ':not(.' + $snippet-class + ')';
+}
+
+
+
+@each $tint-class in $disable-snippets-for-tints {
+
+  // "Disable" Snippets.
+  [class*="#{ $tint-class }"] .ous#{$enabled-snippets-list},
+  [class*="#{ $tint-class }"] [class*="ous-"]#{$enabled-snippets-list-deprecated} {
+    position: relative;
+    height: 6rem;
+    border: 4px solid rgba( $white, 0.5 );
+    margin: 0;
+
+    &::before {
+      content: 'Snippet incompatible with Component Theming';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: $white;
+      font-size: 1rem;
+      text-align: center;
+      transform: translate( -50%, -50% );
+    }
+
+    & * {
+      visibility: hidden !important;
+    }
+  }
+
+}

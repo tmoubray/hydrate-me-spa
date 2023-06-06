@@ -1,0 +1,45 @@
+{% set searchBlock %}{% if search.condensed %}condensed{% elif search.mega %}mega{% else %}small{% endif %}{% endset %}
+
+{% set searchScope %}
+{% if college %}https://law.und.edu/search.html
+{% else %}//www.search.und.edu/s/search.html
+{% endif %}
+{% endset %}
+
+<form class="search__form search__form--{{searchBlock}} module--blackish" action="{{searchScope}}" role="search" aria-label="Site">
+    <input type="hidden" name="collection" value="und-search">
+    <input type="hidden" name="profile" value="_default">
+  {% if college %}
+  <input type="hidden" name="form" value="partial_html" class="search-partial"/>
+  <input type="hidden" name="scope" value="law.und.edu" class="search-partial"/>
+    <div class="form__selections search-scope">
+      <fieldset>
+        <legend>Scope of this search:</legend>
+        <ul class="ul-inline">
+          <li>
+            <label class="radio__label search-scope__option" for="search-college-{{searchBlock}}">
+              <input class="radio__option search-scope__input search-scope__input--other" type="radio" name="search-{{searchBlock}}" id="search-college-{{searchBlock}}" checked />
+              <span class="search-scope__dot"></span>
+              <span class="search-scope__text">college.UND.edu</span>
+            </label>
+          </li>
+          <li>
+            <label class="radio__label search-scope__option" for="search-und-{{searchBlock}}">
+              <input class="radio__option search-scope__input search-scope__input--und" type="radio" name="search-{{searchBlock}}" id="search-und-{{searchBlock}}" />
+              <span class="search-scope__dot"></span>
+              <span class="search-scope__text">UND.edu</span>
+            </label>
+          </li>
+        </ul>
+      </fieldset>
+    </div>
+  {% endif %}
+    <div class="search__input__container">
+      <label for="{% if search.condensed %}search-condensed{% elif search.mega %}query{% else %}search{% endif %}" class="hide">Search</label>
+      <input id="{% if search.condensed %}search-condensed{% elif search.mega %}query{% else %}search{% endif %}" name="query" type="search" placeholder="Search" class="search__input" />
+      <div class="search__button">
+        <button class="search__button--icon">{{ svgstore('search', 'Submit') }}</button>
+      </div>
+    </div>
+
+  </form>

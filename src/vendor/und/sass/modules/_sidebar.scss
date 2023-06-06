@@ -1,0 +1,70 @@
+/**
+ * Sidebar
+ * -----------------------------------------------------------------------------
+ *
+ * Appears below the sidebar navigation.
+ */
+
+.sidebar__panel {
+  margin-top: $spacing-sm;
+  margin-bottom: $spacing-sm;
+
+  & .feature {
+    @include mq( $break-md ) {
+      background-color: transparent;
+    }
+  }
+
+  & .feature__img {
+    @include mq( $break-md ) {
+      float: none;
+    }
+
+    & img {
+      @include mq( $break-md ) {
+        width: 100%;
+      }
+    }
+  }
+
+  & .feature__content {
+    @include mq( $break-md ) {
+      padding: 1rem 0 0;
+
+      & .button--link {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  & blockquote {
+    & cite {
+      @include mq( $break-md ) {
+        margin-top: 2rem;
+      }
+    }
+
+    & .blockquote__cite__name {
+      @include mq( $break-md ) {
+        @include font-size( 24 );
+      }
+    }
+  }
+}
+
+.sidebar__divider {
+  border-top: 4px solid $blue;
+  padding-top: 1rem;
+
+  @include themify() {
+    border-color: theme( 'themeColor' );
+  }
+
+  .social__list {
+    margin-top: 2rem;
+  }
+}
+
+.sidebar__form {
+  margin: 4rem 0;
+}

@@ -1,0 +1,360 @@
+/**
+ * Sidebar Navigation
+ * -----------------------------------------------------------------------------
+ * Note: Focus Styling .subnav--sub
+ * The negative outline-offset makes the dashed boxes nice and consistent inside
+ * the subnav list items.
+ */
+
+.subnav {
+  z-index: 10;
+  position: relative;
+  width: 100%;
+  margin-bottom: $spacing-xs;
+
+  @include mq( $break-md ) {
+    margin-bottom: 0;
+  }
+
+  & ul {
+    list-style: none;
+
+    @include mq( $break-md ) {
+      padding: 0;
+    }
+  }
+}
+
+.subnav__list {
+  z-index: 2;
+  position: absolute;
+  display: none;
+  margin: 0;
+  padding: 1.5rem;
+  width: 100%;
+  background-color: $gray-light;
+  @include box-shadow( $color: rgba( 0, 0, 0, 0.25 ) );
+
+  @include mq( $break-md ) {
+    display: block;
+    position: static;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .subnav--active & {
+    display: block;
+  }
+
+  & > li {
+    position: relative;
+    line-height: 1.15;
+
+    &:first-child {
+      z-index: 5;
+    }
+
+    // FIRST CHILD - LI.subnav__heading
+    // SECOND CHILD - SCRIPT, added via OU XSL between first and second LI.
+    // TODO: Fix XSL to non include invalid markup in-between LIs.
+    &:first-child + li, // <= for development templates.
+    &:first-child + script + li { // <= for published OU pages.
+      border-top: 2px solid $blue;
+
+      & .subnav__link:focus + .subnav__list--toggle {
+        margin-top: 0;
+      }
+
+      @include themify() {
+        border-top-color: theme( 'themeColor' );
+      }
+
+      @include mq( $break-md ) {
+        border-width: 4px;
+      }
+    }
+
+    // @include mq( 63.9em ) {
+    @include mq( $break-sm-max ) {
+      &:not( [class] ):first-child {
+        border-top: 2px solid $blue;
+
+        @include themify() {
+          border-color: theme( 'themeColor' );
+        }
+      }
+    }
+  }
+
+  // MODIFIERS
+  &--sub {
+    @include sr-hide;
+    @extend .nav__list--sub;
+
+    .subnav__list--active & {
+      @include sr-show;
+
+      & .subnav__link--sub:focus {
+        @include outline-focus;
+        outline-color: $outline-dark;
+        outline-offset: $outline-inset--md;
+      }
+    }
+
+    & > li:last-child > .subnav__link--sub {
+      @include themify() {
+        border-width: 2px;
+        border-bottom-color: theme( 'themeColor' );
+      }
+    }
+  }
+
+  &--active {
+    & > .subnav__link {
+      border-width: 1px;
+      border-color: $gray;
+
+      @include themify() {
+        border-color: $gray;
+      }
+    }
+  }
+
+  &--toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    // min-height: 2.75rem;
+    height: 2.75rem;
+    color: $gray-darker;
+    background-color: $gray;
+
+    @include themify() {
+      color: theme( 'themeColor' );
+    }
+
+    @include mq( $break-md ) {
+      color: $blue;
+      background-color: $gray-light;
+    }
+
+    &:hover {
+      color: $white;
+      background-color: $blue;
+
+      @include themify() {
+        color: theme( 'textColorOnThemeColor' );
+        background-color: theme( 'themeColor' );
+      }
+    }
+
+    &:focus {
+      outline-color: $outline-dark;
+      outline-offset: $outline-inset--sm;
+    }
+
+    .subnav__list__toggle-hide & {
+      display: none;
+    }
+
+    .subnav__list--active & {
+      transform: rotate( 180deg );
+    }
+  }
+}
+
+.subnav__list__icon {
+  width: 1.25rem;
+  height: 1rem;
+  background-position: 50%;
+}
+
+.subnav__toggle {
+  @extend %h4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  color: $white;
+  text-align: left;
+  border: 0;
+  background-color: $gray-darker;
+
+  &:focus {
+    z-index: 3;
+    position: relative;
+    outline-color: $outline-dark;
+  }
+
+  @include mq( $break-md ) {
+    display: none;
+  }
+
+  & span:first-child {
+    flex: 1;
+  }
+}
+
+.subnav__toggle__icon {
+  display: block;
+  flex-shrink: 0;
+  width: 1.25rem;
+  color: $blue;
+
+  .subnav--active & {
+    transform: rotate( 180deg );
+  }
+
+  @include themify() {
+    color: theme( 'themeColorOnDarkBackground' );
+  }
+}
+
+.subnav__current {
+  color: $a11y-und-green;
+  list-style-type: square;
+
+  @include themify() {
+    color: theme( 'linkColorA11y' );
+  }
+
+  & > .subnav__link {
+    color: $a11y-und-green;
+
+    @include themify() {
+      color: theme( 'linkColorA11y' );
+    }
+  }
+
+  &--sub {
+    margin-left: 2rem;
+    list-style-type: square;
+    color: $a11y-und-green;
+
+    & .subnav__link--sub {
+      margin-left: -2rem;
+      color: $a11y-und-green;
+
+      &:focus {
+        outline-offset: $outline-inset--sm;
+      }
+    }
+
+    @include themify() {
+      color: theme( 'themeColor' );
+    }
+  }
+
+}
+
+.subnav__heading {
+  @extend %h4;
+  display: block;
+  padding: 0.75rem 0;
+  text-decoration: none;
+
+  @include themify() {
+    color: theme( 'textColor' );
+  }
+
+  @include mq( $max: $break-sm-max ) {
+    @include sr-hide;
+  }
+
+  &:hover,
+  &:focus {
+    color: $a11y-und-green;
+    outline-color: $outline-dark;
+    outline-offset: $outline-offset--sm;
+
+    @include themify() {
+      color: theme( 'linkColorA11yHover' );
+    }
+  }
+
+  @include themify() {
+    border-color: theme( 'themeColor' );
+  }
+}
+
+.subnav__link {
+  display: block;
+  padding: 0.75rem 3rem 0.75rem 0;
+  color: $black;
+  @include font-size( 18 );
+  line-height: 1.25rem; // 20px
+  @include fontSmoothing;
+  font-family: $font-base;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  border-bottom: 2px solid $blue;
+
+  @include themify() {
+    color: theme( 'textColor' );
+  }
+
+  &:hover,
+  &:focus {
+    color: $a11y-und-green;
+
+    @include themify() {
+      color: theme( 'linkColorA11yHover' );
+    }
+  }
+
+  &:focus {
+    outline-color: $outline-dark;
+    margin-top: -2px;
+    padding-top: calc(0.75rem + 2px);
+    z-index: 1;
+    position: relative;
+
+    & ~ .subnav__list--toggle {
+      margin-top: 2px;
+    }
+  }
+
+  @include themify() {
+    border-color: theme( 'themeColor' );
+  }
+
+  &--sub {
+    padding-left: 2rem;
+    border-color: $gray;
+    color: $black;
+
+    @include themify() {
+      color: theme( 'textColor' );
+    }
+
+    &:hover,
+    &:focus {
+      outline-color: $outline-dark;
+
+      @include themify() {
+        color: theme( 'linkColorA11yHover' );
+      }
+    }
+
+    .subnav__list--sub > li:last-child > & {
+      @include themify() {
+        border-width: 2px;
+        border-bottom-color: theme( 'themeColor' );
+      }
+    }
+  }
+
+  &--active {
+    color: $a11y-und-green;
+    //outline-color: $black;
+
+    @include themify() {
+      color: theme( 'linkColorA11y' );
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{%- from "util/_svgstore.html" import svgstore -%}
+<ul class="social__list">
+  {% if socialList.short %}
+  <li class="social__item"><a href="" class="social__link">{{ svgstore('social-facebook', 'Facebook') }}</a></li>
+  <li class="social__item"><a href="" class="social__link">{{ svgstore('social-twitter', 'Twitter') }}</a></li>
+  <li class="social__item"><a href="#" class="social__link">{{ svgstore('social-youtube', 'Youtube') }}</a></li>
+  <li class="social__item"><a href="#" class="social__link">{{ svgstore('social-snapchat', 'Snapchat') }}</a></li>
+  {% else %}
+  <li class="social__item"><a href="#" class="social__link">{{ svgstore('social-youtube', 'Youtube') }}</a></li>
+  <li class="social__item"><a href="#" class="social__link">{{ svgstore('social-instagram', 'Instagram') }}</a></li>
+  <li class="social__item"><a href="#" class="social__link">{{ svgstore('social-facebook', 'Facebook') }}</a></li>
+  <li class="social__item"><a href="#" class="social__link">{{ svgstore('social-twitter', 'Twitter') }}</a></li>
+  <li class="social__item"><a href="#" class="social__link">{{ svgstore('social-linkedin', 'Linkedin') }}</a></li>
+  <!-- <li class="social__item"><a href="#" class="social__link">{{ svgstore('social-snapchat', 'Snapchat') }}</a></li> -->
+  <li class="social__item"><a href="#" class="social__link">{{ svgstore('social-tiktok', 'TikTok') }}</a></li>
+  {% endif %}
+</ul>

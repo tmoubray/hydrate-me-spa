@@ -1,0 +1,70 @@
+/**
+ * Partial search
+ * -----------------------------------------------------------------------------
+ *
+ * Primarily used to override the partials included with bootstrap resets and
+ * some search specific stuff from Funnelback's customer.css
+ */
+
+.t-search-partial {
+  &__ou-content {
+    // adjust extra space for medium & large views
+    @media ( min-width: 60em ){
+      margin-top: 3rem;
+    }
+  }
+
+  // If this selector is changed, modify the selector below this one.
+  p a {
+    text-decoration: underline;
+    color: $a11y-und-green;
+  }
+
+  // Themify the above selector. Theme selector needs to be concatenated with
+  // `.t-search-partial` as both are body classes.
+  @at-root {
+    p a {
+      @include themify( $concat: '.t-search-partial' ) {
+        color: theme( 'linkColorA11y' );
+      }
+    }
+  }
+
+  .text-primary {
+    color: $blue !important; // has to be important to override bootstrap
+  }
+
+  &.s-college {
+    .pre-footer {
+      .h3 {
+        font-family: $font-base;
+      }
+
+      h3 {
+        color: $white;
+      }
+    }
+  }
+
+  // hide extra search features when partial loads
+  // classes come from funnelback
+  section.search-history,
+  section.search-cart {
+    display: none;
+  }
+
+  // reduce space around jumbotron
+  @media ( min-width: 576px ){
+    .jumbotron {
+      padding: 1rem 2rem 4rem;
+    }
+  }
+
+  @media ( max-width: $break-md ){
+    .jumbotron {
+      padding-bottom: 1.5rem;
+      padding-top: 0;
+      margin-top: 0;
+    }
+  }
+}

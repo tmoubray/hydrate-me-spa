@@ -1,0 +1,33 @@
+.header__search {
+  @include mq( $break-md) {
+    position: absolute;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 0;
+    transform: translateY( -100% );
+    transition:
+      max-height ease 500ms,
+      transform ease 500ms,
+      visibility ease 500ms;
+    visibility: hidden;
+    overflow: hidden;
+    z-index: -1;
+
+    .search-active & {
+      max-height: 20rem;
+      visibility: visible;
+      transform: translateY( 0 );
+      overflow-y: auto;
+      display: flex;
+    }
+    .search__form {
+      visibility: hidden;
+      .search-active & {
+        visibility: visible;
+        animation: fadeIn 500ms ease-in-out;
+      }
+    }
+  }
+}

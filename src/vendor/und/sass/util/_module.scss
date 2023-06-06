@@ -1,0 +1,345 @@
+/**
+ * Modules
+ * -----------------------------------------------------------------------------
+ *
+ * These are MODIFIER classes that can be applied to any element. Typically
+ * though, the target element is a form of container element.
+ */
+
+
+
+/**
+ * Colors
+ * -----------------------------------------------------------------------------
+ */
+.module--green { // ← DEPRECATED
+  background-color: $blue;
+}
+
+.module--themed { // ← DEPRECATED
+  color: $black;
+  background-color: $blue;
+
+  @include themify() {
+    color: theme( 'textColorOnThemeColor' );
+    background-color: theme( 'themeColor' );
+  }
+}
+
+.module--white { // ← DEPRECATED
+  background-color: $white;
+  color: $black;
+}
+
+.module--black { // ← DEPRECATED
+  background-color: $black;
+  color: $white;
+  @include fontSmoothing;
+
+  // h4, .h4 {
+  //   @include themify() {
+  //     color: $white;
+  //   }
+  // }
+}
+
+.module--blackish { // ← DEPRECATED
+  background-color: $gray-darker;
+  color: $white;
+  @include fontSmoothing;
+}
+
+.module--gray { // ← DEPRECATED
+  background-color: $gray-light;
+}
+
+
+
+/**
+ * Spacing
+ * -----------------------------------------------------------------------------
+ */
+.module--spacing {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.module--viewport-width {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  width: 100vw !important;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.module {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.module--bottom {
+  margin-bottom: 3rem;
+}
+
+.module--top {
+  margin-top: 3rem;
+}
+
+
+
+/**
+ * Misc.
+ * -----------------------------------------------------------------------------
+ */
+.module--top-border {
+  border-top: 2px solid $blue;
+
+  @include themify {
+    border-top-color: theme( 'themeColor' ); // THEMIFY_CALIBRATE, ¿themeColorA11y?
+  }
+}
+
+
+
+/**
+ * Slashes
+ * -----------------------------------------------------------------------------
+ */
+.module--top-white-slash {
+  position: relative;
+  &:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-repeat: no-repeat;
+    z-index: 1;
+    @include fill( $svgstore--slashes-top, $white );
+    background-position: top left;
+    transform: translate( -60% );
+
+    @include mq( $break-sm ) {
+      width: 50%;
+      transform: translateX( -15% );
+    }
+  }
+}
+
+.module--top-slash-left {
+  position: relative;
+  &::before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    @include fill( $svgstore--slashes-bottom, $blue );
+    background-repeat: no-repeat;
+    z-index: 1;
+    background-position: top left;
+    transform: translateX( -60% );
+
+    @include mq( $break-sm ) {
+      width: 50%;
+      transform: translateX( -15% );
+    }
+  }
+
+}
+
+.module--top-slash,
+.module--bottom-slash {
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    @include fill( $svgstore--slashes-top, $blue );
+    background-repeat: no-repeat;
+    z-index: 1;
+    background-position: top right;
+    transform: translateX( 60% );
+
+    @include mq( $break-sm ) {
+      width: 50%;
+      transform: translateX( 15% );
+    }
+  }
+}
+
+.module--bottom-slash {
+  &:before {
+    top: auto;
+    bottom: 0;
+    background-position: bottom right;
+    @include fill( $svgstore--slashes-bottom, $blue );
+  }
+}
+
+.module--top-slash--white:before {
+  @include fill( $svgstore--slashes-top, $white );
+}
+
+.module--bottom-slash--white:before {
+  @include fill( $svgstore--slashes-bottom, $white );
+}
+
+
+
+/**
+ * Background Arrows
+ * -----------------------------------------------------------------------------
+ *
+ * @todo Remove `.billboard--arrow` after full site republish.
+ *
+ * DEPRECATED
+ * ----------
+ *
+ * Original `.module--arrow-***` classes are being moved to a data URI
+ * solution that allows us to theme the arrows if needed or remove only the
+ * arrows but keep the background color.
+ *
+ *
+ * LOCATION
+ * --------
+ *
+ * The new background arrow approach has been applied to billboards, landing
+ * template featured content (below hero image), featured sliders (used as the
+ * base of Landing Slider snippet and the built-in slider on College
+ * templates), and the Featurette snippet.
+ *
+ *
+ * IMPLEMENTATION
+ * --------------
+ *
+ * There are two main arrow modifier classes: `.module--arrows-white` and
+ * `.modules--arrows-gray`. The color in the class name refers to the color of
+ * the arrows and not the background/overall color the modifier class will
+ * apply.
+ *
+ * - `.module--arrows-white`: Intended to be used with color. Does not have a
+ *   default background color. Should be paired with another module modifier
+ *   class, see example.
+ * - `.module--arrows-gray`: Will likely only ever overly white or light gray
+ *   backgrounds and not color. Because of this, we do apply a default gray
+ *   background color. Here's a
+ *
+ * `<div class="module--green module--arrows-white"></div>`
+ * `<div class="module--themed module--arrows-white"></div>`
+ */
+
+// TODO: Phase out (in progress)
+// IN USE ON: footer-action.xsl, leaders-in-action-landing.xsl
+.module--arrow-green {
+  background-image: url( '../img/green-2.svg' );
+  background-color: $blue;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+
+  @include mq( $break-md ) {
+    background-image: url( '../img/green-3.svg' );
+  }
+}
+
+// TODO: Phase out (in progress).
+// IN USE ON: home.xsl
+.module--arrow-white {
+  background-image: url( '../img/white-2.svg' );
+  background-color: $gray-light;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+
+  @include mq( $break-md ) {
+    background-image: url( '../img/white-3.svg' );
+  }
+}
+
+// TODO: Phase out (in progress). ¿Is this in use?
+.module--arrow-green-mobile {
+  background-image: url( '../img/green-2.svg' );
+  background-color: $blue;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+}
+
+
+// New implementation for background arrows.
+.billboard--arrow,
+.module--arrows-white,
+.module--arrows-gray {
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+
+  @include themify() {
+    background-image: none;
+  }
+
+  .theme-green & {
+    background-image: none;
+  }
+}
+
+/**
+ * White in this instance references the color used for the arrows that
+ * overlay a background color and NOT the overall color scheme of the arrows
+ * or the color an element main gain by applying this class.
+ */
+.billboard--arrow,
+.module--arrows-white {
+  background-image: $svgstore--background-arrows-sm-white;
+
+  /**
+   * TODO: ¿Do we need to fix this so that we don't have to pair
+   * `.module--green` with `.module--arrows-xxx` directly like this?
+   *
+   * Solutions
+   * - Move module color modifiers below the module arrow modifiers.
+   * - Add `!important` to module color modifiers.
+   */
+  .module--green &,
+  &.module--green {
+    background-color: $blue;
+  }
+
+  @include mq( $break-md ) {
+    background-image: $svgstore--background-arrows-lg-white;
+  }
+}
+
+/**
+ * Gray in this instance references the color used for the arrows that overlay
+ * a background color and NOT the overall color scheme of the arrows or the
+ * color an element main gain by applying this class.
+ */
+.module--arrows-gray {
+  // We break with `--arrows-white` approach as white or light gray backgrounds
+  // are likely to be the only colors that will use gray arrows as an overlay.
+  // As of now, all other colors will receive the white arrows as an overlay.
+
+
+
+  @include mq( $break-md ) {
+
+  }
+}
+
+.billboard--arrow {
+  background-color: $blue;
+
+  @include themify() {
+    background-color: theme( 'themeColor' );
+    background-image: none;
+  }
+}

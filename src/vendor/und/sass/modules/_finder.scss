@@ -1,0 +1,381 @@
+/**
+ * Program Finder
+ * -----------------------------------------------------------------------------
+ *
+ * @see und.edu/programs
+ */
+.finder__search {
+  .search__input {
+    color: $black;
+
+    &::placeholder {
+      color: $gray;
+    }
+  }
+}
+
+.finder__bar {
+  display: none;
+
+  @include mq( $break-sm ) {
+    display: inline-block;
+    width: calc( 100% - 13rem );
+  }
+}
+
+.finder__label {
+  @extend %h4;
+  display: inline-block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+
+  // MODIFIERS
+  &--unfiltered {
+    @include sr-show;
+
+    .filter--active & {
+      @include sr-hide;
+    }
+  }
+
+  &--filtered {
+    @include sr-hide;
+
+    .filter--active & {
+      @include sr-show;
+    }
+  }
+}
+
+.finder__bar__list {
+  @include sr-hide;
+
+  @include mq( $break-sm ) {
+    @include sr-show;
+    display: inline-block;
+  }
+}
+
+.finder__bar__button {
+  display: inline-block;
+  position: relative;
+  background-color: $white;
+  border: none;
+  padding: 0.5rem 1rem 0.5rem 2rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0;
+  @include font-size( 18 );
+  font-family: $font-base;
+  letter-spacing: 0.5px;
+  line-height: 1;
+
+  &:before {
+    position: absolute;
+    content: '';
+    left: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    @include fill( $svgstore--close, $blue );
+    background-repeat: no-repeat;
+  }
+
+  &:hover {
+    background-color: $blue;
+    &:before {
+      @include fill( $svgstore--close, $white );
+    }
+  }
+}
+
+.finder__view {
+  text-align: right;
+  margin-top: 1rem;
+  min-height: 29px;
+
+  @include mq( $break-sm ) {
+    float: right;
+  }
+
+  .filter--active & {}
+}
+
+.clear-filter {
+  display: none;
+  vertical-align: middle;
+  margin-right: 2rem;
+
+  .filter--active & {
+    display: inline-block;
+  }
+}
+
+// Targets all modifiers.
+[class^="finder__view__button--"] {
+  display: inline-block;
+  width: 1.25rem;
+  color: $blue;
+}
+
+.finder__view__button {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+
+  // MODIFIERS
+  &--grid {
+    color: $gray;
+
+    .grid-view & {
+      color: $blue;
+    }
+  }
+
+  &--list {
+    margin-left: 0.5rem;
+
+    .grid-view & {
+      color: $gray;
+    }
+  }
+}
+
+.finder__card__list {
+  margin: 0;
+  padding-left: 0;
+  padding-bottom: 5rem;
+  list-style: none;
+
+  .grid-view & {
+    margin: 0 -1rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.finder__card__item {
+  position: relative;
+  width: 100%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+
+  &.lazyload {
+    opacity: 0;
+  }
+
+  &.lazyloaded {
+    opacity: 1;
+  }
+
+  .grid-view & {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    max-height: unset;
+    transition: none;
+
+    @include mq( $break-xs ) {
+      width: calc( 100% / 2 );
+    }
+
+    @include mq( $break-sm ) {
+      width: calc( 100% / 3 );
+    }
+
+    @include mq( 72em ) {
+      width: calc( 100% / 4 );
+    }
+  }
+}
+
+.finder__card__content {
+  background-color: $white;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  width: 100%;
+
+  .grid-view & {
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+.finder__card__image {
+  display: none;
+
+  &:focus {
+    z-index: 1;
+  }
+
+  .grid-view & {
+    display: block;
+    flex-shrink: 0;
+    width: 100%;
+  }
+}
+
+.finder__card__content {
+  padding: 1rem;
+}
+
+.finder__card__top {
+  width: 80%;
+
+  @include mq( $break-sm ) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.finder__card__bottom {
+  display: flex;
+
+  .grid-view & {
+    display: block;
+
+    .checkbox__label {
+      width: 100%;
+    }
+  }
+}
+
+.finder__card__title {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  text-align: left;
+  @include font-size( 20 );
+  font-family: $font-base;
+  color: $blue;
+  text-decoration: none;
+  outline-offset: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @include mq( $break-sm ) {
+    outline-offset: $outline-offset--sm;
+  }
+
+  .grid-view & {
+    padding-bottom: 1rem;
+    outline-offset: $outline-offset--sm;
+  }
+}
+
+
+.finder__card__type {
+  // MODIFIERS
+  &--list {
+    display: block;
+    visibility: visible;
+
+    .grid-view & {
+      display: none;
+      visibility: visible;
+    }
+  }
+
+  &--grid {
+    display: none;
+    visibility: visible;
+
+    .grid-view & {
+      display: block;
+      visibility: visible;
+    }
+  }
+}
+
+// Targets all modifiers.
+[class^="finder__card__type--"] {
+  @include font-size( 12 );
+  font-weight: bold;
+}
+
+.finder__card__checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  margin-left: 1rem;
+
+  &:before {
+    position: absolute;
+    content: '';
+    top: -0.5rem;
+    bottom: -0.5rem;
+    left: 0;
+    width: 2px;
+    background-color: $gray;
+  }
+
+  .checkbox__label {
+    margin-right: 0;
+  }
+
+  .grid-view & {
+    &:before {
+      content: none;
+    }
+    padding-left: 0;
+    margin-left: 0;
+    border-left: 0;
+    border-top: 2px solid $gray;
+    padding-top: 0.5rem;
+    margin-top: 0.75rem;
+  }
+}
+
+.finder__no__matches {
+  @extend %h4;
+  padding-bottom: 5rem;
+}
+
+.filter-push {
+  transition: margin $transition--base;
+  margin-bottom: 50px;
+}
+
+.filter__spacing {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+
+  @include mq( $break-md ) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.filter__more {
+  @extend .container;
+  padding-bottom: 3rem;
+}
+
+.filter__more__button {
+  @extend .button;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#finder__result {
+  @extend %h4;
+  margin-bottom: 1rem;
+
+  .grid-view & {
+    margin-bottom: 0;
+  }
+}

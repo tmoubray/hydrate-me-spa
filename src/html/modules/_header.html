@@ -1,0 +1,28 @@
+<header class="header">
+  
+  <div class="header__small">
+    <button class="header__small__button toggle-menu">
+      {{ svgstore('menu', 'Open Menu', 'header__small__menu--open') }}
+      {{ svgstore('close', 'Close Menu', 'header__small__menu--close') }}
+    </button>
+    <a href="#" class="header__logo">
+      {{ svgstore('logotype', 'University of North Dakota') }}
+    </a>
+    <button class="header__small__button--search toggle-search">
+      {{ svgstore('search', 'Open Search', 'header__small__search--open') }}
+      {{ svgstore('close', 'Close Search', 'header__small__search--close') }}
+    </button>
+  </div>
+  <nav class="header__menu" aria-label="Main Menu">
+    
+    {% include "modules/_topbar.html" %}
+    
+    {% include "modules/_menu.html" %}
+    
+  </nav>
+  <div class="header__search">
+    {% include "modules/_search.html" %}
+  </div>
+  
+</header>
+

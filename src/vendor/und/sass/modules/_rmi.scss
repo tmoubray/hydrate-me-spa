@@ -1,0 +1,43 @@
+/**
+ * Program RMI Form/Container
+ * -----------------------------------------------------------------------------
+ *
+ * This is predominantly found on program pages (/programs) and sometimes on a
+ * specialty page.
+ */
+
+#program-rmi {
+  position: relative;
+  height: 816px;
+}
+
+.program-rmi-container {
+  position: relative;
+  background-color: $black;
+  overflow: hidden;
+
+  & > .form__image > .form__content {
+    bottom: initial;
+  }
+
+  @include mq( $break-md ) {
+    margin-left: -2rem;
+    margin-right: -2rem;
+  }
+
+  &::before {
+    content: 'Loading form...';
+    position: absolute;
+    margin: 3rem 0;
+    width: 100%;
+    text-align: center;
+    animation: loading-program-rmi 1000ms ease-in-out infinite alternate;
+  }
+}
+
+/* Loading Animation */
+// ANIMATION_FILE
+@keyframes loading-program-rmi {
+  0% { color: $white }
+  100% { color: $black }
+}

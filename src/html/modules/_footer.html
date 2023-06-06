@@ -1,0 +1,45 @@
+<footer>
+  
+  {% include 'partials/pre-footer.html' %}
+  
+  <div class="footer">
+    
+    
+    <div class="footer__top module--black">
+      <div class="container">
+        
+        <a href="#" class="footer__logo">{{ svgstore('logotype', 'University of North Dakota') }}</a>
+        
+      </div>
+    </div>
+    
+    <div class="footer__bottom module--blackish">
+      <div class="container">
+   
+        <nav class="footer__nav" aria-label="Compliance and Disclosures">
+          <ul class="footer__list">
+            <li class="footer__item"><a class="footer__link" href="#">ADA Compliance</a></li>
+            <li class="footer__item"><a class="footer__link" href="#">Privacy Policy</a></li>
+            <li class="footer__item"><a class="footer__link" href="#">Consumer Disclosure Information</a></li>
+          </ul>
+        </nav>
+        <p class="footer__right footer__copyright">&copy;2020 Blog Name - Powered by Wordpress
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    
+  </div>
+  
+  {% if cookie_banner %}
+  {% include 'partials/cookie-banner.html' %}
+  {% endif %}
+  
+  <button class="back-to-top">{{ svgstore('back-to-top', 'Back to Top') }}</button>
+  {% if chatbot %}
+  {% include 'modules/_chatbot.html' %}
+  {% endif %}
+  
+</footer>

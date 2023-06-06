@@ -1,0 +1,24 @@
+/**
+ * Generic Container Snippet [Deprecated]
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        [Generic Container], [Landing] Generic Container
+ * Table Label:    Snippet: Generic Container
+ * Table Selector: .ou-snippet-container
+ *
+ * OU Name:        [Landing] Generic Container
+ * Table Label:    Snippet: Generic Container
+ * Table Selector: .ou-snippet-container
+ *
+ * Note: Has two different names in OU. Not sure if this is intentional.
+ *
+ * Simplest of container snippets. This snippet is being superseded by the
+ * Content Container snippet.
+ */
+
+.generic-container {
+  .college-lead-in ~ &,
+  .landing-lead-in ~ & {
+    @include make-fluid-spacing( m, b );
+  }
+}

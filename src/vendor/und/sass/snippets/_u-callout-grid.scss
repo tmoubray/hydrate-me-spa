@@ -1,0 +1,88 @@
+/**
+ * Callout Grid Snippet
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        [Program] Callout Grid
+ * Table Label:    Callout Grid
+ * Table Selector: .ou-snippet-callout-grid, .ou-snippet-program-grid
+ *
+ * This snippet has the potential to be shifted to universal usage, thus,
+ * renamed to reflect that.
+ *
+ * Just weeks ago, during the Program Page Refresh update, we renamed the
+ * snippet to better match scoping and naming conventions. Since then, further
+ * refinements require a second name change. As the second iteration has been in
+ * use for a few weeks, we need to leave it in place until all those pages are
+ * republished.
+ *
+ * Once all deprecated naming is no longer in use (verify via
+ * SiteImprove), remove those names from this file and others, i.e.
+ * `_component-themes.scss`.
+ */
+
+.ous-p-list-grid, // ← DEPRECATED
+.program-grid,    // ← DEPRECATED
+.callout-grid {
+
+  .ous-p-2-column-grey & { // ← DEPRECATED
+    margin-top: $spacing-sm;
+    // Prevent spacing from doubling up.
+    margin-bottom: -2rem; // ( `<p>` bottom margin ) + ( `.grid__item` bottom margin )
+
+    @include mq( $break-md ) {
+      margin-top: 0;
+    }
+  }
+
+  // Temporary fix until all program pages are re-published and `<hr>` is no
+  // longer used for top border. Top border is being applied below.
+  & hr.hr--green {
+    display: none;
+  }
+
+  & .grid__item {
+    @include zero;
+    margin-top: $spacing-xs;
+    // margin-bottom: $spacing-xs;
+
+    // This fixes an XSL issue that was masked by FONT_ISSUE. If OU/user adds a
+    // `<p>` tag to the content in a transformation table cell, it is left alone
+    // and the `.serif` helper class is not applied and non-serif font is
+    // displayed.
+    & > p {
+      font-family: $font-base;
+
+      &:first-of-type {
+        border-top: 0.125rem solid $blue;
+        padding-top: 0.5rem;
+      }
+
+      a {
+        .tint-black & {
+          color: $blue;
+        }
+      }
+    }
+
+    // Vertical spacing management between rows as you move through viewport sizes.
+    &--2 { // Legacy, only generates two columns.
+      @include mq( $break-md ) {
+        &:nth-child(-n+2) {
+          margin-top: 0;
+        }
+      }
+    }
+
+    &--3 {
+      &:first-child {
+        margin-top: 0;
+      }
+
+      @include mq( $break-md ) {
+        &:nth-child(-n+3) {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}

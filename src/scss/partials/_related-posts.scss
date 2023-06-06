@@ -1,0 +1,43 @@
+/**
+ * related posts partial
+ * 
+ */
+.related-posts {
+  border-top : 1px solid $gray;
+
+  .related-posts__posts {
+    display        : flex;
+    flex-direction: column;
+    
+    @include mq($break-sm) {
+      justify-content: space-between;
+      flex-direction: row;
+    }
+  }
+
+  .related-posts__heading {
+    color: black;
+    font-size: 1.4rem;
+  }
+  .related-posts__post {
+    margin-top: .5rem;
+
+    @include mq($break-sm) {
+      width: 31%;
+    }
+    
+    a {
+			text-decoration: none;
+		}
+  }
+
+  .post__image--related {
+    height  : 280px;
+    overflow: hidden;
+    background-color: $gray-light;
+
+    img {
+      width: 100%;
+    }
+  }
+}

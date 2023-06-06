@@ -1,0 +1,13 @@
+/**
+ * Landing Pages
+ * -----------------------------------------------------------------------------
+ */
+.landing-lead-in {
+  & > :first-child {
+    @include make-fluid-spacing( m, t );
+  }
+  & > :last-child {
+    @include make-fluid-spacing( m, b );
+  }
+}
+

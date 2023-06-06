@@ -1,0 +1,383 @@
+.button {
+  @extend %special-bold;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  min-width: 250px;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  @include button-box-shadow( $font-black );
+  overflow: hidden;
+  vertical-align: middle;
+  z-index: 1;
+  border: 0;
+  color: $font-black;
+  background-color: #ffffffad;
+  letter-spacing: normal;
+  font-weight:bold;
+  transition: color $transition--base;
+  line-height: 1;
+
+  .module--green & {
+    color: $black;
+    @include button-box-shadow( $white );
+  }
+
+  .module--black &,
+  .module--blackish & {
+    color: $white;
+
+    &:focus {
+      outline-color: $outline-light;
+      box-shadow: inset 0 0 0 2px #999;
+    }
+
+    @include themify() {
+      color: theme( 'textColorOnDarkBackground' );
+      @include button-box-shadow( theme( 'themeColorOnDarkBackground' ) );
+      outline-color: theme( 'textColorOnDarkBackground' );
+    }
+  }
+
+  // Same as `.module--` above.
+  @include tint-component( 'black' 'blackish' ) {
+    color: $white;
+
+    &:focus {
+      outline-color: $outline-light;
+    }
+
+    @include themify() {
+      color: theme( 'textColorOnDarkBackground' );
+      @include button-box-shadow( theme( 'themeColorOnDarkBackground' ) );
+      outline-color: theme( 'textColorOnDarkBackground' );
+    }
+  }
+
+  @include tint-component( 'themed' ) {
+    color: $black;
+    @include button-box-shadow( $white );
+
+    @include themify() {
+      color: theme( 'textColorOnThemeColor' );
+      @include button-box-shadow( theme( 'borderColorOnThemeColor' ) );
+      outline-color: theme( 'borderColorOnThemeColor' );
+    }
+  }
+
+  @include themify() {
+    color: $black;
+    @include button-box-shadow( theme( 'themeColor' ) );
+    outline-color: theme( 'textColor' );
+  }
+
+  &:before,
+  &:after {
+
+  }
+
+  &:before {
+    background: transparent;
+    transition: all 600ms;
+
+    .module--green & {
+      background: $white;
+    }
+
+    @include tint-component( 'black' 'blackish' ) {
+      @include themify() {
+        color: theme( 'textColorOnDarkBackground' );
+        background: theme( 'themeColorOnDarkBackground' );
+      }
+    }
+
+    @include tint-component( 'themed' ) {
+      background: $white;
+
+      @include themify() {
+        background: theme( 'borderColorOnThemeColor' );
+      }
+    }
+
+    @include themify() {
+      background: theme( 'themeColor' );
+    }
+  }
+
+  &:after {
+    background: rgba( $gray-lighter, 0.5 );
+    transition: all 450ms;
+
+    .module--green & {
+      background: rgba( $white, 0.5 );
+    }
+
+    @include tint-component( 'black' 'blackish' ) {
+      @include themify() {
+        background: rgba( theme( 'themeColorOnDarkBackground' ), 0.5 );
+      }
+    }
+
+    @include tint-component( 'themed' ) {
+      background: rgba( $white, 0.5 );
+
+      @include themify() {
+        background: rgba( theme( 'borderColorOnThemeColor' ), 0.5 );
+      }
+    }
+
+    @include themify() {
+      background: rgba( theme( 'themeColor' ), 0.5 );
+    }
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $black;
+    box-shadow: inset 0 0 0 2px #999 !important;
+
+
+
+    &:before,
+    &:after {
+      width: 140%;
+    }
+  }
+
+  // MODIFIERS
+  &--content-width {
+    min-width: initial;
+  }
+
+  &--grouped {
+    flex-grow: 1;
+    margin-right: 1rem;
+    min-width: initial;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.button--green {
+  color: $white;
+  background-color: $blue;
+  border: 2px solid transparent;
+  &:before {
+    background: $white;
+  }
+  &:after {
+    background: rgba( $white, 0.5 );
+  }
+  &:hover {
+    border-color: $blue;
+  }
+}
+
+.button--link {
+  @extend %special-bold;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid $blue;
+  margin-bottom: 4px;
+  text-decoration: none;
+
+  .tint-themed &,
+  .module--green & {
+    color: $black;
+    border-color: $white;
+  }
+
+  .tint-themed &,
+  .module--themed & {
+    @include themify() {
+      color: theme( 'textColorOnThemeColor' );
+      border-color: theme( 'borderColorOnThemeColor' );
+    }
+  }
+
+  .tint-black &,
+  .tint-blackish &,
+  .module--black &,
+  .module--blackish & {
+    color: $white;
+    outline-color: $outline-light;
+
+    @include themify() {
+      color: theme( 'textColorOnDarkBackground' );
+       // THEMIFY_CALIBRATE - possibly use theme color even though contrast is
+       // lacking, other things happen to signify hover/focus.
+      border-color: theme( 'themeColorOnDarkBackground' );
+    }
+  }
+
+  @include themify() {
+    color: $black;
+    border-color: theme( 'themeColor' ); // THEMIFY_CALIBRATE, ¿themeColorA11y?
+  }
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 4px;
+    bottom: -4px;
+    left: 0;
+    background-color: $blue;
+    transition: width 450ms;
+
+    .tint-themed &,
+    .module--green & {
+      background-color: $white
+    }
+
+    .tint-themed &,
+    .module--themed & {
+      @include themify() {
+        background-color: theme( 'borderColorOnThemeColor' ); // THEMIFY_CALIBRATE
+      }
+    }
+
+    // THEMIFY_CALIBRATE - possibly use theme color even though contrast is
+    // lacking, other things happen to signify hover/focus.
+    .tint-black &,
+    .module--black &,
+    .tint-blackish &,
+    .module--blackish & {
+      @include themify() {
+        background-color: theme( 'themeColorOnDarkBackground' );
+      }
+    }
+
+    @include themify() {
+      background-color: theme( 'themeColor' ); // THEMIFY_CALIBRATE, ¿themeColorA11y?
+    }
+  }
+
+  &:hover,
+  &:focus {
+    &:before {
+      width: 100%;
+    }
+  }
+
+  &:focus {
+    @include outline-focus;
+  }
+}
+
+.button--inline {
+  display: flex;
+  align-items: center;
+  @extend .button--link;
+  border-bottom: 0;
+}
+
+.button__icon--inline {
+  display: block;
+  width: 2rem;
+  color: $blue;
+  margin-left: 1rem;
+}
+
+.button-group {
+  padding-left: 0;
+  list-style: none;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  display: inline;
+
+  @include mq( $break-md ) {
+  
+    display: flex;
+  }
+
+  li {
+    margin: 1rem;
+    max-width: 100%;
+
+
+    @include mq( $break-md ) {
+      display: flex;
+      flex-grow: 1;
+      flex-basis: 0;
+      margin: 0 1rem;
+      max-width: 33%;
+    }
+  }
+
+  .button {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 0;
+    align-items: center;
+    justify-content: center;
+    min-width: inherit;
+    font-size: .85rem;
+
+    @include mq( $break-lg ) {
+      font-size: .95rem;
+    }
+
+    @include mq( $break-md ) {
+      font-size: .85rem;
+
+    }
+  }
+}
+
+.button-group--alt {
+  padding-left: 0;
+  list-style: none;
+  margin: -0.5rem -1rem;
+  @include mq( $break-sm ) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  li {
+    padding: 0.5rem 1rem;
+  }
+}
+
+.button-expand {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: transparent;
+  border: none;
+  font-family: $font-base;
+  color: $white;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  line-height: 1;
+  padding: 2rem 0;
+}
+
+.button-expand-icon {
+  @include fill( $svgstore--plus, $blue );
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  background-position: center;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 1.5rem;
+  padding: 0.85rem;
+  color: $blue;
+
+  @include themify() {
+    @include fill( $svgstore--plus, theme( 'themeColor' ) );
+  }
+
+  .button-expand--active & {
+    border-color:#999999;
+
+    @include themify() {
+      @include fill( $svgstore--minus, theme( 'themeColor' ) );
+    }
+  }
+}

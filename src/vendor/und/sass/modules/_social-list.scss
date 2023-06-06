@@ -1,0 +1,62 @@
+/**
+ * Social Media Icons
+ * -----------------------------------------------------------------------------
+ *
+ * Locations: Sidebar, Footer.
+ */
+
+.social__list {
+  @include clean;
+  list-style: none;
+}
+
+.social__item {
+  display: inline-block;
+  vertical-align: middle;
+
+  & + & {
+    margin-left: 1rem;
+  }
+}
+
+.social__link {
+  display: block;
+  width: 1.05rem;
+  color: $font-black;
+  transition: color $transition--base;
+
+  @include themify() {
+    color: theme( 'textColor' );
+  }
+
+  &:hover,
+  &:focus {
+    color: $blue;
+
+    @include themify() {
+      color: theme( 'themeColor' );
+    }
+
+    .tint-themed &,
+    .module--green & {
+      color: $black;
+    }
+
+    .tint-black &,
+    .module--black & {
+      color: $blue;
+      @include themify() {
+        color: theme( 'themeColor' );
+      }
+    }
+  }
+
+  .tint-themed &,
+  .tint-black &,
+  .tint-blackish &,
+  .module--green &,
+  .module--black &,
+  .module--blackish & {
+    color: $white;
+  }
+}

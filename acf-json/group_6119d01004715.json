@@ -1,0 +1,99 @@
+{
+    "key": "group_6119d01004715",
+    "title": "Module - Product Grid",
+    "fields": [
+        {
+            "key": "field_6119d7c5f20aa",
+            "label": "Featured Product Category",
+            "name": "featured_product_category",
+            "type": "taxonomy",
+            "instructions": "Select the product category you would like to feature.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "product_categories",
+            "field_type": "select",
+            "allow_null": 0,
+            "add_term": 0,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "object",
+            "multiple": 0
+        },
+        {
+            "key": "field_611d8ff5e930a",
+            "label": "Display Title",
+            "name": "display_title",
+            "type": "true_false",
+            "instructions": "Display product category title",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_611d900ee930b",
+            "label": "Display Description",
+            "name": "display_description",
+            "type": "true_false",
+            "instructions": "Display product category description",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_6164999187961",
+            "label": "Section Color",
+            "name": "section_color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "modified": 1633982880
+}

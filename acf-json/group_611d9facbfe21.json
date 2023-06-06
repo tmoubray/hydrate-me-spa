@@ -1,0 +1,46 @@
+{
+    "key": "group_611d9facbfe21",
+    "title": "Module - Membership Panel",
+    "fields": [
+        {
+            "key": "field_611d9fd6b57ad",
+            "label": "Memberships",
+            "name": "memberships",
+            "type": "post_object",
+            "instructions": "Select which membership options to show in panel.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "memberships"
+            ],
+            "taxonomy": "",
+            "allow_null": 0,
+            "multiple": 1,
+            "return_format": "object",
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "modified": 1629331533
+}

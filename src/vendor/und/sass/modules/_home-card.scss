@@ -1,0 +1,284 @@
+.home-card__slider {
+  padding: 2rem;
+  background-color: $white;
+
+  @include mq( $break-sm ) {
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .home-card img {
+    width: 100%;
+  }
+
+  .flickity-page-dots {
+    bottom: -3rem;
+  }
+
+  .flickity-prev-next-button {
+    top: 25%;
+    transform: translateY( -25% );
+
+    @include mq( $break-sm ) {
+      top: 85%;
+      transform: translateY( -85% );
+    }
+  }
+}
+
+.home-card__expand__container {
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+
+  @include mq( $break-sm ) {
+    display: flex;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+
+  &:after {
+    display: none;
+    content: 'flickity';
+
+    @include mq( $break-sm ) {
+      content: '';
+    }
+  }
+
+  .flickity-viewport {
+    overflow: visible;
+
+    .home-card__content {
+      background-color: $gray-darker;
+    }
+
+    .is-selected .home-card__content {
+      background-color: $black;
+    }
+  }
+
+  .flickity-page-dots .dot {
+    border: 0.1rem solid $blue;
+  }
+  .flickity-page-dots .dot.is-selected {
+    background: $blue;
+  }
+
+  .home-card__expand--inactive {
+    .home-card__content {
+      background-color: $gray-darker;
+    }
+  }
+}
+
+.home-card__expand {
+  position: relative;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  width: 82%;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  @include mq( $break-sm ) {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+  }
+
+  [data-whatintent='mouse'] & {
+    &:hover {
+      @include mq( $break-sm ) {
+        .home-card {
+          position: absolute;
+          margin-top: -5%;
+        }
+
+        .home-card__expand__button {
+          display: inline-block;
+          visibility: visible;
+          animation: fadeIn 500ms forwards;
+        }
+
+        .home-card__program {
+          display: none;
+        }
+
+        .home-card__expand__text {
+          transform: none;
+          display: block;
+          visibility: visible;
+          animation: fadeIn 500ms forwards;
+        }
+
+        // .home-card__content {
+        //   padding: 2rem;
+        // }
+
+        .home-card__title {
+          transform: none;
+        }
+      }
+    }
+  }
+
+  [data-whatintent='keyboard'] &,
+  [data-whatintent='touch'] & {
+    &:focus-within,
+    &.ally-focus-within {
+      @include mq( $break-sm ) {
+        .home-card {
+          position: absolute;
+          margin-top: -5%;
+        }
+
+        .home-card__expand__button {
+          display: inline-block;
+          visibility: visible;
+          animation: fadeIn 500ms forwards;
+        }
+
+        .home-card__program {
+          display: none;
+        }
+
+        .home-card__expand__text {
+          display: block;
+          visibility: visible;
+          animation: fadeIn 500ms forwards;
+        }
+
+        // .home-card__content {
+        //   padding: 2rem;
+        // }
+      }
+    }
+  }
+}
+
+.home-card {
+  width: 100%;
+
+  .home-card__expand & {
+    transition: margin $transition--base,
+    transform $transition--base;
+    z-index: 1;
+    cursor: default;
+  }
+
+  .home-card__expand--active & {
+    @include mq( $break-sm ) {
+      position: absolute;
+      margin-top: -5%;
+    }
+  }
+
+  .home-card__expand.is-selected & {
+    transform: perspective( 1000px ) translateZ( 200px );
+
+    @include mq( $break-xs ) {
+      transform: perspective( 1000px ) translateZ( 100px );
+    }
+  }
+}
+
+.home-card__content {
+  // padding-top: 2rem;
+  padding: 2rem;
+  text-align: center;
+
+  .home-card__expand & {
+    transition: background-color $transition--base;
+
+    @include mq( $max: $break-sm ) {
+      padding: 1rem;
+    }
+
+    .home-card__expand--active & {
+      padding: 1rem;
+    }
+  }
+
+  @include mq( $break-sm ) {
+    padding: 2rem;
+  }
+}
+
+.home-card__title {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+
+  .home-card__expand & {
+    margin-bottom: 1rem;
+  }
+}
+
+.home-card__text {
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include mq( $break-sm ) {
+    max-width: 65%;
+  }
+}
+
+.home-card__expand__text {
+  color: $white;
+  @include fontSmoothing;
+
+  @include mq( $break-md ) {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .home-card__expand--active & {
+    @include mq( $break-md ) {
+      display: block;
+      visibility: visible;
+      animation: fadeIn 500ms forwards;
+    }
+  }
+}
+
+.home-card__program {
+  display: none;
+
+  @include mq( $break-md ) {
+    display: block;
+    font-family: $font-base;
+    @include font-size( 16 );
+    @include fontSmoothing;
+    text-transform: uppercase;
+    letter-spacing: 1.75px;
+    color: $white;
+    backface-visibility: hidden;
+
+    .home-card__expand--active & {
+      display: none;
+    }
+  }
+}
+
+.home-card__expand__button {
+  position: relative;
+
+  @include mq( $break-md ) {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .home-card__expand--active & {
+    @include mq( $break-md ) {
+      display: inline-block;
+      visibility: visible;
+      animation: fadeIn 500ms forwards;
+    }
+  }
+}

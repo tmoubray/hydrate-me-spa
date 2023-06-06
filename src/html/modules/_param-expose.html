@@ -1,0 +1,18 @@
+<script>
+  /**
+   * Replicate param-expose.xsl for some client side JS.
+   * ---------------------------------------------------------------------------
+   *
+   * Scripts requiring `OUC` global var:
+   * - _sidenav.js
+   */
+  var OUC = {
+    globalProps: {
+      'domain':     window.location.origin,
+      'path':       window.location.pathname,
+      'extension':  'html',
+      'index-file': 'index',
+      'navType':    'show-dropdown-indicators', // 'hide-dropdown-indicators'
+    }
+  };
+</script>

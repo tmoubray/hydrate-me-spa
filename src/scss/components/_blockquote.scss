@@ -1,0 +1,26 @@
+blockquote {
+
+  p {
+    position: relative;
+    font-family: $font-base;
+    @include fontSmoothing;
+    @include font-size( 60 );
+    // @include fluid-type( font-size, $minScreen, $maxScreen, 48px, 52px );
+    @include fluid-type( 48px, 52px );
+
+    &:before {
+      position: absolute;
+      left: -25px;
+      content: '"';
+    }
+
+    em {
+      color: $blue;
+      font-style: normal;
+
+      @include themify() {
+        color: theme( 'themeColor' );
+      }
+    }
+  }
+}

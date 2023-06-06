@@ -1,0 +1,53 @@
+/**
+ * Marketing Forms
+ * -----------------------------------------------------------------------------
+ *
+ * Note: Currently used for RMI forms on Marketing and Program pages. Could be
+ * used to house other form embeds.
+ */
+
+// RMI Forms - Marketing and Program Pages ----------------------------------- /
+
+// .form-module {
+
+//   button {
+//     margin: 1rem auto 2rem auto;
+//     min-width: 100%;
+//   }
+// }
+
+.marketing-form {
+  @include zero;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0px 8px 2px rgba( 0, 0, 0, 0.15 );
+  @include box-shadow( $y: 0px, $blur: 8px, $spread: 2px );
+
+  @include mq( $break-xs ) {
+    width: 65%;
+  }
+
+  @include mq( $break-md ) {
+    float: right;
+    width: 24rem;
+  }
+
+  // MODIFIERS
+  $form-overlay-spacing: -calc( $spacing-lg + $spacing-sm );
+
+  &--program-lead-in {
+    margin-bottom: -$spacing-md;
+
+    @include mq( $break-md ) {
+      margin-top: $form-overlay-spacing;
+    }
+  }
+
+  &--marketing-lead-in {
+    position: relative;
+    z-index: 1; // Ensure form overlays slashes in hero image.
+    margin-top: $form-overlay-spacing;
+  }
+
+}

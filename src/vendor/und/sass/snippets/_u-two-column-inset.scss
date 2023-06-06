@@ -1,0 +1,23 @@
+/**
+ * Two Column Inset Snippet
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        [Landing] Generic Two Column Grid
+ * Table Label:    Snippet: Generic Two Column Grid
+ * Table Selector: .ou-snippet-container-grid-generic
+ *
+ * Notes: Despite OU labeling, not actually scoped to Landing Templates. Rectify
+ *        this.
+ * Todo:  Rename.
+ */
+
+// DEPRECATED - name and superseded with `.zero`.
+.ous-2-column-inset {
+  & .grid__item--2 > :first-child {
+    @include mq( $break-md ) {
+      margin-top: 0;
+    }
+  }
+}
+
+.two-column-inset {}

@@ -1,0 +1,49 @@
+// flickity base
+@import '../../node_modules/flickity/dist/flickity';
+
+// utilities
+@import 'util/functions';
+@import 'util/var';
+@import 'util/fonts';
+@import 'util/mixins';
+@import 'util/base';
+@import 'util/svgstore';
+@import 'util/placeholders';
+@import 'util/typography';
+@import 'util/layout';
+@import 'util/columns';
+@import 'util/grid';
+@import 'util/module';
+@import 'util/spacing';
+@import 'util/bg-colors';
+@import 'util/arrows';
+@import 'util/slashes';
+@import 'util/component-theming';
+@import 'util/display';
+@import 'util/helpers';
+@import 'util/scopes';
+@import 'util/print';
+
+// Components
+@import 'components/marketing-form';
+
+// snippets
+@import 'snippets/snippets';
+
+
+// Partials
+@import 'partials/campus-communications';
+@import 'partials/campus-alert';
+@import 'partials/campus-message';
+
+// Modules - as required, move modules files to Util, Components, Snippets, Partials etc.
+@import 'modules/**/*.scss';
+
+// Pages
+@import 'pages/home';
+@import 'pages/college-home';
+@import 'pages/landing';
+@import 'pages/program';
+
+// Funnelback Theming and Fixes
+@import 'util/funnelback';

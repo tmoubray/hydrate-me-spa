@@ -1,0 +1,369 @@
+/**
+ * Marketing Landing Page Template
+ * -----------------------------------------------------------------------------
+ */
+
+ .t-marketing .page {
+  padding-top: 0;
+
+  @include mq( $break-md ) {
+    margin-top: -4rem;
+  }
+}
+.t-marketing .topbar {
+    background: transparent;
+}
+.t-marketing .header {
+
+    .marketing-mobile-logo {
+        width: 100%;
+
+        .header__logo{
+            margin: 0 auto;
+        }
+
+        @include mq( $break-md ) {
+            display: none;
+        }
+
+    }
+
+    nav {
+        background: transparent;
+        position: absolute;
+        color: $white;
+
+        .button--link {
+            color: $white;
+        }
+
+        .cta__list {
+            background: none;
+            margin-right: 0;
+            padding-right: 0;
+
+            .cta__item:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+.t-marketing .header .header__small {
+    box-shadow: none;
+    position: relative;
+    flex-wrap: wrap;
+    height: 7rem;
+
+    .marketing-mobile-logo {
+        display: block;
+        width: 100%;
+        height: 3.5rem;
+
+        .header__logo {
+            height: 3.5rem;
+        }
+
+        svg{
+            height: 3.5rem;
+            transform: translateY(7px);
+        }
+    }
+
+    .cta__list {
+      background: none;
+      margin: 0 auto;
+      padding: 0;
+      height: 3.5rem;
+      transform: translateY(-3px);
+
+      & .cta__item {
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      .button--link {
+        color: $white;
+      }
+    }
+    @include mq( $break-md ) {
+        position: relative;
+        height: 4rem;
+    }
+}
+.t-marketing .hero__title {
+    color: $blue;
+}
+.t-marketing .hero__headline {
+    color: $white;
+}
+.t-marketing .hero__content {
+
+    h1 {
+        max-width: 50%;
+    }
+
+    &.hero__alt {
+        bottom: 8.5rem;
+
+        h1 {
+            margin-bottom: 1.8em;
+
+            @include mq( $break-sm ) {
+                margin-bottom: .7em;
+            }
+        }
+        @include mq( $break-xs ) {
+            bottom: 17%;
+        }
+
+        @include mq( $break-sm ) {
+            bottom: 29%;
+        }
+
+        @include mq( $break-md ) {
+           bottom: 8.5rem;
+        }
+
+        @include mq( $break-lg ) {
+            bottom: 22%;
+        }
+
+        @include mq( $break-xl ) {
+            bottom: 22%;
+        }
+    }
+}
+
+.stats__paragraph {
+  margin: 0;
+  font-size: 0.875rem;
+  text-align: center;
+
+  @include mq( $break-md ) {
+    text-align: left;
+  }
+
+  &::before {
+    content: '-';
+    display: inline;
+    padding-right: 0.25rem;
+  }
+}
+
+.marketing-stats {
+  & .grid {
+    // Prevent spacing from doubling up.
+    // Subtracting bottom margin of `.grid__item` in this snippet.
+    margin-bottom: -$spacing-sm;
+  }
+
+  & .grid__item {
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.marketing-stats-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  @include mq( $break-md ) {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  & p {
+    position: relative;
+    top: -4px;
+    margin-bottom: 0;
+    text-align: center;
+
+    @include mq( $break-md ) {
+      top: -8px;
+      padding-left: 1rem;
+     text-align: left;
+    }
+  }
+
+  & .stats__heading {
+    margin-bottom: 0 !important; // `_u-stats.scss` is using important for some reason.
+  }
+}
+
+.overlay-module {
+
+    .inner-module {
+        position: relative;
+
+        .marketing-overlay {
+            top: 0;
+            width: 100%;
+            height: 100%;
+            margin: 2rem 0;
+
+            .container {
+                height: 100%;
+                @include mq( $break-md ) {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                }
+            }
+
+            .overlay-text {
+              z-index: 1;
+              @include zero;
+
+                // h2 {
+                //   margin-top: 0;
+                // }
+
+              @include mq( $break-md ) {
+                width: 41.66666%;
+                padding: 2rem 3rem;
+              }
+            }
+            @include mq( $break-md ) {
+                position: absolute;
+                margin: 0;
+            }
+        }
+    }
+    .overlay-images {
+        position: relative;
+        margin-top: 1rem;
+
+        @include mq( $break-md ) {
+            margin-top: 1rem;
+        }
+
+        @include mq( $break-lg ) {
+            margin-top: -2rem;
+        }
+
+        & a {
+          display: flex; // So focus outline appears.
+        }
+
+        .grid__item {
+            padding: 0 1rem;
+
+            @include mq( $break-sm, $break-sm-max ) {
+              padding: 0 1.5rem 0 1rem;
+
+              &:nth-child( odd ) {
+                padding: 0 1rem 0 1.5rem
+              }
+            }
+
+            @include mq( $break-md ) {
+              padding: 0 1rem;
+            }
+        }
+
+        .grid__item--4 {
+            width: auto;
+            max-width: 50%;
+
+            @include mq( $break-md ) {
+                width: 25%;
+            }
+        }
+
+        .grid__item--4 img {
+            margin: 1rem auto;
+
+            @include mq( $break-md ) {
+                margin: 0 auto;
+            }
+        }
+
+        .grid {
+            justify-content: center;
+
+            @include mq( $break-md ) {
+                justify-content: flex-start;
+            }
+        }
+    }
+}
+
+.module--top-green-slash {
+    position: relative;
+    &:before {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 0;
+      width: 100%;
+      // replace $spacing-sm
+      height: 60px;
+      background-repeat: no-repeat;
+      z-index: 1;
+      @include fill( $svgstore--slashes-top, $blue );
+      background-position: top left;
+      transform: translate( -60% );
+
+      @include mq( $break-sm ) {
+        width: 50%;
+        transform: translateX( -15% );
+      }
+    }
+  }
+
+.module--bottom-slash-left {
+    position: relative;
+    &::before {
+      position: absolute;
+      content: '';
+      left: 0;
+      bottom: 10%;
+      width: 100%;
+      // replace $spacing-sm
+      height: 60px;
+      @include fill( $svgstore--slashes-top, $blue );
+      background-repeat: no-repeat;
+      z-index: 1;
+      background-position: bottom left;
+      transform: translateX( -45% );
+
+      @include mq( $break-xs ) {
+        transform: translateX( -45% );
+        bottom: 7%;
+      }
+
+      @include mq( $break-sm ) {
+        transform: translateX( -15% );
+        bottom: 10%;
+      }
+      @include mq( $break-lg ) {
+        bottom: 8%;
+        transform: translateX( -4% );
+      }
+      @include mq( $break-xl ) {
+        bottom: 9%;
+      }
+    }
+
+  }
+
+.t-marketing .mkt-form-h1 {
+    margin-bottom: 5.5rem;
+
+    @include mq( $break-sm ) {
+      margin-bottom: 4rem;
+    }
+
+    @include mq( $break-md ) {
+      margin-bottom: 3rem;
+    }
+}
+
+.marketing-lead-in {
+  position: relative;
+}

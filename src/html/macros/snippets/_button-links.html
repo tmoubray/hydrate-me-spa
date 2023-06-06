@@ -1,0 +1,10 @@
+{%
+macro button_links( labels = [ 'Plan a Visit', 'Talk to an admission counselor', 'Apply for financial aid' ], modifier_class = 'my-fluid' ) %}
+
+<ul class="button-group {{ modifier_class }}">
+  {% for label in labels %}
+  <li><a href="#" class="button">{{ label }}</a></li>
+  {% endfor %}
+</ul>
+
+{% endmacro %}

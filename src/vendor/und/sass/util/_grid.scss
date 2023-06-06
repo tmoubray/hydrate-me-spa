@@ -1,0 +1,218 @@
+/**
+ * Grid
+ * -----------------------------------------------------------------------------
+ *
+ * Create a grid, rows and columns, to layout a page.
+ *
+ * @todo Convert to something like Bootstrap, Zurb, Skeleton etc that are more
+ *       explicit in their naming conventions. The current paradigm is a bit
+ *       rigid and has unintuitive suffixes when expanded upon, i.e. `-alt`,
+ *       `--3-2`, `--4-3`.
+ * @todo Remove `--slider` modifier. A slider should be independent of a grid
+ *       component and not intermixed. A grid component, of course, can be used
+ *       within a slider (slide/cell) to compose layout.
+ */
+
+// .grid => row
+.grid {
+  display: flex;
+  flex-flow: row wrap;
+  margin-right: -1rem;
+  margin-left: -1rem;
+
+  // Should we use a helper class here when applying `.grid` to a `<ul>`?
+  @at-root {
+    ul#{&} {
+      list-style: none;
+      padding-left: 0;
+    }
+  }
+
+  .featurettes__card img{
+    width: 100%;
+    min-height:260px;
+    max-height: 260px;
+    max-width: 260px;
+    margin: auto;
+    object-fit: cover;
+    object-position: 50% 50%;
+    
+    @include mq( $break-md ) {
+
+    }
+    @include mq( $break-lg ) {
+    width: 100%;
+    min-height:260px;
+    max-height: 260px;
+    max-width: 260px;
+    margin: auto;
+    object-fit: cover;
+    object-position: 50% 50%;
+    }
+  }
+
+  // MODIFIERS
+  &--center {
+    justify-content: center;
+  }
+
+  &--vcenter {
+    align-items: center;
+  }
+
+  &--bottom {
+    align-items: flex-end;
+  }
+
+  &--narrow {
+    margin-right: -0.5rem;
+    margin-left: -0.5rem;
+  }
+
+  &--space {
+    margin-right: -2rem;
+    margin-left: -2rem;
+  }
+
+  &--slider {
+    @include mq( $max: $break-sm ) {
+      display: block;
+      position: relative;
+    }
+
+    .flickity-slider {
+      display: flex;
+      position: static;
+      & > * {
+        flex-shrink: 0;
+        position: relative !important;
+        left: 0 !important;
+      }
+    }
+
+    .flickity-prev-next-button {
+      top: 25%;
+      transform: translateY( -25% );
+
+      &.previous {
+        left: calc(-5% + 0.75rem);
+      }
+
+      &.next {
+        right: calc(-5% + 0.75rem);
+      }
+    }
+
+    &:after {
+      display: none;
+      content: 'flickity';
+
+      @include mq( $break-sm ) {
+        content: '';
+      }
+    }
+  }
+
+}
+
+// .grid__item => column
+.grid__item {
+  width: 100%;
+  padding: 0 .5rem 1rem;
+
+  // MODIFIERS
+  &--flex {
+    display: flex;
+  }
+
+  &--match {
+    flex-flow: row wrap;
+
+    & > * {
+      display: flex;
+      flex-flow: column wrap;
+    }
+  }
+
+  &--space {
+    padding: 0 2rem;
+  }
+
+  &--narrow {
+    padding: 0 0.5rem;
+  }
+
+  &--break-to-half {
+    @include mq( $break-sm ) {
+      width: 50%;
+    }
+  }
+
+  &--2 {
+    @include mq( $break-sm ) {
+      width: 50%;
+    }
+  }
+
+  &--3 {
+    @include mq( $break-md ) {
+      width: 33.33333%;
+    }
+
+    &.share__special{
+      @include mq( $break-sm ) {
+        width: 33.33333%;
+      }
+
+    }
+  }
+
+  &--3-alt {
+    @include mq( $break-sm ) {
+      width: 50%;
+    }
+    @include mq( $break-md ) {
+      width: 33.33333%;
+    }
+  }
+
+  &--3-2 {
+    @include mq( $break-md ) {
+      width: 66.66666%;
+    }
+  }
+
+  &--4 {
+    @include mq( $break-xs ) {
+      width: 50%;
+    }
+    @include mq( $break-md ) {
+      width: 25%;
+    }
+  }
+
+  &--4-alt {
+    @include mq( $break-xs ) {
+      width: 25%;
+    }
+  }
+
+  &--4-3-alt {
+    @include mq( $break-xs ) {
+      width: 75%;
+    }
+  }
+
+  &--5 {
+    @include mq( $break-md ) {
+      width: 20%;
+    }
+  }
+
+    &--7 {
+    @include mq( $break-md ) {
+      width: 14.23%;
+    }
+  }
+
+}

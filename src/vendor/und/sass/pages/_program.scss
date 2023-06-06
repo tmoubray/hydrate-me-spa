@@ -1,0 +1,117 @@
+/**
+ * Program Pages
+ * -----------------------------------------------------------------------------
+ *
+ * These styles only apply to a program's "landing" page. Not auxiliary pages
+ * like Tuition & Fees, Requirements, How to Apply, and others.
+ */
+
+.t-program-page {
+  & .content-container.tint-black h2.fluid-type {
+    color: $white;
+  }
+}
+
+.program-lead-in {
+  position: relative;
+  margin-bottom: $spacing-xl;
+
+  h1 span {
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  @include mq( $break-md ) {
+    margin-bottom: 0;
+  }
+
+  .subnav {
+    z-index: 11;
+    order: -1;
+    margin-bottom: $spacing-sm !important;
+
+    @include mq( $break-md ) {
+      order: 0;
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .subnav--active {
+    .subnav__list {
+      @include mq( $break-md ) {
+        display: flex;
+      }
+    }
+  }
+
+  .subnav__toggle {
+    background-color: $gray-light;
+    color: $black;
+
+    &:focus {
+      outline-color: $outline-light;
+    }
+  }
+
+  .subnav__list {
+    @include mq( $break-md ) {
+      margin: -0.5rem -1rem;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    & li {
+      border-top: 0 !important;
+      padding: 0;
+      line-height: 1.15;
+
+      @include mq( $break-md ) {
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
+
+  .subnav__list--toggle {
+    @include mq( $break-md ) {
+      display: none;
+    }
+  }
+
+  .subnav__link {
+    @include mq( $break-md ) { // DUPLICATION
+      position: relative;
+      display: inline-block;
+      padding: 0 0 0.25rem 0;
+      border-bottom: 2px solid $blue;
+      margin-bottom: 4px;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $white;
+      letter-spacing: 1.25px;
+
+      &:before {
+        position: absolute;
+        content: '';
+        width: 0;
+        height: 4px;
+        bottom: -4px;
+        left: 0;
+        background-color: $blue;
+        transition: width 450ms;
+      }
+
+      &:hover,
+      &:focus {
+        color: $white;
+        margin-top: 0;
+        padding-top: 0;
+        &:before {
+          width: 100%;
+        }
+      }
+      &:focus {
+        outline-color: $outline-light;
+      }
+    }
+  }
+}

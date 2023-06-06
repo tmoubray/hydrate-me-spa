@@ -1,0 +1,148 @@
+/**
+ * Callout/Feature Snippet
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        Feature
+ * Table Label:    Snippet: Feature Grid
+ * Table Selector: .ou-snippet-feature-content-headline
+ *
+ * Note: `.callout` is intended to replace `.feature` at the BEM block and
+ * element levels. Since the implementation of `.callout`, a "Card" component is
+ * being floated that would supersede that. The "Card" component would have
+ * various modifiers to replace a lot of card like snippets being floated and
+ * could supersede that.
+ */
+
+$feature-break: 40em;
+
+.feature {
+  @extend %clearfix;
+  border-top: 4px solid $blue;
+  background-color: $gray-light;
+  //position: relative;
+
+  @include mq( $feature-break ) {
+    display: flex;
+
+    .sidebar__panel & {
+      display: block;
+    }
+  }
+
+  @include themify() {
+    border-color: theme( 'themeColor' );
+  }
+
+  // MODIFIERES //
+  &--callout {
+    padding-bottom: 1rem;
+  }
+
+  &--noborder {
+    border-top: 0;
+
+    & p {
+      margin-bottom: 0;
+    }
+  }
+
+  &.tint-black,
+  &.module--black {
+    background: $black;
+  }
+}
+
+.feature__img {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: center;
+  align-items: center;
+  background-color: $gray-dark;
+
+  & img {
+    max-height: 300px;
+  }
+
+  @include mq( $feature-break ) {
+    flex-grow: 0;
+    background-color: transparent;
+  }
+}
+
+.feature__img + .feature__content {
+  @include mq( $feature-break ) {
+    max-height: 300px;
+  }
+}
+
+.feature__content {
+  @include zero;
+  flex-grow: 1;
+  padding: 2rem;
+  overflow: hidden;
+
+  & .button--link {
+    //z-index: 100; //move up z-index so animation appears on hover
+    margin-top: 2rem;
+    margin-bottom: .3rem;
+
+    @include mq( $feature-break ) {
+      margin-top: 0;
+    }
+
+    @include mq( $break-sm ) {
+      margin-top: 2rem;
+    }
+
+    .feature--callout & {
+      margin-top: 0;
+    }
+  }
+
+  &.tint-black,
+  &.module--black,
+  .feature--callout & {
+    padding-bottom: 4rem;
+  }
+
+  .feature--callout & {
+    margin: 2rem 0 1rem 2rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-left: 2px solid $blue;
+
+    @include themify() {
+      border-color: theme( 'themeColor' ); // THEMIFY_CALIBRATE, ¿themeColorA11y?
+    }
+  }
+
+  .callout--black & {
+    @include themify() {
+      border-color: theme( 'themeColorOnDarkBackground' );
+    }
+  }
+
+}
+
+.feature__heading {
+  @extend %h3;
+  margin-bottom: 1rem;
+
+  .feature__content.tint-black &,
+  .feature__content.module--black & {
+    @include themify() {
+      color: theme( 'themeColorOnDarkBackground' );
+    }
+  }
+}
+
+.feature__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  //@extend .stretched-link;
+
+  @include themify() {
+    color: theme( 'textColor' );
+  }
+}

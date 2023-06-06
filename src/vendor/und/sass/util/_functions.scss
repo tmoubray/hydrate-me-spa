@@ -1,0 +1,258 @@
+/**
+ * Create a theme map.
+ *
+ * This function is intended to give themes a solid foundation for color usage
+ * and contrast in relation to the theme's theme/brand color.
+ *
+ *
+ * A11y Accessibility
+ * ------------------
+ *
+ * A theme color is used in many ways; backgrounds, borders, small text, large
+ * text, icons, etc. Due to the varied usage, a theme color doesn't have to
+ * worry about contrast when it is a background color (though the overlaying
+ * text does). There will be times when we need to modify a theme color to meet
+ * accessibility (A11y) standards. Typically the A11y theme color is based on
+ * contrast of 16px text against a white/light gray background. By default,
+ * `light` themes will have their theme color darkened by 10% while `dark`
+ * themes will leave the theme color as-is.
+ *
+ *
+ * @param {String} $theme-color Required. Hex color value of the primary brand
+ *                              color of a center.
+ * @param {String} $theme-base  Optional. Can be one of `dark` or `light`.
+ *                              Defaults to `dark`. Select the option that
+ *                              aligns with the question: Is the theme color
+ *                              dark or light?
+ *
+ *                              This option sets some base styles to determine
+ *                              where white/black/(other) should be used on top
+ *                              of a theme color (or similar) for proper
+ *                              contrast. An example of this is text color.
+ * @return {Map} A center theme map. Extend this map with new values or override
+ *               values by using `map-merge`.
+ */
+@function create-theme-map( $theme-color, $theme-base: dark ) {
+
+  $a11y-theme-color: if( light == $theme-base, darken( $theme-color, 10% ), $theme-color );
+  $theme-dark: (
+    // Theme Colors
+    themeColor:                 $theme-color,
+    themeColorOnDarkBackground: $white,
+    themeColorA11y:             $a11y-theme-color,
+
+    // Text
+    textColor:                             $black,
+    textColorOnThemeColor:                 $white,
+    textColorOnThemeColorInverse:          $theme-color, // ¿$black?
+    textColorOnThemeColorOnDarkBackground: $theme-color,
+    textColorOnDarkBackground:             $white,
+    textColorHoverOnDarkBackground:        $gray-darkish,
+    textColorOnLightBackground:            $black,
+    largeTextColorOnThemeColor:            $white,
+    largeTextColorOnDarkBackground:        $white,
+    linkColor:                             $theme-color,
+    linkColorHover:                        $theme-color,
+    linkColorA11y:                         $a11y-theme-color,
+    linkColorA11yHover:                    $a11y-theme-color,
+
+    // Borders
+    borderColorOnThemeColor:          $white,
+    borderColorOnDarkBackground:      $white,
+    inputBorderColor:                 $theme-color, // ¿$a11y-theme-color?
+    inputBorderColorFocused:          $theme-color, // ¿$a11y-theme-color?
+    inputOptionColorChecked:          $theme-color, // ¿$a11y-theme-color?
+    inputBorderColorOnDarkBackground: $white,
+    tableBorderColor:                 $theme-color
+  );
+  $theme-light: map-merge( $theme-dark, (
+    themeColorOnDarkBackground:            $theme-color,
+    textColorOnThemeColor:                 $black,
+    textColorOnThemeColorInverse:          $white,
+    textColorOnThemeColorOnDarkBackground: $black,
+    textColorOnDarkBackground:             $theme-color,
+    textColorHoverOnDarkBackground:        $theme-color,
+    // textColorOnLightBackground:            $theme-color, // NEW
+    largeTextColorOnDarkBackground:        $theme-color,
+    borderColorOnDarkBackground:           $theme-color,
+    borderColorOnThemeColor:               $black,
+    inputBorderColorOnDarkBackground:      $theme-color
+  ) );
+  $theme-maps: (
+    dark:  $theme-dark,
+    light: $theme-light
+  );
+
+  @return map-get( $theme-maps, $theme-base );
+
+}
+
+/**
+ * Get theme value for a CSS property.
+ *
+ * To be used inside `themify()` includes. `theme()` simplifies looking up
+ * values stored in a theme's Map of property values.
+ *
+ * Example
+ * -------
+ *
+ * `````````````````````````````````````````````````````````````````````````````
+ * @include themify() {
+ *   box-shadow: inset 0 0 0 2px theme( 'themeColor' );
+ * }
+ * `````````````````````````````````````````````````````````````````````````````
+ *
+ * @see https://medium.com/@dmitriy.borodiy/easy-color-theming-with-scss-bc38fd5734d1
+ * @requiredBy /sass/util/_mixins.scss::themify()
+ *
+ * @param  {String} $key Map key/property value representing a CSS property value.
+ * @return {Mixed}       CSS property value for requested key/property.
+ */
+@function theme( $key ) {
+  @return map-get( $theme-map, $key );
+}
+
+/**
+ * Remove Unit from Value.
+ *
+ * @see https://css-tricks.com/snippets/sass/strip-unit-function/
+ * @requiredBy /sass/util/_functions.scss::fluid-type()
+ *
+ * @param  {Mixed} $value A CSS property value.
+ * @return {Number}       The unit-less property value.
+ */
+@function strip-unit( $value ) {
+  @return $value / ( $value * 0 + 1 );
+}
+
+/**
+ * Convert EM to PX.
+ *
+ * @see https://css-tricks.com/snippets/sass/px-to-em-functions/
+ */
+@function em-to-px( $em, $context: $font-size-context ) {
+  @return strip-unit( $em ) * $context * 1px;
+}
+
+/**
+ * Convert PX to REM.
+ *
+ * @note This function differs from the `font-size` mixin in that it returns a
+ * value instead of a CSS property and value pair.
+ */
+@function px-to-rem( $px, $context: $font-size-context ) {
+  @return strip-unit( $px ) / $context * 1rem;
+}
+
+/**
+ * Subtract pixels from EM with EM as result.
+ *
+ * @param  {String} $em      EM value PX will subtract from.
+ * @param  {String} $px      PX value to subtract from EM.
+ * @param  {Number} $context Base font size, in pixels, represented as integer.
+ * @return {String}          EM value less PX value as EM.
+ */
+@function less-px-from-em( $em, $px, $context: $font-size-context ) {
+  @return ( ( $em * $context ) - strip-unit( $px ) ) / $context;
+}
+
+/**
+ * Add pixels to EM with EM as result.
+ *
+ * @param  {String} $em      EM value PX will add to.
+ * @param  {String} $px      PX value to add to EM.
+ * @param  {Number} $context Base font size, in pixels, represented as integer.
+ * @return {String}          EM value plus PX value as EM.
+ */
+@function sum-px-to-em( $em, $px, $context: $font-size-context ) {
+  @return ( ( $em * $context ) + strip-unit( $px ) ) / $context;
+}
+
+/**
+ * Breakpoint Sizes Helper
+ *
+ * @param  {String} $key A key in the `$breakpoints` map.
+ * @return {String}      The value from the `$breakpoints` map associated with
+ *                       `$key`.
+ */
+@function get-breakpoint-size( $key ) {
+  @return map-get( $breakpoints, $key );
+}
+
+/**
+ * Spacing Sizes Helper
+ *
+ * @param  {String} $key A key in the `$spacing.sizes` map.
+ * @return {String}      The value from the `$spacing.sizes` map associated with
+ *                       `$key`.
+ */
+@function get-spacing-size( $key ) {
+
+  $spacing-sizes: map-get( $spacing, sizes ) !default;
+
+  @return map-get( $spacing-sizes, $key );
+
+}
+
+/**
+ * Spacing Axis Helper
+ *
+ * @param  {String}  $key A key in the `$spacing.axes` map.
+ * @return {String}       The value from the `$spacing.axes` map associated with
+ *                       `$key`.
+ */
+@function get-spacing-axis( $key ) {
+
+  $spacing-axes: map-get( $spacing, axes ) !default;
+
+  @return map-get( $spacing-axes, $key );
+
+}
+
+/**
+ * Spacing Type Helper
+ *
+ * @param  {String} $key A key in the `$spacing.types` map.
+ * @return {String}      The value from the `$spacing.types` map associated with
+ *                       `$key`.
+ */
+@function get-spacing-types( $key ) {
+
+  $spacing-types: map-get( $spacing, types ) !default;
+
+  @return map-get( $spacing-types, $key );
+
+}
+
+/**
+ * Fluid Spacing Map Value Helper
+ *
+ * @param  {String} $key The key of a property in `$map`. If the key does not
+ *                       exist, `$value` is returned - assuming that a custom
+ *                       value is being passed.
+ * @param  {Map}    $map A map to retrieve a value from.
+ * @return {String}      The value in `$map` associated with `$key` or
+ *                       `$value` if `$key` is not found in `$map`.
+ */
+@function get-fluid-value( $key, $map ) {
+  @return if( map-has-key( $map, $key ), map-get( $map, $key ), $key );
+}
+
+/**
+ * Fill SVG
+ *
+ * Function version of mixin to return a value instead of a CSS property value
+ * pair.
+ *
+ * @param {String} $svg   The SVG Base64 string to update `fill` attribute color.
+ * @param {Color}  $color Fill color.
+ */
+@function fill-svg( $svg, $color ) {
+
+  $color:  str-slice( #{$color}, 2 );
+  $insert: 'fill%3D%22%23#{$color}%22%20';
+  $index:  str-index( $svg, '%3Csvg%20' ) + 9;
+
+  @return str-insert( $svg, $insert, $index );
+
+}

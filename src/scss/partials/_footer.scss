@@ -1,0 +1,10 @@
+
+
+.pre-footer .grid__item {
+	margin-top: 2rem;
+	text-transform: uppercase;
+	font-weight:100;
+	@include mq($break-md) {
+		margin-top: 0;
+	}
+}

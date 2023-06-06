@@ -1,0 +1,17 @@
+/**
+ * Marketing Jumbo Image Feature Snippet
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        Marketing Jumbo Image Feature
+ * Table Label:    Snippet: Marketing Jumbo Image Feature
+ * Table Selector: .ou-snippet-marketing-jumbo-image-feature
+ *
+ * This snippet is sometimes referred to as the "Accreditation" snippet.
+ */
+
+// Temporary fix until we figure out if slashes should supply padding themselves
+// or if padding should be added separately.
+// SLASH_PADDING_ISSUE
+.accreditation .backslash {
+  padding-top: 0 !important;
+}

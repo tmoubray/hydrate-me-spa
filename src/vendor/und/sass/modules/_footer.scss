@@ -1,0 +1,213 @@
+/**
+ * Site Footers
+ * -----------------------------------------------------------------------------
+ */
+
+// The value of this breakpoint is determined by the length and number of links.
+// As links change, in text length or in number, this will likely need to be
+// adjusted. Especially if it gets longer.
+$break-compliance-and-disclosures: $break-lg - 4em;
+$break-social-list:                $break-sm;
+$break-copyright:                  $break-sm + 4em;
+$footer-item-bottom-margin:        0.5rem;
+
+@mixin footer_alignment {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+.footer__center{
+  @include mq( $break-md ) {
+    position:relative;
+    left:5rem;
+  }
+}
+
+.walk__in__notice{
+    @include mq( $break-md ) {
+    text-transform: none;
+  }
+}
+
+.footer__right{
+  @include mq( $break-md ) {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.footer {
+  // Modifiers
+
+.grid__item--break-to-half p{
+  font-weight:400;
+  }
+
+  &--center {
+    color: $white;
+    background-color: $gray-darker;
+  }
+}
+
+.footer__copyright {
+  font-family: $font-base;
+  padding-left:3rem;
+  color:$white;
+  font-size:.95rem;
+  margin-bottom: 0;
+  font-weight:100;
+  color:$white;
+  width:50%;
+  float:right;
+
+
+  
+  @include mq( $break-md ) {
+    width:auto;
+    padding-left:3rem;
+  }
+
+  .s-center & {
+    margin-top: 1.5rem;
+
+    @include mq( $break-copyright ) {
+      margin-top: 0;
+    }
+  }
+}
+
+
+.copy-container{
+  display: flex;
+  justify-content:center;
+}
+
+.footer__top {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+
+  @include mq( $max: $break-sm ) {
+    text-align: center;
+  }
+
+  & .social__list,
+  & .footer__nav {
+    margin-top: 1.5rem;
+  }
+
+  & .social__list {
+    @include mq( $break-social-list ) {
+      margin-top: 0;
+    }
+  }
+
+  & .footer__nav {
+    @include mq( $break-compliance-and-disclosures ) {
+      margin-top: 0;
+    }
+  }
+
+  & > div {
+
+    @include mq( $break-social-list ) {
+      .pre-footer--global + .footer & {
+        @include footer_alignment;
+      }
+    }
+
+    @include mq( $break-compliance-and-disclosures ) {
+      .s-college &,
+      .s-internal &,
+      .s-global .pre-footer--lia + .footer & {
+        @include footer_alignment;
+      }
+    }
+
+    @include mq( $break-copyright ) {
+      .s-center & {
+        @include footer_alignment;
+      }
+    }
+
+  }
+}
+
+.footer__bottom {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.footer__logo {
+  display: inline-block;
+  width: 100%;
+  max-width: 18rem;
+  color: $white;
+
+  @include themify() {
+    color: $white;
+  }
+
+  @include mq( $break-xs ) {
+    max-width: 22rem;
+  }
+
+  .footer--center & {
+    color: $white;
+    max-width: 13rem;
+  }
+}
+
+.footer__list {
+  margin: 0;
+  padding: 0;
+  // @include clean;
+  list-style: none;
+
+  .footer__bottom & {
+    margin-bottom: 1rem;
+  }
+
+  .footer__top & {
+    position: relative;
+    top: $footer-item-bottom-margin / 2;
+  }
+
+}
+
+.footer__item {
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom: $footer-item-bottom-margin;
+
+
+  &:last-child {
+    margin-bottom: 0;
+    margin-right: 0;
+  }
+}
+
+.footer__link {
+  display: block;
+  @include font-size( 13 );
+  letter-spacing: 0.15px;
+  color: $white;
+  text-decoration: none;
+
+  @include themify() {
+    color: $white;
+  }
+
+  &:hover,
+  &:focus {
+    color: $blue;
+    text-decoration: underline;
+
+    @include themify() {
+      color: theme( 'textColorHoverOnDarkBackground' );
+    }
+  }
+}

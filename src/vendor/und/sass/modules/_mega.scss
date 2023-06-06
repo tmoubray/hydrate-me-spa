@@ -1,0 +1,26 @@
+.mega {
+  @include sr-hide;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  .topbar__item--active & {
+    @include sr-show;
+  }
+
+  @include mq( $break-md ) {
+    position: absolute;
+    visibility: hidden;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 3rem;
+    z-index: 1;
+
+    .topbar__item--active & {
+      position: absolute;
+      visibility: visible;
+      animation: fadeIn 500ms ease-in-out;
+    }
+  }
+}

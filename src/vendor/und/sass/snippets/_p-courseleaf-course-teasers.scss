@@ -1,0 +1,22 @@
+/**
+ * CourseLeaf Course Teasers
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        [Program] Course Teaser Row
+ * Table Label:    Snippet: Program Course Teaser Row
+ * Table Selector: .ou-snippet-program-course-teaser-row
+ *
+ * Used for "Course You Can Take" on Program pages.
+ */
+.ous-p-courseleaf-course-teasers, // ← DEPRECATED
+.p-courseleaf-course-teaser {
+  position: relative;
+  z-index: 10;
+
+  // As of now, 5.5.20, `.dropdown-group` only appears on Program pages but
+  // scoping to this snippet as a defensive measure.
+  &.dropdown-group {
+    // Subtracting top padding of inner `h3`.
+    margin-top: #{$spacing-sm - 1rem}; // SLICE_SPACING
+  }
+}

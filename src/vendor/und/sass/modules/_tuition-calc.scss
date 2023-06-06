@@ -1,0 +1,361 @@
+/**
+ * Tuition Calculator Page
+ * -----------------------------------------------------------------------------
+ *
+ * TODO: Update form field selectors. Form elements for the Tuition Calculator
+ * need to use the base form classes and not apply styles directly to the
+ * elements themselves. Any Tuition Calculator specific styles/modifications
+ * should be done through a modifier class or a scoping class (current
+ * implementation - discuss continued usage).
+ *
+ * Part of the reason that Tuition Calculator form fields, specifically radios
+ * and checkboxes, have their custom CSS selectors is because the base form
+ * classes for those elements had event handlers attached to them (because of the
+ * class name applied to the element) that prevented the default events from
+ * being emitted, which the Tuition Calculator needs to function. The event
+ * handlers were shipped to with the site. As of 01/02/20, the event handlers
+ * have been removed from the site JS. The custom CSS selectors used for the
+ * Tuition Calculator are no longer needed to work around the event suppression
+ * the original site JS applied and the custom CSS selectors should be normalized.
+ */
+
+.tuition-calc {
+
+  legend {
+    @include hide;
+  }
+
+  .form__spacing { // Already exists as `.form__group`. Replace.
+    margin-bottom: 2rem;
+  }
+
+  & select { // TUITION_SIMPLIFY
+
+    // Tuition Calc specific.
+    overflow: hidden;
+    font-family: $font-base;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: $white;
+    border-color: $blue;
+    cursor: pointer;
+
+    &:focus {
+      background-color: $gray-light;
+    }
+
+    & option {
+      font-family: $font-base;
+      text-transform: none;
+    }
+  }
+
+  .tuition__radio__label {
+    @extend .radio__label;
+    height: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .tuition__radio__label input[type=radio]+span:before {
+    height: 2.625rem;
+    width: 2.625rem;
+  }
+
+  .tuition__radio__label input[type=radio]:checked+span:before {
+    box-shadow: inset 0 0 0 0.35em $white;
+  }
+
+  .tuition__radio__label span:first-of-type {
+    padding-left: calc(2.625rem + 10px);
+  }
+
+  .tuition__radio__label span:last-of-type {
+    @include font-size(16);
+    font-family: $font-base;
+    text-transform: uppercase;
+  }
+}
+
+.tuition-calc__group {
+  @include clear;
+  border-bottom: 10px solid $blue;
+  margin-bottom: $spacing-sm;
+  &:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
+.tuition-calc__sidebar,
+.tuition-calc__content {
+  @include zero;
+}
+
+.tuition-calc__sidebar {
+  margin-bottom: 2rem;
+  @include mq( $break-md ) {
+    width: 30%;
+    float: left;
+    clear: left;
+    margin-right: 5%;
+  }
+}
+
+.tuition-calc__content {
+  @include mq( $break-md ) {
+    width: 65%;
+    float: right;
+  }
+}
+
+.tuition-form-label {
+  font-family: $font-base;
+  @include font-size( 18 );
+
+  @include mq( $break-md ) {
+    @include font-size( 20 );
+    max-width: 60%;
+  }
+}
+
+.tuition-calc-break {
+  border-width: 10px;
+  border-color: $gray-light;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.tuition-calc__button {
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 3rem;
+  // margin-bottom: 3rem;
+  padding: 1.5rem 3rem;
+  @extend %h4;
+  color: $white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  background-color: $blue;
+  transition: background-color $transition--base;
+  outline-color: $outline-dark;
+
+  &:hover,
+  &:focus {
+    background-color: $black;
+
+    & .tuition-calc__button-caret {
+      transform: translateX( 0.5rem );
+    }
+  }
+
+  @include mq( $break-sm ) {
+    float: right;
+    margin-top: 0;
+  }
+}
+
+// TODO: Align with implementation on featured content button on landing pages.
+.tuition-calc__button-caret {
+  align-self: center;
+  color: $white;
+  display: block;
+  width: 0.75rem; // Temp fix
+  height: 1rem;   // Temp fix
+  margin-left: 0.5rem;
+  transition: transform $transition--base;
+}
+
+.tuition-calc-heading {
+  display: flex;
+  align-items: center;
+  @include font-size( 24 );
+}
+
+.tuition-calc-number {
+  display: block;
+  flex-shrink: 0;
+  font-family: $font-base;
+  @include font-size( 36 );
+  background-color: $blue;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  color: $white;
+  line-height: 1.65;
+  margin-right: 1.5rem;
+  @include mq( $break-md ) {
+    line-height: 1.75;
+    width: 74px;
+    height: 74px;
+    @include font-size( 40 );
+  }
+}
+
+.tuition-calc__heading {
+  @include font-size( 36 );
+  font-family: $font-base;
+  color: $black;
+  text-align: center;
+  margin-top: 0;
+
+  @include mq( $break-md ) {
+    @include font-size( 48 );
+  }
+}
+
+.tuition-calc__heading__result { // SERIF_XL_ALT
+  color: $a11y-und-green;
+  font-family: $font-base;
+  @include font-size( 18 );
+  text-align: center;
+
+  @include mq( $break-md ) {
+    @include font-size( 28 );
+    color: $blue;
+  }
+}
+
+.tuition-calc__table { // TUITION_SIMPLIFY
+  margin: 4rem 0;
+  .table {
+    table {
+      width: calc( 100% + 0.25rem );
+      margin-right: -0.125rem;
+      margin-left: -0.125rem;
+      border-collapse: collapse;
+      border-bottom: 0;
+
+      @include mq ( $break-sm ) {
+        table-layout: fixed;
+      }
+    }
+
+    th,
+    td {
+      padding: 1rem .5rem;
+      @include mq( $break-sm ) {
+        padding: 2rem;
+      }
+    }
+
+    th {
+      font-family: $font-base;
+      color: $black;
+      @include font-size( 16 );
+      letter-spacing: 0;
+
+      @include mq( $break-sm ) {
+        @include font-size( 20 );
+      }
+    }
+
+    td { // SERIF_XL_ALT
+      color: $a11y-und-green;
+      font-family: $font-base;
+      @include font-size( 16 );
+
+      @include mq( $break-sm ) {
+        color: $blue;
+        @include font-size( 28 );
+      }
+    }
+
+    thead th,
+    tbody td {
+      text-align: right;
+
+      @include mq( $break-sm ) {
+        text-align: left;
+      }
+    }
+
+    thead {
+      border-bottom: 10px solid $blue;
+
+      & th:first-child {
+        width: 25%;
+      }
+    }
+
+    tbody {
+      & tr {
+        border-top: 10px solid $gray-dark;
+
+        &:first-child {
+          border-top: 0;
+        }
+
+        &:last-child {
+          border-color: $gray-darker;
+        }
+      }
+
+      & th {
+        text-align: left;
+      }
+
+      td {
+        // white-space: nowrap;
+        border-left: 1px solid $gray;
+      }
+    }
+  }
+}
+
+// ¿Still in use?
+.tuition-calc__table--mobile {
+  thead th,
+  th,
+  td {
+    text-align: center;
+  }
+}
+
+.tuition-calc-note {
+  @include font-size( 14 );
+}
+
+.tuition-calc__table--desktop {
+  display: none;
+  visibility: hidden;
+  @include mq( $break-sm ) {
+    display: block;
+    visibility: visible;
+  }
+}
+
+.tuition-calc__table--mobile {
+  @include mq( $break-sm ) {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.tuition-calc__table__mobile--year {
+  margin-top: 2rem;
+}
+
+.tuition-calc--result {
+  display: none;
+  visibility: hidden;
+  .tuition-calc--active & {
+    display: block;
+    visibility: visible;
+  }
+}
+
+.tuition-calc-footer {
+  & .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    & li {
+      margin: 1rem;
+      flex-grow: initial;
+      flex-basis: 300px;
+    }
+  }
+}

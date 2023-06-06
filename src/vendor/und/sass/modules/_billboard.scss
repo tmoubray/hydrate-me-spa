@@ -1,0 +1,124 @@
+/**
+ * Billboard
+ * -----------------------------------------------------------------------------
+ *
+ * - Hero image for Universal templates.
+ * - Appears above breadcrumbs.
+ * - Default image is UND brand arrows over colored background.
+ *
+ * @todo Remove `.billboard--arrow` after full site republish.
+ */
+
+.billboard--arrow,
+.billboard {
+  & > div {
+    display: table;
+    width: 100%;
+    min-height: 160px;
+    height: 160px;
+
+    @include mq( $break-md ) {
+      min-height: 240px;
+      height: 240px;
+    }
+  }
+}
+
+.billboard--img {
+  position: relative;
+
+
+  > div {
+    position: absolute;
+    top: 50%;
+    transform: translateY( -50% );
+    width: 100%;
+  }
+
+  img {
+    max-width: 1920px;
+    max-height: 150px;
+    width: 100%;
+    height: fit-content;
+    object-fit: cover;
+    object-position: center;
+    max-height: 150px;
+    min-height: 78px;
+
+
+    @include mq( $break-lg ) {
+      min-height:7.813rem;
+      max-height: 7.813rem;
+    }
+  }
+
+
+
+  video {
+    max-width: 100%;
+    max-height: 150px;
+    width: 100%;
+    height: fit-content;
+    object-fit: cover;
+    object-position: center;
+    background:#efefef;
+
+    @include mq( $break-md ) {
+      min-height:7.813rem;
+      max-height: 7.813rem;
+    }
+  }
+
+
+
+  .tall {
+      max-height:100%;
+
+      @include mq( $break-md ) {
+        // min-height:18.75rem;
+        // max-height:18.75rem;
+        min-height: 7.813rem;
+        max-height: 7.813rem;
+    }
+  }
+}
+
+// ANIMATION_FILE
+@keyframes billboardAnimate {
+  from {
+    transform: translateX( -25% );
+  }
+
+  to {
+    transform: translateX( 0 );
+  }
+}
+
+.billboard__text {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: left;
+  font-family: $font-base;
+  @include fontSmoothing;
+  @include fluid-type( 48px, 72px );
+  text-transform: uppercase;
+  animation: billboardAnimate 650ms ease-in-out;
+
+  .billboard--arrow &,
+  .tint-themed &, // NEEDS_REVIEW
+  .module--green &,
+  .billboard--img & {
+    color: $white;
+  }
+
+  .billboard--img & {
+    @include text-shadow;
+  }
+
+  .tint-themed &,
+  .module--themed & {
+    @include themify() {
+      color: $white; // THEMIFY_CALIBRATE
+    }
+  }
+}

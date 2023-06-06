@@ -1,0 +1,351 @@
+/**
+ * Desktop Sticky Navigation
+ * -----------------------------------------------------------------------------
+ *
+ * - Appears at the medium breakpoint (1024) and above.
+ * - Accessed from the hamburger icon (☰).
+ *
+ * Many selectors in this file will extend selectors from `_menu.scss`.
+ */
+
+.condensed {
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 2px 4px 0 rgba( $black, 0.15 );
+
+  .condensed--show & {
+    @include mq( $break-md ) {
+      z-index: 40;
+      opacity: 1;
+      visibility: visible;
+      display: block;
+    }
+  }
+}
+
+.condensed__container {
+  background-color: $black;
+
+  .container {
+    align-items: center;
+    justify-content: space-between;
+    height: 4.45rem;
+    display: flex;
+  }
+
+  .header--internal &,
+  .header--center & {
+    background-color: $gray-light;
+  }
+}
+
+.condensed__logo {
+  flex-shrink: 0;
+  display: block;
+  width: 100%;
+  max-width: 20rem;
+  margin-left: 1rem;
+  color: $white;
+
+  @include themify() {
+    color: $white;
+  }
+
+  &:focus {
+    @include themify() {
+      outline-color: theme('themeColor') ;
+    }
+  }
+
+  .header--internal & {
+    color: $black;
+  }
+
+  // Remove left margin if there are no CTAs and logo should be centered in the
+  // sticky nav.
+  .header--internal &,
+  .header--center & {
+    margin-left: 0;
+  }
+
+}
+
+.condensed__logo__img {
+  max-height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.condensed__list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.condensed__list__container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  top: 100%;
+  width: 100%;
+  transform: translateY( -100% );
+  z-index: -1;
+  visibility: hidden;
+  background-color: $gray-darker;
+  transition:
+  transform 300ms,
+  visibility 300ms;
+
+  .condensed__list--active & {
+    visibility: visible;
+    transform: translateY( 0 );
+    z-index: -1;
+  }
+}
+
+.condensed__list {
+  display: flex;
+  justify-content: space-between;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding-right: 5%;
+  padding-left: 5%;
+
+  @include mq( $break-xl ) {
+    padding-right: 4.5rem;
+    padding-left: 4.5rem;
+  }
+
+  li:hover,
+  li.ally-focus-within {
+    .condensed__list--sub {
+      display: block;
+      visibility: visible;
+    }
+    .condensed__link__icon {
+      transform: rotate( 180deg );
+    }
+  }
+}
+
+.condensed__list--sub {
+  display: none;
+  visibility: hidden;
+  position: absolute;
+  top: 70%;
+  z-index: 2;
+  min-width: 250px;
+  max-width: 250px;
+  width: auto;
+  background-color: $gray-darker;
+  border-top: 4px solid $blue;
+  left: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  .condensed__item--active & {
+    display: block;
+    visibility: visible;
+  }
+
+  @include themify() {
+    border-color: theme( 'themeColorOnDarkBackground' );
+  }
+}
+
+.condensed__item,
+.condensed__item--sub {
+  margin-bottom: 0;
+}
+
+.condensed__item {
+  position: relative;
+  display: flex;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+
+  &:last-child {
+    .condensed__list--sub {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  & + & {
+    @include fluid-property( margin-left, 1024px, 1278px, 16px, 28px );
+
+    @include mq( $break-lg ) {
+      @include fluid-property( margin-left, 1278px, 1440px, 8px, 28px );
+    }
+  }
+
+  .no-touchevents & {
+    &:hover,
+    &:focus-within {
+      .condensed__list--sub {
+        display: block;
+        visibility: visible;
+      }
+
+      .condensed__link__icon {
+        transform: rotate( 180deg );
+      }
+    }
+  }
+}
+
+.condensed__item--sub {
+  @extend .menu__item--sub;
+}
+
+.condensed__link {
+  @extend .menu__link;
+
+  // Overrides for `.menu__link`. `!important` to override theme styling.
+  // SASS_EXTEND_ISSUE
+  color: $white !important;
+
+  @include mq( $break-md ) {
+    &::before {
+      @include themify() {
+        background-color: theme( 'themeColorOnDarkBackground' ) !important;
+      }
+    }
+  }
+}
+
+.condensed__link__icon {
+  @extend .menu__link--toggle;
+  color: $blue;
+  transition: transform $transition--base;
+
+  // Condensed menu uses inline SVG, not CSS data URIs.
+  background-image: none !important; // Overrides `.menu__link--toggle`.
+
+  @include themify() {
+    color: theme( 'themeColorOnDarkBackground' );
+  }
+
+  .condensed__item--active & {
+    transform: rotate( 180deg );
+  }
+}
+
+.condensed__link--sub {
+  padding-left: 0;
+  padding-right: 0;
+  color: $white;
+
+  @include themify() {
+    color: $white;
+  }
+
+  &:hover,
+  &:focus {
+    color: $blue;
+
+    @include navigation-indicator( $color: $white );
+
+    @include themify() {
+      color: theme( 'textColorHoverOnDarkBackground' );
+    }
+  }
+}
+
+.condensed__search__button,
+.condensed__list__button,
+.condensed__button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+
+  &:focus {
+    outline-color: $outline-light;
+
+    .s-internal & {
+      outline-color: $outline-dark;
+    }
+
+    @include themify() {
+      outline-color: theme('themeColor') ;
+    }
+  }
+}
+
+.condensed__search__button__icon {
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  @include fill( $svgstore--search, $blue );
+
+  @include themify() { // ¿Scope to `.header-center`?
+    @include fill( $svgstore--search, theme( 'themeColorA11y' ) );
+  }
+
+  .search-active & {
+    @include fill( $svgstore--close, $blue );
+  }
+
+  // Themify SVG above.
+  @include themify( $concat: '.search-active' ) { // ¿Scope to `.header-center`?
+    @include fill( $svgstore--close, theme( 'themeColorA11y' ) );
+  }
+}
+
+.condensed__list__button__icon {
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  @include fill( $svgstore--menu, $blue );
+
+  @include themify() { // ¿Scope to `.header-center`?
+    @include fill( $svgstore--menu, theme( 'themeColorA11y' ) );
+  }
+
+  .condensed__list--active & {
+    @include fill( $svgstore--close, $blue );
+  }
+
+  // Themify SVG above.
+  @include themify( $concat: '.condensed__list--active' ) { // ¿Scope to `.header-center`?
+    @include fill( $svgstore--close, theme( 'themeColorA11y' ) );
+  }
+}
+
+.condensed__search {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  transform: translateY( -100% );
+  z-index: -1;
+  visibility: hidden;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-color: $gray-darker;
+  transition:
+  transform 300ms,
+  visibility 300ms;
+
+  .search-active .condensed--show & {
+    visibility: visible;
+    transform: translateY( 0 );
+    z-index: -1;
+  }
+
+  .search__form {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+
+    .search-active .condensed--show & {
+      opacity: 1;
+    }
+  }
+}

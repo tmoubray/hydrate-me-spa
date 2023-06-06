@@ -1,0 +1,137 @@
+/* sidebar widgets */
+
+
+.widget_call-to-action {}
+
+.widget_subscribe-form {
+
+  input {
+    font-family: $font-base;
+
+    &[type='email'] {
+      display         : block;
+      padding         : 1em;
+      border          : none;
+      background-color: $gray-light;
+    }
+  }
+
+  button[type=submit] {
+    margin-top: 1em;
+  }
+}
+
+.widget_micro-feature {
+  figure {
+    margin-bottom: 1em;
+  }
+}
+
+.mailpoet_form_widget, .widget_wysija{
+
+  .mailpoet_text, .wysija-input {
+    width: 100%;
+    color: #000;
+    padding: 10px !important;
+    margin: 0 auto;
+    text-align: left;
+    border: 0;
+    background-color: #eaeaea;
+  }
+  
+  .mailpoet_submit, .wysija-submit {
+    color: $black;
+    background: unset;
+    border: unset;
+    font-family: Trade Gothic,Oswald Medium,Oswald,Arial,sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.75px;
+    padding: 0px;
+    margin-top: 0;
+   
+    &:hover{
+      @include themify() {
+        color: theme( 'textColorOnThemeColor' );
+      }
+    }
+  }
+}
+
+.widget_categories {
+  ul {
+    list-style   : none;
+    margin-bottom: 0;
+    padding      : 0;
+
+    li {
+      margin-bottom: 0.25em;
+
+      a {
+        color          : $black;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.widget_meta {
+  ul {
+    list-style   : none;
+    margin-bottom: 0;
+    padding      : 0;
+
+    li {
+      margin-bottom: 0.25em;
+
+      a {
+        display        : block;
+        margin-bottom  : 0.25em;
+        line-height    : 1.375;
+        color          : $black;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.widget_archive {
+  ul {
+    list-style   : none;
+    margin-bottom: 0;
+    padding      : 0;
+
+    li {
+      margin-bottom: 0.25em;
+
+    line-height: 1.7;
+
+      a {
+        display        : block;
+        text-decoration: none;
+        color          : $black;
+      }
+    }
+  }
+}
+
+.widget_tags {
+  .tag {
+    display         : inline-block;
+    margin          : 0.2em;
+    padding         : .5em;
+    background-color: $gray-light;
+    color           : $black;
+    text-decoration : none;
+    &:hover{
+      background-color: $gray-lighter;
+    }
+  }
+
+}
+
+// utility class (might be redundant)
+.w100 {
+  width: 100%;
+}

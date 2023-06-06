@@ -1,0 +1,431 @@
+body {
+  font-family: $font-base;
+}
+
+a {
+// a:not([class]),
+// a[class^='ally-focus-within'],
+// a[class=''],
+// a[class^='file'],
+// a[class^='bubblelink'] {
+  color: $a11y-und-green;
+  // text-decoration: none;
+  // @include underline;
+  @media all and ( -ms-high-contrast: none ) {
+    text-decoration: underline;
+  }
+
+  &:hover,
+  &:focus,
+  &:visited {
+    // background-image: none;
+    text-decoration: none;
+  }
+
+  @include tint-component( 'black' 'blackish' ) {
+    color: $white;
+    font-weight:bold;
+
+
+    @include themify() {
+      color: theme( 'textColorOnDarkBackground' );
+    }
+  }
+
+  @include tint-component( 'themed' ) {
+    color: $white;
+
+    @include themify() {
+      color: theme( 'textColorOnThemeColor' );
+    }
+  }
+
+  @include themify() {
+    color: theme( 'linkColorA11y' );
+  }
+}
+
+// Todo: Remove the scoping selector `.main__content` for file types. Currently
+// exists to prevent possible unknown side effects of its removal.
+// If more snippets need to exclude the file type pseudo element the
+// exclusion should be changed to a placeholder and moved to the snippet's scss.
+.main__content {
+  & a[href$='.pdf'],
+  & a[href$='.xlsx'],
+  & a[href$='.xls'],
+  & a[href$='.ppt'],
+  & a[href$='.docx'],
+  & a[href$='.doc'] {
+    position: relative;
+
+    &:not(.feature__link):not(.button)::after {
+      display: inline-block;
+      margin-left: 0.25em;
+      font-size: 0.75em;
+      transform: translateY( -0.5em );
+    }
+  }
+
+  & a[href$='.pdf']:not(.feature__link):not(.button)::after {
+    content: '(PDF)';
+  }
+
+  & a[href$='.xlsx']:not(.feature__link):not(.button)::after {
+    content: '(XLSX)';
+  }
+
+  & a[href$='.xls']:not(.feature__link):not(.button)::after {
+    content: '(XLS)';
+  }
+
+  & a[href$='.ppt']:not(.feature__link):not(.button)::after {
+    content: '(PPT)';
+  }
+
+  & a[href$='.docx']:not(.feature__link):not(.button)::after {
+    content: '(DOCX)';
+  }
+
+  & a[href$='.doc']:not(.feature__link):not(.button)::after {
+    content: '(DOC)';
+  }
+}
+
+a[href^='mailto']::after {
+  background-image: none;
+}
+
+h1, .h1,
+.h1-large, .h1--lg,
+.h1-large-alt, .h1--lg-alt,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  @extend %heading_base;
+  margin: 1.2em 0 0.5em;
+}
+
+h1, .h1 {
+  @extend %h1;
+  margin-bottom: 0.41666em; // ~30px
+  font-size: 2.9rem;
+  font-weight: bold;
+  color:$font-black;
+
+
+  @include mq( $break-lg ) {
+    font-size: 3.5rem;
+  }
+
+  & > a {
+    color: $font-black;
+  }
+}
+
+h2{
+   font-size: 2rem !important;
+}
+
+.overlay_text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    text-align: center;
+    text-transform: uppercase;
+    color:$font-black;
+    font-weight:bold;
+    font-weight: 700;
+    background: #ffffffad;
+    padding: 1rem 1rem;
+    border: 1px solid $font-black;
+    font-size:1.8rem;
+    @include mq( $break-xs ) {
+    font-size:.65rem;
+    }
+    @include mq( $break-md ) {
+    padding: 1rem 1rem;
+    font-size:.88125rem;
+    }
+    @include mq( $break-lg ) {
+    padding: 1rem 3rem;
+    font-size:.88125rem;
+    }
+}
+
+.social_media_heading{
+  text-align: center;
+  @include mq( $break-md ) {
+  text-align: center;
+  text-transform:uppercase;
+  font-size:2.1rem;
+  margin-top:0rem;
+  margin-bottom:3rem;
+  }
+}
+
+.google_review_heading{
+  text-align: center;
+  text-transform:uppercase;
+  font-weight:bold;
+  font-size:2rem;
+  margin-top:0rem;
+  margin-bottom:3rem;
+  @include mq( $break-md ) {
+  text-align: center;
+  text-transform:uppercase;
+  font-weight:bold;
+  font-size:35px;
+  margin-top:2rem;
+  margin-bottom:3rem;
+  }
+}
+
+.h1-large,
+.h1--lg {
+  @include font-size( 108 );
+}
+
+.h1-large-alt,
+.h1--lg-alt {
+  margin-bottom: 3rem;
+  @include fluid-type( 43px, 180px );
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+h2, .h2,
+h3, .h3 {
+  color: $font-black;
+  text-transform: uppercase; 
+
+  & > a {
+    color: $blue;
+
+
+    @include themify() {
+      color: theme( 'themeColor' );
+    }
+  }
+
+  @include tint-component( 'black' 'blackish' ) {
+    @include themify() {
+      &,
+      & > a {
+        color: theme( 'largeTextColorOnDarkBackground' );
+      }
+    }
+  }
+
+  @include tint-component( 'themed' ) {
+    color: $white;
+
+    @include themify() {
+
+      &,
+      & > a {
+        color: theme( 'largeTextColorOnThemeColor' );
+      }
+    }
+  }
+
+  @include themify() {
+    color: theme( 'themeColor' );
+  }
+}
+
+h2, .h2 {
+  @include font-size( 36 );
+}
+
+h2.category__heading{
+     @include mq( $break-md ) {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: .3rem;
+  }
+}
+  
+p.category__description{
+    @include mq( $break-md ) {
+     text-align: center;
+     width: 45rem;
+     margin: auto;
+     padding: 0rem 0 5rem;
+  }
+}
+
+
+
+h3, .h3 {
+  @include font-size( 26 );
+
+  .module--green & { // ← DEPRECATED, to `.tint-themed`
+    color: $white;
+  }
+}
+
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  color: $font-black;
+  letter-spacing: 1.25px; // a little space needed when lowercase but not 1.75
+
+  & > a {
+    color: $font-black;
+
+    @include themify() {
+      color: $font-black;
+    }
+  }
+
+  @include tint-component( 'black' 'blackish' ) {
+    &,
+    & > a {
+      color: $white;
+    }
+  }
+
+  @include tint-component( 'themed' ) {
+    & > a {
+      color: $font-black;
+    }
+
+    @include themify() {
+      &,
+      & > a {
+        color: theme( 'textColorOnThemeColor' );
+      }
+    }
+  }
+}
+
+h4, .h4 {
+  @include font-size( 20 );
+}
+
+h5, .h5 {
+  @include font-size( 18 );
+}
+
+h6, .h6 {
+  @include font-size( 16 );
+}
+
+h2.fluid-type {
+  @extend %fluid-h2;
+}
+
+p {
+  margin: 0 0 1rem 0;
+  color:$font-black;
+  line-height: $line-height--base;
+  font-size:.95rem;
+}
+
+li {
+  line-height: 1.375;
+}
+
+// TODO: Like <a>, set the base style and modify later.
+ul:not([class]),
+ul[class=''],
+ul[class='ally-focus-within'],
+ol:not([class]),
+ol[class=''],
+ol[class='ally-focus-within'] {
+  margin: 1rem 0 2rem;
+  padding-left: 2rem;
+
+  & li {
+    margin-bottom: 0.375rem;
+    line-height: 1.375;
+
+    & > ul,
+    & > ol {
+      margin: 0.375rem 0;
+      padding-left: 1.375rem;
+    }
+  }
+}
+
+
+.headline_text{
+  font-size: 45px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color:$font-black;
+}
+
+// Text Helpers -------------------------------------------------------------- /
+.text-serif-xl {
+  @extend %text-serif-xl;
+}
+
+// To allow Trade/Oswald to be used without extending a heading
+// which may effect size and other properties.
+.font-display {
+  font-family: $font-base;
+}
+
+.serif {
+  font-family: $font-base;
+}
+
+.sans-serif {
+  font-family: $font-base;
+}
+
+.serif-large,
+.serif--lg {
+  @include font-size( 18 );
+  font-family: $font-base;
+  line-height: 1.388;
+}
+
+.serif-xlarge,
+.serif--xl {
+  @include font-size( 28 );
+  font-family: $font-base;
+  line-height: 1.428;
+}
+
+.serif-xlarge-alt,
+.serif--xl-alt {
+  @include font-size( 18 );
+  font-family: $font-base;
+  line-height: 1.428;
+
+  @include mq( $break-md ) {
+    @include font-size( 28 );
+  }
+  
+  @include themify() {
+    color: theme( 'textColorOnDarkBackground' );
+  }
+}
+
+.heading__group {
+  display: flex;
+  flex-direction: column;
+  @include mq( $break-xs ) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+
+  & + .ous,
+  & + [class*="ous-"] { // DEPRECATED
+    margin-top: 1rem;
+  }
+
+  & > :first-child {
+    margin-top: 0;
+  }
+  & > :last-child {
+    margin-bottom: 1rem;
+  }
+}

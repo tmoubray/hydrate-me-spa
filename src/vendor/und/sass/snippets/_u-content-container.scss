@@ -1,0 +1,38 @@
+/**
+ * Generic Content Container Snippet
+ * -----------------------------------------------------------------------------
+ *
+ * THIS SNIPPET SUPERSEDES THE "GENERIC CONTAINER" SNIPPET,
+ * `ou-snippet-container`.
+ *
+ * OU Name:        Content Container
+ * Table Label:    Snippet: Content Container
+ * Table Selector: .ou-snippet-content-container
+ *
+ * Options
+ * -------
+ * - Snippet Width
+ * - Content Width
+ * - Margin
+ * - Padding
+ * - Slashes
+ * - Background Color
+ */
+
+.content-container {
+
+  & h2.fluid-type {
+    margin-top: 0;
+    margin-bottom: $spacing-sm;
+    @extend %fluid-h2;
+  }
+
+  // Child Snippet Adjustments -------------------------------------------------
+  & > .ous.columns:last-child .columns__item {
+    margin-bottom: 0;
+  }
+}
+
+.content-container-width {
+  @include zero( true ); // NEEDS REVIEW, might need to exempt a few snippets.
+}

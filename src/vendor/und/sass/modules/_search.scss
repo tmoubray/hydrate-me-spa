@@ -1,0 +1,85 @@
+/**
+ * Search Forms
+ * -----------------------------------------------------------------------------
+ *
+ * Tactical navigation search forms and Program Finder search form.
+ */
+
+.search__form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+  max-width: 70rem;
+  color: $white;
+  font-family: $font-base;
+  @include fontSmoothing;
+
+  @include mq( $break-md ) {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  // MODIFIERS //
+  &--small {
+    padding: 2.75rem 5% 3rem;
+  }
+}
+
+.search__input__container {
+  position: relative;
+  border-bottom: 2px solid $blue;
+
+  @include themify() {
+    border-bottom-color: theme( 'themeColorOnDarkBackground' );
+  }
+}
+
+.search__input {
+  padding: 0 2.5rem 0 0;
+  width: 100%;
+  color: $white;
+  font-family: $font-base;
+  @include fluid-type( 30px, 45px );
+  line-height: 1;
+  background-color: transparent;
+  border: 0;
+
+  &::placeholder {
+    color: $gray-light;
+  }
+
+  &::-ms-clear {
+    display: none;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.search__button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.search__button--icon {
+  display: block;
+  padding: 0.5rem;
+  width: 3rem;
+  color: $blue;
+  background-color: transparent;
+  border: none;
+
+  @include themify() {
+    color: theme( 'themeColorOnDarkBackground' ); // THEMIFY_CALIBRATE, ¿$gray-light?
+  }
+}
+
+.search-scope__option {
+  margin-top: 1rem;
+}

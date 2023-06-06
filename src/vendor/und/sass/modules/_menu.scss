@@ -1,0 +1,388 @@
+/**
+ * Desktop Navigation (Prior to scrolling) and Mobile Menu (☰)
+ * -----------------------------------------------------------------------------
+ *
+ * This navigation is the primary navigation in the header of the site. When the
+ * page is scrolled, it is hidden and replaced by the Condensed menu
+ * (`_condensed.scss`).
+ *
+ * Many selectors in `_condensed.scss` will extend the selectors in this file.
+ */
+
+.menu {
+  width: 100%;
+  order: -1;
+
+  @include mq( $break-md ) {
+    transition: margin $transition--base;
+    background-color: $white;
+    order: 1;
+ 
+
+    @include themify() {
+      border-bottom-color: theme( 'themeColor' ); // THEMIFY_CALIBRATE, ¿$black?
+    }
+  }
+
+}
+
+.menu__list {
+  margin: 0;
+  padding-left: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  list-style: none;
+
+  @include mq( $break-md ) {
+    padding: 0;
+    max-width: 50rem;
+    margin-left: 0rem;
+  }
+  @include mq( $break-lg ) {
+    margin-left: 10rem;
+  }
+}
+
+.menu__list {
+  @include mq( $break-md ) {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+
+    li:hover,
+    li.ally-focus-within {
+      list-style-type:none;
+      .menu__list--sub {
+        display: block;
+        visibility: visible;
+      }
+      .menu__link--toggle {
+        transform: rotate( 180deg );
+      }
+    }
+  }
+}
+
+.menu__list--sub {
+  display: none;
+  visibility: hidden;
+  flex-shrink: 0;
+  width: 100%;
+
+  .menu__item--active & {
+    left: 0;
+    display: block;
+    visibility: visible;
+  }
+
+  @include mq( $break-md ) {
+    left: 0;
+    border-top: none;
+    position: absolute;
+    top: 100%;
+    z-index: 2;
+    min-width: 250px;
+    max-width: 250px;
+    width: auto;
+    background-color: $gray;
+    box-shadow: 0 2px 4px 0 rgba( $black, 0.15 );
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include themify() {
+      border-color: theme( 'themeColor' );
+    }
+  }
+}
+
+.menu__item,
+.menu__item--sub {
+  margin-bottom: 0;
+}
+
+.menu__item {
+  position: relative;
+  // border-bottom: 1px solid rgba( $gray-light, 0.16 );
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 0.10em;
+  font-weight: 600;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  line-height: 20px;
+
+  @include mq( $break-md ) {
+    position: relative;
+    border-bottom: 0;
+    &:last-child {
+      .menu__list--sub {
+        right: 0;
+        left: auto;
+      }
+    }
+  }
+
+  @include mq( $break-md ) {
+    .no-touchevents & {
+      &:hover,
+      &:focus-within {
+        .menu__list--sub {
+          display: block;
+          visibility: visible;
+        }
+        .menu__link--toggle {
+          pointer-events: none;
+          transform: rotate( 180deg );
+        }
+      }
+    }
+  }
+}
+
+.menu__item--sub {
+  cursor:pointer;
+  @include mq( $break-md ) {
+    &:last-child > a {
+      border: none;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      &:after{
+
+        margin: 20px;
+        height: 100%;
+        font-size: .5625rem;
+        color: #000;
+        position: relative;
+        bottom: 3px;
+      }
+    }
+  }
+}
+
+// Extended by: .condensed__link
+.menu__link {
+  flex-shrink: 0;
+  display: block;
+  width: 100%;
+  @include font-size( 18 );
+  font-family: $font-base;
+  @include fontSmoothing;
+  color: $white;
+  letter-spacing: 0.72px;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.6875rem 3rem 0.6875rem 0;
+  border-bottom: 2px solid rgba( $gray-light, 0.16 );
+
+
+  &:hover,
+  &:focus {
+    color: $gray-light, 0.16;
+
+    @include themify() {
+      color: theme( 'textColorHoverOnDarkBackground' );
+      outline-color: $outline-light;
+    }
+  }
+
+  @include themify() {
+    color: $white; // THEMIFY_CALIBRATE
+  }
+
+
+  @include mq( $break-lg ) {
+    @include font-size( 22 );
+  }
+
+  @include mq( $break-md ) {
+    display: inline-block;
+    width: auto;
+    @include font-size( 20 );
+    position: relative;
+    @include font-size( 14.1 );
+    color: $font-black;
+    padding: 0.5rem 0;
+    border: 0;
+
+    @include themify() {
+      color: theme( 'textColor' );
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: $blue;
+      visibility: hidden;
+      width: 0;
+      transition:
+      width 350ms ease-out,
+      visibility 350ms ease-out;
+
+      @include themify() {
+        background: theme( 'themeColor' );
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &.active {
+      color: inherit;
+      background: transparent;
+
+      @include themify() {
+        color: theme( 'textColor' );
+      }
+
+      &:before {
+        visibility: visible;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.menu__link--sub {
+  color: $white;
+  transition: color $transition--base;
+
+  // To override `theme-*** a`.
+  @include themify() {
+    color: $white;
+  }
+
+  &:hover,
+  &:focus {
+    color: $font-black;
+
+    // THEMIFY_CALIBRATE, For `dark` themes this will be gray. For `light` themes this will be theme color.
+    @include themify() {
+      color: theme( 'textColorHoverOnDarkBackground' );
+    }
+  }
+
+  @include mq( $break-md ) {
+    color: $font-black;
+    border-color: $gray-light;
+    padding-right: 0;
+    padding-left: 0;
+
+    &:hover,
+    &:focus {
+      @include navigation-indicator();
+
+      @include themify() {
+        // THEMIFY_CALIBRATE, ¿Remove and use hover/focus styles above?
+        color: theme( 'themeColorA11y' );
+      }
+    }
+
+    @include themify() {
+      color: theme( 'textColor' );
+    }
+
+  }
+}
+
+// Extended by: .condensed__link__icon
+.menu__link--toggle {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3rem;
+  height: 2.75rem;
+  border: 0;
+  background-color: $gray-darkish; // #3e3e3e;
+  background-size: auto 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+  @include fill( $svgstore--caret-down, $blackish );
+
+  &:hover {
+
+    @include fill( $svgstore--caret-down, $white );
+
+    @include mq( $break-md ) {
+      @include fill( $svgstore--caret-down, $black  );
+    }
+
+    @include themify() {
+      background-color: theme( 'themeColorOnDarkBackground' );
+      @include fill( $svgstore--caret-down, theme( 'textColorOnThemeColorInverse' ) );
+    }
+  }
+
+  &:focus {
+    outline-offset: $outline-inset--sm;
+  }
+
+  @include mq( $break-md ) {
+    position: relative;
+    top: initial;
+    right: initial;
+    margin-left: 0.5rem;
+    padding: 0;
+    width: 1rem;
+    height: .5rem;
+    background-color: transparent !important; // SASS_EXTEND_ISSUE, `!important` to override theme styles.
+    background-size: auto 100%;
+    @include fill( $svgstore--caret-down, $gray );
+    cursor: default;
+    transition: transform $transition--base;
+
+    @include themify() {
+      &,
+      &:hover {
+        @include fill( $svgstore--caret-down, theme( 'themeColor' ) );
+      }
+    }
+  }
+
+  .menu__item--active & {
+    transform: rotate( 180deg );
+  }
+}
+
+.menu__item--active {
+  & > .menu__link {
+    border-width: 0;
+  }
+}
+
+.menu__heading--mobile {
+  @extend %h4;
+  color: $white;
+  background-color: $gray-darker;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+
+  @include mq( $break-md ) {
+    display: none;
+  }
+
+  a {
+    color: $white !important;
+    background-image: none;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+      opacity: 0.7;
+    }
+  }
+
+  .menu & {
+    margin-top: 1rem;
+  }
+}

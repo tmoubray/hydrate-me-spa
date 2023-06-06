@@ -1,0 +1,36 @@
+{% from 'util/_placeholder.html' import ph %}
+
+
+
+{% macro grid_blocks( count, heading = 'Grid Blocks Heading', grid_item_size = '2' ) %}
+
+<div class="ous grid-blocks">
+
+  {% if heading %}
+  <h2 class="grid-blocks__heading">{{ heading }}</h2>
+  {% endif %}
+
+  <div class="grid">
+
+    {% for i in range( 0, count ) %}
+
+    <div class="grid__item grid__item--{{ grid_item_size }}">
+      <div class="grid-block__item">
+        <a href="#" class="grid-block__link">
+          {{ ph('600x400') }}
+          <div class="grid-block__heading">Prospective Medical Students</div>
+        </a>
+        <p>
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate.
+        </p>
+      </div>
+    </div>
+
+    {% endfor %}
+
+  </div>
+</div>
+
+{% endmacro %}

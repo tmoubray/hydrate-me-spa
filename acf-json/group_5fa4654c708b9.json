@@ -1,0 +1,358 @@
+{
+    "key": "group_5fa4654c708b9",
+    "title": "Site Options",
+    "fields": [
+        {
+            "key": "field_6123d367afe94",
+            "label": "Contact Info",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_6123d385c5dec",
+            "label": "Hours",
+            "name": "hours",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_6123d39dc5ded",
+                    "label": "M\/W\/F OPEN",
+                    "name": "monday_friday_open",
+                    "aria-label": "",
+                    "type": "time_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "g:i a",
+                    "return_format": "ga"
+                },
+                {
+                    "key": "field_6123d3c7c5def",
+                    "label": "M\/W\/F CLOSE",
+                    "name": "monday_to_friday_close",
+                    "aria-label": "",
+                    "type": "time_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "g:i a",
+                    "return_format": "ga"
+                },
+                {
+                    "key": "field_6123d41ff8436",
+                    "label": "Saturday Open",
+                    "name": "saturday_open",
+                    "aria-label": "",
+                    "type": "time_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "g:i a",
+                    "return_format": "ga"
+                },
+                {
+                    "key": "field_6123d430f8437",
+                    "label": "Saturday Close",
+                    "name": "saturday_close",
+                    "aria-label": "",
+                    "type": "time_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "g:i a",
+                    "return_format": "ga"
+                },
+                {
+                    "key": "field_6123d454f843a",
+                    "label": "Sunday Open",
+                    "name": "sunday_open",
+                    "aria-label": "",
+                    "type": "time_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "g:i a",
+                    "return_format": "ga"
+                },
+                {
+                    "key": "field_6123d461f843b",
+                    "label": "Sunday Close",
+                    "name": "sunday_close",
+                    "aria-label": "",
+                    "type": "time_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "g:i a",
+                    "return_format": "ga"
+                }
+            ]
+        },
+        {
+            "key": "field_6123d47878d9e",
+            "label": "Phone Number",
+            "name": "phone_number",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_6123d49578d9f",
+            "label": "Address",
+            "name": "address",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_6123d4a178da0",
+            "label": "Email Address",
+            "name": "email_address",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_6123db994794a",
+            "label": "Walk-in note",
+            "name": "walk_in_note",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5fb8562b13d24",
+            "label": "Social Buttons",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5fb8571f13d27",
+            "label": "Social Button Instructions",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "These social buttons will appear in both the footer and the sidebar.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_5fe2729425a3d",
+            "label": "Social Footer Section Title",
+            "name": "social_footer_section_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "This is for the title of the social submenu on the footer only. You can configure the title of the sidebar social section in the widgets menu.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5fa99dc113ede",
+            "label": "Social Buttons",
+            "name": "social_buttons",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The Social Title or Link Text correspond with the proper SVG so please be mindful of spelling here!",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Row",
+            "sub_fields": [
+                {
+                    "key": "field_5fa99ee113ee1",
+                    "label": "Social Title",
+                    "name": "social_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Name of the social media platform.\r\nEx: Twitter, Instagram, Facebook, LinkedIn",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "parent_repeater": "field_5fa99dc113ede"
+                },
+                {
+                    "key": "field_5fa99ea013ee0",
+                    "label": "Social Link",
+                    "name": "social_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_5fa99dc113ede"
+                }
+            ],
+            "rows_per_page": 20
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-site-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1684353166
+}

@@ -1,0 +1,93 @@
+@import '../../node_modules/normalize.css/normalize';
+
+html {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.wf-loading * {
+	opacity: 0;
+}
+
+*,
+::before,
+::after {
+  flex: 0 1 auto;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+button,
+label,
+[type='submit'] {
+  cursor: pointer;
+}
+
+iframe {
+  border: 0;
+}
+
+img {
+	display: block;
+  width:100%;
+	max-width: 100%;
+	height: auto;
+}
+
+svg {
+  fill: currentColor;
+}
+
+[type='search'] {
+  appearance: none;
+}
+
+figure {
+  margin: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted;
+}
+
+button,
+html [type="button"], /* 1 */
+[type="reset"],
+[type="submit"] {
+  appearance: none; /* 2 */
+}
+
+input, textarea, button {
+  border-radius: 0;
+}
+
+
+// Focus outlines are removed when the *input* is not keyboard.
+// The purpose of this is to prevent focus styles intended for keyboard users
+// from appearing when focus is initiated via mouse or touch.
+// The previous whatintent=keyboard was changed on mouse move so the focus
+// styles were also being removed on mouse move. The whatinput=keyboard doesn't
+// change on mouse move and keeps a keyboard focused element outlined even on
+// mouse move.
+html:not([data-whatinput='keyboard']) {
+  & :focus {
+    outline: 0 !important;
+    box-shadow: none;
+  }
+}
+
+:focus {
+  @include outline-focus;
+}
+
+#directedit a {
+  color: $white;
+  text-decoration: none;
+  background-image: none;
+}

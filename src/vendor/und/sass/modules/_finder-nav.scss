@@ -1,0 +1,309 @@
+.finder__nav {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  @include mq( $break-sm ) {
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+.finder__nav__label {
+  @include font-size( 20 );
+  font-family: $font-base;
+  color: $white;
+  text-decoration: none;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: block;
+
+  @include mq( $break-sm ) {
+    cursor: default;
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 0;
+  }
+
+  &:focus {
+    outline-offset: $outline-offset--md;
+  }
+
+  .finder__nav--active & {
+    padding-bottom: 5%;
+    @include mq( $break-sm ) {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.finder__nav__label__icon {
+  display: inline-block;
+  float: right;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 1.25rem;
+  height: 1rem;
+  @include fill( $svgstore--caret-down, $blue );
+
+  @include mq( $break-sm ) {
+    display: none;
+  }
+
+  .finder__nav--active & {
+    @include fill( $svgstore--close, $blue );
+  }
+}
+
+.finder__nav__list {
+  display: none;
+
+  @include mq( $break-sm ) {
+    display: flex;
+    // flex-wrap: wrap;
+    align-items: center;
+    width: calc( 100% - 10rem );
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .finder__nav--active & {
+    display: block;
+
+    @include mq( $break-sm ) {
+      display: flex;
+    }
+  }
+}
+
+// ¿Targets modified and non-modified `.finder__nav_button` elements?
+[class^="finder__nav__button"] {
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  font-family: $font-base;
+  @include font-size( 16 );
+  @include fontSmoothing;
+  text-transform: uppercase;
+  letter-spacing: 1.75px;
+  text-decoration: none;
+  color: $white;
+  line-height: 4;
+  padding-left: 5%;
+  padding-right: 5%;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: $gray-darker;
+  }
+
+  &:focus {
+    outline-offset: $outline-inset--lg;
+  }
+
+  @include mq( $break-sm ) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    line-height: 7.5;
+  }
+
+  @include mq( $break-md ) {
+    line-height: 6.25;
+  }
+
+  & span {
+    display: inline-block;
+    vertical-align: sub;
+    color: $blue;
+    width: 1.25rem;
+    margin-left: auto;
+
+    @include mq( $break-sm ) {
+      margin-left: 1rem;
+    }
+  }
+
+  .finder__dropdown--active & {
+    &:before {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 4px;
+      background-color: $blue;
+      left: 0;
+      bottom: 0;
+    }
+
+    & span {
+      transform: rotate( 180deg );
+    }
+  }
+}
+
+.finder__dropdown {
+  visibility: hidden;
+  display: none;
+
+  .finder__dropdown--active & {
+    display: block;
+    visibility: visible;
+    padding-left: 5%;
+    padding-right: 5%;
+
+    @include mq( $break-sm ) {
+      animation: fadeIn 500ms ease-in-out;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+  }
+}
+
+.finder__dropdown__list {
+  display: none;
+  padding-left: 0;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0 -1rem;
+
+  .finder__dropdown--active & {
+    display: flex;
+  }
+}
+
+.finder__dropdown__item {
+  margin: 0 1rem;
+  padding: 1rem 0;
+  width: 100%;
+  border-bottom: 2px solid $gray-light;
+  list-style-position: outside;
+
+  &:last-child {
+    @include mq( $max: $break-sm ) {
+      border-bottom: 0;
+    }
+  }
+
+  @include mq( $break-sm ) {
+    width: calc( 50% - 2rem );
+  }
+
+  @include mq( $break-md ) {
+    width: calc( 33% - 2rem );
+  }
+}
+
+.finder__dropdown__link {
+  position: relative;
+  display: block;
+  @include font-size( 18 );
+  font-family: $font-base;
+  color: $black;
+  text-decoration: none;
+  transition: padding-left $transition--base;
+
+  &:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    width: 1.5rem;
+    height: 1.125rem;
+    background-size: 0% 0%;
+    transition: background $transition--base;
+  }
+
+  &:hover {
+    color: $blue;
+  }
+
+  &.active {
+    padding-left: 1.75rem;
+
+    &:before {
+      @include fill( $svgstore--check-mark, $blue );
+      background-size: 70% 100%;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.finder__checkbox__group {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style: none;
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+
+  @include mq( $break-sm ) {
+    margin-top: 0.5rem;
+    margin-left: auto;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+  }
+
+  @include mq( $break-md ) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+
+    @include mq( $break-xs ) {
+      display: inline-block;
+
+      .checkbox__label {
+        margin-right: 1rem;
+      }
+    }
+
+    @include mq( $break-sm ) {
+      display: block;
+      margin-bottom: 0.5rem;
+
+      .checkbox__label {
+        margin-right: 0;
+      }
+    }
+
+    @include mq( $break-md ) {
+      display: inline-block;
+      margin-bottom: 0;
+
+      .checkbox__label {
+        margin-right: 1rem;
+      }
+    }
+
+    &:last-child {
+      .checkbox__label {
+        margin-right: 0;
+      }
+    }
+
+    .checkbox__label {
+
+      & span {
+  
+        &:last-of-type {
+          font-family: $font-base;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}

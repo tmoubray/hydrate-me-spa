@@ -1,0 +1,205 @@
+/**
+ * Spacing Utilities
+ * -----------------------------------------------------------------------------
+ *
+ * Shorthand classes to apply standardized `margin` and `padding` to an element.
+ *
+ *
+ * Standard Spacing Utilities
+ * --------------------------
+ * Applies fixed spacing across all viewport sizes.
+ *
+ * Format:   {property}{axis}-{size}
+ * Examples: .py-sm, .mt-xl
+ *
+ *
+ * Breakpoint Spacing Utilities
+ * ----------------------------
+ * Applies spacing at specific viewport and above.
+ *
+ * Format:   {property}{axis}-{breakpoint}-{size}
+ * Examples: .py-md-sm, .mt-sm-xl
+ *
+ *
+ * Fluid Spacing Utilities
+ * -----------------------
+ * Implements media queries to reduce/enlarge margin or padding based on
+ * viewport size.
+ *
+ * Format:   {property}{axis}-fluid
+ * Examples: .py-fluid
+ *
+ *
+ * Where `property` is one of:
+ * - `m` for margin
+ * - `p` for padding
+ *
+ * Where `axis` is one of:
+ * - `t` for top margin/padding
+ * - `b` for bottom margin/padding
+ * - `r` for right margin/padding
+ * - `l` for left margin/padding
+ * - `x` for left and right (x axis) margin/padding
+ * - `y` for top and bottom (y axis) margin/padding
+ *
+ * Where `size` is one of:
+ * - `auto` only for margin
+ * - `none` no spacing
+ * - `xs`   for value defined for $spacing.sizes.xs
+ * - `sm`   for value defined for $spacing.sizes.sm
+ * - `md`   for value defined for $spacing.sizes.md
+ * - `lg`   for value defined for $spacing.sizes.lg
+ * - `xl`   for value defined for $spacing.sizes.xl
+ *
+ * Where `breakpoint` is one of:
+ * - `xs` for value defined for $breakpoints.xs
+ * - `sm` for value defined for $breakpoints.sm
+ * - `md` for value defined for $breakpoints.md
+ * - `lg` for value defined for $breakpoints.lg
+ * - `xl` for value defined for $breakpoints.xl
+ */
+
+/**
+ * Standard and Breakpoint Spacing Utilities -----------------------------------
+ */
+@each $breakpoint, $breakpoint-value in $breakpoints {
+
+  $breakpoint-modifier: if( 0 == $breakpoint-value, '', '-' + $breakpoint );
+
+  @include mq( $breakpoint-value ) {
+
+    @each $spacing-type-prefix, $spacing-type-name in map-get( $spacing, types ) {
+
+      @each $spacing-size, $spacing-size-value in map-get( $spacing, sizes ) {
+
+        $modifier: $breakpoint-modifier + '-' + $spacing-size;
+
+        // Specific axis.
+        @each $axis-prefix, $axis-name in map-get( $spacing, axes ) {
+
+          // Check if we need to apply a specific axes. If not, create a utility
+          // that adds spacing to all four sides.
+          $apply-to-all-axes: a == $axis-prefix;
+          $prefix:            $spacing-type-prefix + if( $apply-to-all-axes, '', $axis-prefix );
+          $axis:              if( $apply-to-all-axes, (), $axis-name );
+
+          // `auto` utilities are only for margin, do not output for padding.
+          @if ( not ( 'p' == $spacing-type-prefix and auto == $spacing-size ) ) {
+            .#{$prefix + $modifier} {
+              @include make-spacing-props( $spacing-type-name, $axis, $spacing-size-value );
+            }
+          }
+
+        }
+      }
+    }
+
+  }
+
+}
+
+/**
+ * Fluid Spacing Utilities -----------------------------------------------------
+ */
+@each $spacing-type-prefix, $spacing-type-name in map-get( $spacing, types ) {
+
+  @each $fluid-set in $spacing-fluid {
+
+    $fluid-set-axis:        map-get( $fluid-set, axis );
+    $fluid-set-breakpoints: map-get( $fluid-set, breakpoints );
+
+    .#{$spacing-type-prefix + $fluid-set-axis}-fluid {
+      @each $fluid-breakpoint in $fluid-set-breakpoints {
+
+        $breakpoint-value: get-fluid-value( nth( $fluid-breakpoint, 1 ), $breakpoints );
+        $axis-value:       get-spacing-axis( $fluid-set-axis );
+        $spacing-value:    get-fluid-value( nth( $fluid-breakpoint, 2 ), map-get( $spacing, sizes ) );
+        $props-values:     (
+          $spacing-type-name,
+          $axis-value,
+          $spacing-value
+        );
+
+        // Default, mobile first spacing value.
+        @if ( null == $breakpoint-value ) {
+          @include make-spacing-props( $props-values... );
+        } @else {
+          @include mq( $breakpoint-value ) {
+            @include make-spacing-props( $props-values... );
+          }
+        }
+
+      }
+    }
+
+  }
+
+}
+
+/**
+ * Fluid Breakpoint Spacing Utilities ------------------------------------------
+ *
+ * For Fluid Breakpoint Spacing Utilities we loop through a breakpoint set for
+ * a given axes twice. Once to generate the utility class name and a second time
+ * to apply media queries for the utility class - starting at the breakpoint and
+ * going up.
+ */
+@each $spacing-property-prefix, $spacing-property-name in map-get( $spacing, types ) {
+
+  @each $fluid-set in $spacing-fluid {
+
+    $fluid-set-axis:        map-get( $fluid-set, axis );
+    $fluid-set-breakpoints: map-get( $fluid-set, breakpoints );
+    // Stores previously rendered breakpoint prefix to prevent larger prefixes
+    // from generating media queries below that breakpoint.
+    // Initial values don't have a breakpoint prefix and are seeded with
+    // `null` so we pre-seed that value here.
+    $to-skip: ( null );
+
+    // Loop through each breakpoint in an axis set to generate utility class.
+    @each $fluid-set-breakpoint in $fluid-set-breakpoints {
+
+      $breakpoint-class-prefix: nth( $fluid-set-breakpoint, 1 );
+
+      // Skip initial value, not useful for Fluid Breakpoint Spacing Utilities.
+      @if ( null != $breakpoint-class-prefix ) {
+
+        $fluid-breakpoint-class: #{$spacing-property-prefix + $fluid-set-axis}-#{$breakpoint-class-prefix}-fluid;
+
+        // Loop through each breakpoint in an axis set again to generate media
+        // queries.
+        @each $breakpoint in $fluid-set-breakpoints {
+
+          $breakpoint-prefix: nth( $breakpoint, 1 );
+          $breakpoint-value:  get-fluid-value( $breakpoint-prefix, $breakpoints );
+
+          // Generate media queries for breakpoint class and up. Breakpoint
+          // prefix will be in `$to-skip` if it has been rendered.
+          @if ( index( $to-skip, $breakpoint-prefix ) == null ) {
+
+            $axis-value:    get-spacing-axis( $fluid-set-axis );
+            $spacing-value: get-fluid-value( nth( $breakpoint, 2 ), map-get( $spacing, sizes ) );
+            $props-values:  (
+              $spacing-property-name,
+              $axis-value,
+              $spacing-value
+            );
+
+            @include mq( $breakpoint-value ) {
+              .#{$fluid-breakpoint-class} {
+                @include make-spacing-props( $props-values... );
+              }
+            }
+
+          }
+        }
+
+        $to-skip: append( $to-skip, $breakpoint-class-prefix );
+
+      }
+
+    }
+
+  }
+
+}

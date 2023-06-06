@@ -1,0 +1,78 @@
+.menu--mobile {
+  @include mq( $break-md ){
+    display: none;
+  }
+
+  .button {
+    color: $white;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .menu__item--sub a {
+    padding-left: 2rem;
+    font-size: 1.125rem;
+    letter-spacing: .5px;
+  }
+}
+
+.menu--desktop {
+  display: none;
+  @include mq( $break-md ) {
+    display: block;
+  }
+
+  .menu__button {
+    display: none;
+    @include mq( $break-md ) {
+      display: block;
+    }
+  }
+
+  .menu__list--sub {
+    @include mq( $break-md ) {
+      border-top: none;
+      min-width: 380px;
+      max-width: 380px;
+    }
+  }
+
+  .menu__list--sub.nav__list--sub {
+    border-top: none;
+    @include mq( $break-md ) {
+      background: $gray;
+    }
+  }
+
+  .menu__item--sub {
+    padding: .5rem 0;
+    border: 2px solid eaeaea;
+    @include mq( $break-md ) {
+      &:first-child {
+        margin-top: 1.25rem;
+      }
+      &:last-child {
+        margin-bottom: 1.25rem;
+
+        @include themify() {
+          border-bottom: 2px solid theme( 'borderColorOnThemeColor' );
+        }
+      }
+    }
+  }
+
+  .menu__item--sub .menu__link {
+    @include mq( $break-md ) {
+      color: $white;
+      &:hover {
+        color: $white;
+        @include themify() {
+          color: theme( 'themeColor' );
+        }
+        &:before {
+          visibility: hidden;
+        }
+      }
+    }
+  }
+}    

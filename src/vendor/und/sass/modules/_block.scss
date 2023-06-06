@@ -1,0 +1,65 @@
+.block {}
+
+.block__list {
+  border-top: 1px solid $gray-light;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  &:last-child {
+    border-bottom: 1px solid $gray-light;
+  }
+}
+
+.block-group {
+  // margin-top: $spacing-xs;
+  // margin-bottom: 3rem;
+}
+
+// Is this the original people listing snippet? Remove if no longer used.
+// TO_REMOVE
+.people__list {
+  flex-wrap: wrap;
+  @include clear;
+
+  .columns-vert {
+    display: flex;
+    flex-direction: column;
+
+    @include mq( 30em ) {
+      padding-left: 1rem;
+    }
+
+    > .columns__item:first-child {
+      @include mq( $break-sm ) {
+        padding-top: 2rem;
+        width: 50%;
+      }
+    }
+  }
+
+  .columns {
+    overflow: hidden;
+
+    @include mq( $break-sm ) {
+      overflow: visible;
+    }
+
+    .columns__item {
+      padding-top: 0.5rem;
+    }
+
+    p {
+      margin-top: -0.15rem;
+    }
+  }
+}
+
+.people__img {
+  margin-bottom: 1rem;
+
+  @include mq(30em) {
+    float: left;
+    margin-bottom: 0;
+  }
+
+}

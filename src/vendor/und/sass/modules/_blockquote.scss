@@ -1,0 +1,66 @@
+blockquote {
+  margin: $spacing-sm 0;
+  padding-left: 2rem;
+
+  @include mq( $break-sm ) {
+    padding-left: 0;
+  }
+  // .main__content & {
+  //   @include mq( $break-lg ) {
+  //     margin-right: -8rem;
+  //   }
+  // }
+
+  q {
+    position: relative;
+    font-family: $font-base;
+    @include fontSmoothing;
+    @include font-size( 60 );
+    // @include fluid-type( font-size, $minScreen, $maxScreen, 48px, 52px );
+    @include fluid-type( 48px, 52px );
+
+    &:before {
+      position: absolute;
+      left: -25px;
+    }
+
+    em {
+      color: $blue;
+      font-style: normal;
+
+      @include themify() {
+        color: theme( 'themeColor' );
+      }
+    }
+  }
+
+  cite {
+    display: block;
+    font-style: normal;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+
+}
+
+.blockquote__cite__name {
+  display: block;
+  font-family: $font-base;
+  @include fontSmoothing;
+  @include font-size( 48 );
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.blockquote__cite__title {
+  display: block;
+  font-weight: bold;
+  @include font-size( 13 );
+  letter-spacing: 0.15px;
+  line-height: 1.461;
+  color: $a11y-und-green;
+
+  @include themify() {
+    color: theme( 'themeColor' );
+  }
+}

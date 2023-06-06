@@ -1,0 +1,9 @@
+{% macro cta_list( modifier_class = '', link_labels = [ 'Request Info', 'Visit', 'Apply' ] ) %}
+
+<ul class="cta__list {{ modifier_class }}">
+  {% for label in link_labels %}
+  <li class="cta__item"><a href="#" class="button--link">{{ label }}</a></li>
+  {% endfor %}
+</ul>
+
+{% endmacro %}

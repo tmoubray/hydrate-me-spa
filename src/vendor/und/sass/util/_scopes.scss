@@ -1,0 +1,38 @@
+/**
+ * Scopes
+ * ----------------------------------------------------------------------------
+ */
+
+// The following may or may not be used but
+// are listed here to show the options test
+
+
+// Scopes: specific themes, style
+// College | Internal | Programs | Action
+[class^="s-"],
+[class*=" s-"] {}
+.s-college,
+.s-center,
+.s-internal,
+.s-program {}
+
+// Templates: essentially page layouts/shells
+// Universal | Home | Landing | College Home
+// Program Finder | Program Page
+[class^="t-"],
+[class*=" t-"] {}
+.t-home,
+.t-landing,
+.t-college-home,
+.t-program-finder,
+.t-program-page,
+.t-universal {}
+
+// OU Actions [oua]
+// Preview = prv, Publish = pub, Edit = edt
+// These match the variables in the xsl
+[class^="oua-"],
+[class*=" oua-"] {}
+.oua-prv,
+.oua-pub,
+.oua-edt{}

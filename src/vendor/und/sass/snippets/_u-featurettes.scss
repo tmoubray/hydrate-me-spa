@@ -1,0 +1,34 @@
+/**
+ * Featurettes
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        [Landing] Feature Grid
+ * Table Label:    Snippet: Feature Grid
+ * Table Selector: .ou-snippet-feature-grid
+ *
+ * Uses Sidebar and Main Content layout for upper portion and "cards" below.
+ */
+
+.feature-grid, // ← DEPRECATED
+.featurettes {
+  @include zero;
+  border-top: 2px solid $blue;
+
+  & > .featurettes__body {
+    // Subtracting bottom margin of `.featurettes__card` to prevent spacing from
+    // doubling up.
+    margin-bottom: -$spacing-sm;
+  }
+}
+
+.featurettes__card {
+  @include zero;
+  margin-bottom: $spacing-sm;
+  text-align: center;
+
+  & img {
+    margin-right: auto;
+    margin-bottom: 2rem;
+    margin-left: auto;
+  }
+}

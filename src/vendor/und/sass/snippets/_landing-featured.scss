@@ -1,0 +1,91 @@
+/**
+ * Landing Page Featured Content Snipped
+ * -----------------------------------------------------------------------------
+ *
+ * @note This snippet is baked into the Landing page template and is
+ * configurable via MultiEdit.
+ */
+
+.landing-featured {
+
+  & .grid__item {
+    &:first-child {
+      order: 2;
+    }
+
+    &:last-child {
+      order: 1;
+    }
+  }
+
+  &--video {
+    & .grid__item:first-child {
+      @include mq( $break-sm ) {
+        margin-top: -1.25rem; // ( [video link height] + [video link top margin] ) / 2
+      }
+    }
+  }
+}
+
+.landing-featured__heading {
+  color: $black;
+}
+
+.landing-featured__teaser {}
+
+.landing-featured__button {
+  display: inline-flex;
+  margin: 1rem 0 0;
+  padding: 1.5rem 3rem;
+  @extend %h4;
+  color: $white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  background-color: $blue;
+  transition: background-color $transition--base;
+  outline-color: $outline-dark;
+
+  @include themify() {
+    color: theme( 'textColorOnThemeColor' );
+    background: theme( 'themeColor' );
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $black;
+
+    @include themify() {
+      color: theme( 'themeColorOnDarkBackground' );
+    }
+
+    & .landing-featured__button-caret {
+      transform: translateX( 0.5rem );
+    }
+  }
+}
+
+.landing-featured__button-caret {
+  align-self: center;
+  width: 1.125rem;
+  height: 1.125rem; // IE11_SVG
+  margin-left: 0.25rem;
+  transition: transform $transition--base;
+}
+
+.landing-featured__media {}
+
+.landing-featured__video-link {
+  margin-top: 1rem;
+}
+
+.landing-featured__author {
+  margin: 1.2em 0 .5em;
+  font-family: $font-base;
+  @include fluid-type( 18px, 26px );
+}
+
+.landing-featured__quote {
+  font-family: $font-base;
+  @include fluid-type( 36px, 64px );
+  line-height: 1;
+}

@@ -1,0 +1,42 @@
+/**
+ * Home Page
+ * -----------------------------------------------------------------------------
+ *
+ * Note: You will find other home page styles in `/modules/home-card.scss` that
+ * have not been migrated to this file. Needs review.
+ */
+.t-home {
+  & #goals + .button-group {
+    @include slice-fluid-spacing( m, t, $spacing-sm );
+  }
+}
+
+// Flickity Majors & Programs Slider -------------------------------------------
+
+.home-card__slider {
+  padding-top: $spacing-sm;
+  padding-bottom: $spacing-sm;
+
+  @include mq( $break-sm ) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  & .flickity-page-dots {
+    bottom: auto;
+
+    @include mq( $break-sm ) {
+      bottom: -3.125rem;
+    }
+
+    & .dot {
+      color: $black;
+      border-color: $black;
+    }
+  }
+
+}
+
+// Flickity Leaders in Action Slider -------------------------------------------
+
+.home-card__expand__container {}

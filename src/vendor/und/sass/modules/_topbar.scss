@@ -1,0 +1,472 @@
+.topbar {
+  @include mq( $break-md ) {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $white;
+  }
+
+  & > div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0;
+    margin:0;
+    padding-right: 0;
+
+    &.center-no-img {
+      @include mq( $break-md ) {
+        flex-wrap: nowrap;
+        align-items: flex-start;
+      }
+    }
+  }
+
+  .header--internal &,
+  .header--center & {
+    @include mq( $break-md ) {
+      background-color: $gray-light;
+    }
+  }
+
+  .top-line-sub-container{
+    display: flex;
+    justify-content: flex-end;
+    max-width: 60rem;
+    padding: 0 0 .6rem;
+    @include mq( $break-md ) {
+      padding: 0 0 .28rem;
+    }
+    @include mq( $break-lg ) {
+      padding: 0 0 1.05rem;
+    }
+    @include mq( $break-xl ) {
+      padding: 0 0 2rem;
+    }
+    .contact-number{
+      font-weight: bold;
+      font-size: 16px;
+      padding-left: 2rem;
+      letter-spacing: 1px;
+      margin-top: .3rem;
+      a{
+        color:$font-black;
+        text-decoration: none;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.topbar__logo {
+  display: none;
+  width:28%;
+  padding: 1.2rem 5rem 1.2rem 4rem;
+  max-width:501px;
+
+  @include mq( $break-lg ) {
+
+  }
+
+  @include mq( $break-md ) {
+    padding: 1.2rem 5rem 1.2rem 4rem;
+  }
+
+
+
+  img{
+    padding: 1rem 2rem;
+    margin:auto;
+    width:75%;
+  }
+
+
+
+  @include mq( $break-md ) {
+    display: block;
+    color: $white;
+    float:left;
+    background:#323030;
+    
+
+    @include themify() {
+      color: $white;
+    }
+
+    .header--internal & {
+      color: $font-black;
+    }
+
+    .header--center & {
+      width: auto;
+      max-width: 100%;
+
+      &:focus {
+        @include themify() {
+          outline-color: theme('themeColor');
+        }
+      }
+    }
+  }
+}
+
+.topbar__list,
+.topbar__list--sub {
+  width: 100%;
+  margin: 0;
+  padding: 1rem 0;
+  list-style: none;
+
+  @include mq( $break-md ) {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+  }
+}
+
+.topbar__list {
+  @include mq( $break-md ) {
+    align-items: center;
+    .center-no-img & {
+      order: 1;
+    }
+  }
+}
+
+.topbar__list--sub {
+  @include mq( $break-md ) {
+    padding: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+.topbar__item,
+.topbar__item--sub {
+  margin-bottom: 0;
+}
+
+.topbar__item {
+  @include mq( $break-md ) {
+    margin-left: 2rem;
+  }
+
+  &:last-child {
+    @include mq( $max: $break-sm-max ) {
+      display: none;
+      visibility: hidden;
+    }
+  }
+}
+
+.topbar__item--sub {
+  border-bottom: 2px solid rgba( $gray-light, 0.16 );
+
+  &:first-child {
+    border-top: 2px solid rgba( $gray-light, 0.16 );
+
+    @include mq( $break-md ) {
+      border-top: 0;
+    }
+  }
+
+  @include mq( $break-md ) {
+    margin: 1rem;
+    border-bottom: 0;
+  }
+}
+
+.topbar__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-family: $font-base;
+  @include fontSmoothing;
+  @include font-size( 13 );
+  color: $white;
+  letter-spacing: 1.22px;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: none;
+  padding: 0.75rem 0;
+
+  @include themify() {
+    color: $white;
+  }
+
+  @include mq( $break-md ) {
+    @include font-size( 16 );
+    letter-spacing: 0.72px;
+    padding: 0.5rem 0;
+
+    .header--internal &,
+    .header--center & {
+      color: $font-black;
+    }
+  }
+}
+
+a.topbar__link {
+  @include mq( $break-md ) {
+    &:before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: $blue;
+      visibility: hidden;
+      transition:
+      width 300ms ease-out,
+      visibility 300ms ease-out;
+
+      @include themify() {
+        background: theme( 'themeColor' );
+      }
+    }
+
+    &:hover,
+    &:focus {
+      background: transparent;
+
+      &:before {
+        visibility: visible;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.topbar__link--sub {
+  display: block;
+  @include font-size( 16 );
+  font-family: $font-base;
+  @include fontSmoothing;
+  color: $white;
+  letter-spacing: 0.72px;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.75rem 0;
+
+  &:hover,
+  &:focus {
+    outline-color: $outline-light;
+    color: $blue;
+
+    @include themify() {
+      color: theme( 'textColorHoverOnDarkBackground' );
+    }
+  }
+
+  @include themify() {
+    color: $white; // Overrides `.theme-*** a`.
+  }
+
+  @include mq( $break-md ) {
+    position: relative;
+    letter-spacing: 1.75px;
+    box-shadow: inset 0 0 0 2px $blue;
+    width: 300px;
+    text-align: center;
+    z-index: 1;
+    overflow: hidden;
+    transition: color $transition--base;
+
+    &:before,
+    &:after {
+      position: absolute;
+      content: '';
+      width: 0;
+      top: -4px;
+      height: 110%;
+      left: -20%;
+      transform: skewX( -35deg );
+      z-index: -1;
+    }
+
+    &:before {
+      background: $blue;
+      transition: all 600ms;
+
+      @include themify() {
+        background: theme( 'themeColorOnDarkBackground' );
+      }
+    }
+
+    &:after {
+      background: rgba( $blue, 0.5 );
+      transition: all 450ms;
+
+      @include themify() {
+        background: rgba( theme( 'themeColorOnDarkBackground' ), 0.5 );
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $font-black;
+
+      @include themify() {
+        color: theme( 'textColorOnThemeColorOnDarkBackground' ); // THEMIFY_CALIBRATE
+      }
+
+      &:before,
+      &:after {
+        width: 140%;
+      }
+    }
+
+    @include themify() {
+      box-shadow: inset 0 0 0 2px theme( 'themeColorOnDarkBackground' );
+    }
+  }
+}
+
+/**
+ * Looks like this selector is targeting all modified and non-modified
+ * `.topbar__link__icon` selectors. If so, that would suggest that
+ * `.topbar__link__icon--toggle` replaces `.topbar__link__icon` instead of
+ * being a selector that is add along side `.topbar__link__icon` to modify it.
+ *
+ * Also, at some point `^=` might need to be change to `*=` as it might not
+ * always be the first class.
+ *
+ * Multiple instance of this approach exist.
+ */
+[class^="topbar__link__icon"] {
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 1.25rem;
+  height: 1em;
+  margin-left: 0.25rem;
+  padding: 0;
+  background-size: auto 95%;
+}
+
+.topbar__link__icon--toggle {
+  @include fill( $svgstore--caret-down, $blue );
+
+  @include themify() {
+    @include fill( $svgstore--caret-down, theme( 'themeColorOnDarkBackground' ) );
+  }
+
+  @include mq( $break-md ) {
+    // THEMIFY_CALIBRATE, ¿Use `themeColor` and/or scope to `.header--center`?
+    @include themify() {
+      @include fill( $svgstore--caret-down, theme( 'themeColorA11y' ) );
+    }
+  }
+
+  .topbar__item--active & {
+    @include fill( $svgstore--close, $blue );
+
+    @include themify() {
+      @include fill( $svgstore--close, theme( 'themeColorOnDarkBackground' ) );
+    }
+
+    @include mq( $break-md ) {
+      // THEMIFY_CALIBRATE, ¿Use `themeColor` and/or scope to `.header--center`?
+      @include themify() {
+        @include fill( $svgstore--close, theme( 'themeColorA11y' ) );
+      }
+    }
+  }
+}
+
+.topbar__link__icon--search {
+  width: 2rem;
+  height: 1.5rem;
+  margin-top: -0.25rem;
+  @include fill( $svgstore--search, $blue );
+
+  // THEMIFY_CALIBRATE, ¿Use `themeColor` and/or scope to `.header--center`?
+  @include themify() {
+    @include fill( $svgstore--search, theme( 'themeColorA11y' ) );
+  }
+
+  .topbar__item--active & {
+    @include fill( $svgstore--close, $blue );
+
+    // THEMIFY_CALIBRATE, ¿Use `themeColor` and/or scope to `.header--center`?
+    @include themify() {
+      @include fill( $svgstore--search, theme( 'themeColorA11y' ) );
+    }
+  }
+
+  @include mq( $max: $break-lg ) {
+    margin-left: 0;
+  }
+}
+
+.topbar__link__text {
+  @include sr-hide;
+
+  @include mq( $break-lg ) {
+    @include sr-show;
+  }
+}
+
+.topbar__heading {
+  @extend %h2;
+  display: none;
+  visibility: hidden;
+
+  @include mq( $break-md ) {
+    display: block;
+    visibility: visible;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  a {
+    background-image: none;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      opacity: .7;
+    }
+
+    .header--internal & {
+      color: $blue;
+      &:focus {
+        outline-color: $outline-dark;
+      }
+    }
+
+    .header--college & {
+      color: $white;
+    }
+
+    .header--center & {
+      color: $font-black;
+    }
+  }
+
+  .header--center & {
+    color: $font-black;
+  }
+
+  .center-no-img & {
+    align-self: center;
+    width: 45%;
+    margin-top: 0;
+  }
+
+  // Add line-break between two inline elements.
+  // @todo ¿Should we re-work the markup instead of below?
+  & .heading-text + .heading-text::before {
+    content: '\A';
+    white-space: pre;
+  }
+}

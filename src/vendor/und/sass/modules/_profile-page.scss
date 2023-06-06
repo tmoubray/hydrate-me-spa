@@ -1,0 +1,142 @@
+/**
+ * Profile Page
+ * -----------------------------------------------------------------------------
+ *
+ * @see https://und.edu/directory/[first name].[last-name]
+ */
+
+.profile-page {
+
+  @include mq( $break-md ) {
+    .main__content {
+      margin-top: 0;
+      margin-bottom: 3rem;
+    }
+  }
+
+  & .breadcrumb {
+    border: 0;
+  }
+
+  @include mq( $break-md ) {
+    .profile-photo,
+    .profile-misc {
+      order: 2;
+      margin-bottom: 0;
+      padding-left: 5.125rem; // 82px
+    }
+  }
+
+}
+
+// Top gray section, right hand column.
+.profile-photo {
+  margin-bottom: 3rem;
+}
+
+// Top gray section, left hand column.
+.profile-name {
+  margin: 0;
+  font-size: 4.5rem;
+  line-height: 1;
+  color: $blue;
+}
+
+.profile-designation {
+  margin: 0;
+  color: black;
+  font: 1.75rem/1.5 $font-base;
+}
+
+.profile-position {
+  margin: 1rem 0 0 !important;
+}
+
+.profile-position__item {
+  margin-top: 0.5rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.profile-specialty {
+  margin: 0 0 0 1rem !important;
+  padding: 0;
+  list-style: disc;
+  font-size: 1rem;
+}
+.profile-specialty__item {
+  line-height: 1.5;
+}
+
+.profile-contact {
+  margin: 2rem 0 0 0;
+
+  & h2 {
+    margin-top: 0;
+  }
+}
+
+.profile-contact-info {
+  display: table;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-contact-info__item {
+  display: table-row;
+  line-height: 1.5;
+
+  // Remove link styling for phone links.
+  & a[href^="tel:"] {
+    color: $black;
+    text-decoration: none;
+  }
+}
+
+.profile-contact-info__label {
+  display: table-cell;
+  padding-right: 0.5rem;
+}
+
+.profile-address__item {
+  line-height: 1.5;
+}
+
+// Below top gray section, left hand column.
+.profile-more-info {
+  // align-self: flex-start;
+
+  & h2:first-child {
+    margin-top: 3rem;
+
+    @include mq( $break-md ) {
+      margin-top: 0;
+    }
+  }
+}
+
+.profile-bio {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  @include mq( $break-md ) {
+    margin-top: 0;
+  }
+}
+
+// Below top gray section, right hand column.
+.profile-misc__content {
+  margin-top: 3rem;
+  border-top: 4px solid $blue;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.profile-more-info-slash:before {
+  left: 0;
+  bottom: 0;
+  transform: translateX( -54% );
+}

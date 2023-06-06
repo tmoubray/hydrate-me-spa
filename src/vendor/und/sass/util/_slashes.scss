@@ -1,0 +1,133 @@
+/**
+ * Background Slashes/Backslashes Utility Classes
+ * -----------------------------------------------------------------------------
+ *
+ * REPLACES
+ * --------
+ * .module--top-white-slash
+ * .module--top-slash-left
+ * .module--top-slash
+ * .module--bottom-slash
+ * .module--top-slash--white
+ * .module--bottom-slash--white
+ * .module--top-green-slash (Marketing page)
+ * .module--bottom-slash-left (Marketing page)
+ * .profile-more-info-slash (Directory Profile page)
+ *
+ *
+ *
+ * @todo After all legacy implementations have been removed, update SVG
+ * filenames (and thus SVGStore variables names) to match implementation more
+ * closely.
+ *
+ * Applies an SVG with slashes/backslashes to a corner of a container element.
+ *
+ * - Default positioning is to the left.
+ * - Default color is UND green.
+ * - Backslashes( `.backslash`) should be applied to the top of an element.
+ * - Slashes (`.slash`) should be applied to the bottom of an element.
+ * - If background arrows are also applied to a container element, the edges of
+ *   the background arrow and slash/backslashes should match.
+ *
+ *
+ *
+ * Example
+ * -------
+ * <div class="backslash">
+ * <div class="backslash backslash--right">
+ * <div class="backslash backslash--white">
+ * <div class="backslash backslash--right backslash--white">
+ * <div class="slash">
+ * <div class="slash slash--right">
+ * <div class="slash slash--right slash--white">
+ *
+ *
+ * Available Classes
+ * -----------------
+ * .backslash
+ * .backslash--right
+ * .backslash--white
+ * .slash
+ * .slash--right
+ * .slash--right
+ */
+
+.backslash,
+.slash {
+  position: relative;
+  // overflow: hidden;
+
+  &::before {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-repeat: no-repeat;
+    transform: translateX( -60% );
+
+    @include mq( $break-sm ) {
+      width: 50%;
+      transform: translateX( -15% );
+    }
+  }
+
+  // MODIFIERS
+  &--right::before {
+    left: auto;
+    right: 0;
+    transform: translateX( 60% );
+
+    @include mq( $break-sm ) {
+      transform: translateX( 15% );
+    }
+  }
+}
+
+// To be used on the top of container elements.
+.backslash {
+  padding-top: 12vw !important;
+
+  @include mq( $break-sm ) {
+    padding-top: 6vw !important;
+  }
+
+  &::before {
+    top: 0;
+    background-position: top;
+    background-image: fill-svg( $svgstore--slashes-top, $blue );
+
+    @include themify() {
+      background-image: fill-svg( $svgstore--slashes-top, theme( 'themeColor' ) );
+    }
+  }
+
+  &--white::before {
+    background-image: fill-svg( $svgstore--slashes-top, $white );
+  }
+}
+
+// To be used on the bottom of container elements.
+.slash {
+  padding-bottom: 12vw !important;
+
+  @include mq( $break-sm ) {
+    padding-bottom: 6vw !important;
+  }
+
+  &::before {
+    bottom: 0;
+    background-position: bottom;
+    background-image: fill-svg( $svgstore--slashes-bottom, $blue );
+
+    @include themify() {
+      background-image: fill-svg( $svgstore--slashes-bottom, theme( 'themeColor' ) );
+    }
+  }
+
+  // MODIFIERS
+  &--white::before {
+    background-image: fill-svg( $svgstore--slashes-bottom, $white );
+  }
+}

@@ -1,0 +1,316 @@
+// Placeholders are a lot like extend but the placeholder does not generate CSS.
+%clearfix {
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+%inline {
+  display: inline-flex;
+  align-self: center;
+}
+
+/**
+ * We updated heading styles slightly and since other features extended from the
+ * heading classes, we have placed heading placeholders here to maintain the
+ * original style properties of the headings.
+ *
+ * Extended by:
+ *   h1, .h1, %h1
+ *   h2, .h2, %h2
+ *   h3, .h3, %h3
+ *   h4, .h4, %h4
+ *   h5, .h5, %h5
+ *   h6, .h6, %h6
+ *   .h1-large, .h1--lg
+ *   .h1-large-alt, .h1--lg-alt
+ *   .special-bold
+ */
+%heading_base {
+  font-family: $font-base;
+  font-weight: normal;
+  @include fontSmoothing;
+}
+
+%h1,
+%h2,
+%h3,
+%h4,
+%h5,
+%h6 {
+  @extend %heading_base;
+  text-transform:uppercase;
+}
+
+/**
+ * Extended by:
+ *   h1, .h1
+ *   .hero__title
+ *   .image__headline
+ */
+%h1 {
+  margin: 0 0 0.67em 0;
+  // @include fluid-type( font-size, $minScreen, $maxScreen, 43px, 72px );
+  @include fluid-type( 43px, 72px );
+
+  .module--arrows-white & {
+    color: $black;
+  }
+}
+
+%h1--lg {
+  @extend %h1;
+  @include font-size( 108 );
+}
+
+/**
+ * Extended by:
+ *   .topbar__heading
+ */
+%h2 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: $blue;
+  // @include fluid-type( font-size, $minScreen, $maxScreen, 38px, 48px );
+  @include fluid-type( 38px, 48px );
+
+  @include themify() {
+    color: theme( 'themeColor' );
+  }
+}
+
+/**
+ * Extended by:
+ *   .block__heading
+ *   .event__title
+ *   .feature__heading
+ */
+%h3 {
+  margin-top: 1em;
+  margin-bottom: 1rem;
+  color: $blue;
+  @include font-size( 24 );
+
+  .tint-themed &,
+  .module--green & {
+    color: $white;
+  }
+
+  @include themify() {
+    color: theme( 'themeColor' ); // THEMIFY_CALIBRATE, ¿Will this satisfy gray and black backgrounds, use `themeColorA11y`?
+  }
+}
+
+/**
+ * Extended by:
+ *   .accordion__toggle
+ *   .action__hero__list dt
+ *   .action__caption
+ *   .button
+ *   .button--link
+ *   .callout-snapshot
+ *   .compare__text
+ *   .remove-compare
+ *   .clear-compare
+ *   .finder__label
+ *   .finder__no__matches
+ *   #finder__result
+ *   .menu__heading--mobile
+ *   .ous-p-callout-snapshot
+ *   .subnav__heading
+ *   .table.dataTable thead th
+ *   .table.dataTable thead td
+ *   .table table th
+ *   .tabs__nav__link
+ */
+%h4 {
+  color: $black;
+  @include font-size( 16 );
+  text-transform: uppercase;
+  letter-spacing: 1.75px;
+
+  .tint-black &,
+  .module--black & {
+    color: $blue;
+
+    @include themify() {
+      color: $white;
+    }
+  }
+}
+
+%h5 {}
+
+%h6 {}
+
+%special-bold {
+  @extend %heading_base;
+  color: $black;
+  @include font-size( 16 );
+  text-transform: uppercase;
+  letter-spacing: 1.75px;
+}
+
+
+
+/**
+ * Fluid Type
+ * -----------------------------------------------------------------------------
+ */
+
+%fluid-h2 { // Similar to %h2 above, without the extras.
+  @include fluid-type( 38px, 48px );
+}
+
+
+
+/**
+ * Heading Guard
+ * -----------------------------------------------------------------------------
+ *
+ * Remove top margin of the current element when proceeding by a heading.
+ *
+ * Why? We like it when margins collapse, and do not like it when they don't.
+ * Due to various properties that might be applied to a parent element of a
+ * snippet or component, margins are often prevented from collapsing. When
+ * this happens, the layout behavior of margin is the same as padding and
+ * margins that would normally overlap, now stack. Creating extra, unwanted
+ * whitespace.
+ */
+%heading_guard { // SNIPPET_HEADING_SPACING
+  h1 + &,
+  h2 + &,
+  h3 + &,
+  h4 + &,
+  h5 + &,
+  h6 + & {
+    margin-top: 0;
+  }
+}
+
+
+
+/**
+ * Text Helpers
+ * -----------------------------------------------------------------------------
+ */
+
+%text-serif {
+  @include font-serif();
+}
+
+%text-serif-lg {
+  @include font-serif( ( size: 18, lineheight: 1.338 ) );
+}
+
+%text-serif-xl {
+  @include font-serif( ( size: 28, lineheight: 1.428 ) );
+}
+
+%text-serif-xl-fluid {
+  @include font-serif( ( size: 18, lineheight: 1.428 ) );
+
+  @include mq( $break-md ) {
+    @include font-serif( ( size: 28, lineheight: 1.428 ) );
+  }
+}
+
+
+
+/**
+ * Buttons
+ * -----------------------------------------------------------------------------
+ */
+
+// Remove styles that make a button look like a button.
+%button-reset {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+}
+
+
+
+.wpcf7 form.invalid .wpcf7-response-output, .wpcf7 form.unaccepted .wpcf7-response-output {
+    border-color: #ff0000;
+    text-transform: uppercase;
+    margin: 0;
+}
+/**
+ * Forms
+ * -----------------------------------------------------------------------------
+ */
+
+%input-base {
+  display: block;
+  margin-bottom: 0rem;
+  padding: 0.25rem 1rem;
+  width: 100%;
+  height: 3rem;
+  background-color: $gray-light;
+  border: $input-border;
+
+  &:focus,
+  &:active {
+    border-color: $blue;
+
+    @include themify() {
+      border-color: theme( 'inputBorderColorFocused' );
+    }
+
+  }
+
+  &[readonly],
+  &[disabled] {
+    color: $gray-darker;
+    background-color: $warning;
+    resize: none;
+    cursor: not-allowed;
+
+    &:focus,
+    &:active {
+      border-color: transparent !important; // `!important` to override theme styles.
+    }
+  }
+}
+
+
+// Simple Select, apply to `<select>` elements.
+%simple-select {
+  border-radius: 0; // Chrome on Mac Fix
+
+  &[multiple] {
+    padding: 1rem;
+    height: $multiselect-height;
+    max-height: $multiselect-height--max;
+  }
+
+  // Sometimes `not()` adds more specificity than we would like. Should we
+  // instead undo/reset what is below for multi-selects?
+  &:not( [multiple] ) {
+    padding-right: 3rem;
+    @include fill( $svgstore--caret-down-thick, $blue ); // FILL_SVG
+    background-repeat: no-repeat;
+    background-position: calc( 100% - 1rem ) 50%;
+    background-size: 1.25rem 1.25rem;
+    appearance: none;
+
+    & option {
+      background-color: $white;
+    }
+
+    @include themify() {
+      @include fill( $svgstore--caret-down-thick, theme( 'themeColor' ) );
+    }
+  }
+
+  &::-ms-expand {
+    display: none; /* IE11 */
+  }
+}

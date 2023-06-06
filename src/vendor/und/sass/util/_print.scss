@@ -1,0 +1,374 @@
+@media print {
+  header, .subnav, .breadcrumb, .pre-footer, .no-print,
+  .svgstore--back-to-top, .hero__image, .campus-alert, .finder__search, .filter__spacing,
+  .finder__card__checkbox, .quick-view__overlay, .quick-view, .compare__nav, .finder__nav,
+  .social__list, .flickity-prev-next-button, .flickity-page-dots, .billboard--img, .menu__heading--mobile, .footer__bottom {
+    display: none !important;
+  }
+
+  a.footer__logo::after {
+    content: "";
+  }
+
+  h1 {
+    font-size: 35px;
+  }
+
+  p.serif-xlarge.text-primary {
+    font-size: 20px;
+    @include themify() {
+      color: theme( 'themeColor' );
+    }
+  }
+
+  p.serif-xlarge {
+    font-size: 20px;
+  }
+
+  h2#explore-more-options {
+    font-size: 38px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  a[href$='.xlsx'],
+  a[href$='.pdf'],
+  a[href$='.ppt'],
+  a[href$='.docx'],
+  [class^="file"]{
+    &::after {
+      position: static !important;
+      width: auto !important;
+      background-image: none;
+      content: " (" attr(href) ")" !important;
+    }
+  }
+
+
+  a:after {
+    text-transform: lowercase;
+    font-family: helvetica;
+    letter-spacing: 0;
+  }
+
+  a:not([class]), a[class=""], a[class^=ally-focus-within], a[class^=bubblelink], a[class^=file] {
+    color: #000;
+  }
+
+  .text-primary-dark {
+    color: #000;
+  }
+
+  p {
+    line-height: 1.2;
+    font-size:14px
+  }
+
+  .image__link--thumbnail:after{content:""}
+
+  ul:not([class]) li {
+    margin-top: 0rem;
+    font-size: 14px;
+  }
+
+  .tint-lightgray.feature.feature--noborder.feature--callout + br,
+  .module--gray.feature.feature--noborder.feature--callout+br {
+    display: none;
+  }
+
+  .tint-lightgray.feature.feature--noborder-.feature--callout,
+  .module--gray.feature.feature--noborder.feature--callout {
+    padding-bottom: 0;
+  }
+
+  .inline-definition-list div {
+    margin-bottom: .5rem;
+  }
+
+  .feature--callout .feature__content {
+    margin: 0;
+  }
+
+  .feature__content>:last-child {
+    margin-bottom: .5rem;
+  }
+
+  .sidebar__panel {
+    margin: 0;
+  }
+
+  /**
+   * ToDo: make other sections more specific too.
+   */
+  section.py-fluid {
+    padding: 0;
+  }
+
+  .tint-black,
+  .tint-blackish,
+  .module--black,
+  .module--blackish {
+    color: $black !important;
+    a, p {
+      color: $black !important;
+    }
+  }
+
+  .tint-lightgray,
+  .tint-black,
+  .module--gray,
+  .module--black {
+    background-color: transparent !important;
+  }
+
+  .text-white {
+    color: $black !important;
+  }
+
+  .page {
+    padding-top: 0 !important;
+  }
+
+  .main__sidebar,
+  .main__content {
+    float: none;
+    width: 100%;
+  }
+
+  img {
+    max-width: 500px;
+  }
+
+  a::after {
+    content: " (" attr(href) ")";
+    font-size: 80%;
+  }
+
+  a.finder__card__image {
+    &::after {
+      content: none;
+    }
+    img {
+      display: none;
+    }
+  }
+
+  .media__item,
+  .media__item__icon {
+    display: none;
+  }
+
+  .button--inline, .button--link {
+    border-bottom: 2px solid #000;
+  }
+
+  h1, .h1,
+  h2, .h2,
+  h3, .h3,
+  h4, .h4,
+  h5, .h5,
+  h6, .h6 {
+    color: $black;
+  }
+
+  .dropdown-group {
+    margin: 0;
+    .columns {
+      display: block !important;
+    }
+    .columns__item {
+      width: 100% !important;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    .dropdown__list__overflow {
+      max-height: none !important;
+    }
+    .dropdown__toggle__icon {
+      display: none;
+    }
+    .dropdown__list {
+      position: static;
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .finder__card__list {
+    display: block;
+    .finder__card__item {
+      display: block;
+      width: 50%;
+      float: left;
+      &:nth-child(2n+1) {
+        clear: left;
+      }
+    }
+    .finder__card__top {
+      display: block;
+    }
+    .finder__card__title {
+      padding-bottom: 0 !important;
+    }
+  }
+
+  .filter-push {
+    margin-bottom: unset;
+  }
+
+
+  .compare-active {
+    overflow: visible !important;
+  }
+  .compare {
+    transform: none !important;
+    position: static !important;
+  }
+
+  .compare--show {
+    box-shadow: none !important;
+  }
+  .compare--open {
+    max-height: none !important;
+    transform: none !important;
+  }
+
+  .compare__content {
+    padding-top: 0 !important;
+    max-height: none !important;
+    .container {
+      max-width: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  .compare__inner {
+    .remove-compare {
+      display: none;
+    }
+    .flickity-slider {
+
+      > div[data-program] {
+        padding-bottom: 40px;
+        position: static !important;
+        overflow: visible;
+        left: 0 !important;
+        width: 100% !important;
+        div[data-program] {
+          height: auto;
+          .content {
+            display: block;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .accordion__content {
+    position: static !important;
+    left: auto !important;
+    visibility: visible !important;
+  }
+  .form {
+    input,
+    textarea,
+    select,
+    .form__select {
+      border: 1px solid $black !important;
+    }
+    .form__upload__wrapper {
+      display: none;
+    }
+  }
+
+  .flickity-viewport {
+    height: auto !important;
+  }
+  .flickity-slider {
+    height: auto !important;
+    transform: none !important;
+    position: static !important;
+    > div {
+      position: static !important;
+      width: 100% !important
+    }
+  }
+
+  .slider__img--feature, .slider__content--feature,
+  .slider__item--feature {
+    width: 100% !important;
+    margin-bottom: 0 !important;
+    opacity: 1 !important;
+  }
+
+  .grid__item--2 {
+    float: none !important;
+    width: 100% !important;
+  }
+
+  .share__img {
+    position: static;
+  }
+
+  .share__img__gradient {
+    display: none;
+  }
+
+
+
+
+  .blockquote__cite__name {
+    font-size: 20px;
+  }
+
+  li.image__item--thumbnail:after {
+    display: none;
+
+  }
+
+  .mb-fluid, .mb-xl, .mb-lg, .mb-md, .mb-sm, .mb-xs {
+    margin-bottom: 0rem;
+  }
+
+  .tabs__main__content {
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin-top: 0;
+  }
+
+  .accordion__content {
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin-top: 0;
+  }
+
+  button.accordion__toggle {
+    background: none;
+    border: 1px solid;
+  }
+
+  .tabs__main__item--active .tabs__main__toggle {
+    background: none;
+    border: 1px solid;
+  }
+
+  button.tabs__main__toggle {
+    background: none;
+    border: 1px solid;
+  }
+
+
+  blockquote {
+    margin: 1rem 0;
+    q {
+      font-size: 30px !important;
+    }
+  }
+
+  .stats__heading {
+    font-size: 38px;
+  }
+}

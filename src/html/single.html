@@ -1,0 +1,22 @@
+---
+title: Examples
+global: true
+universal: true
+blogLanding: true
+identifier: North Dakota Procurement Technical Assistance Center
+---
+
+{% extends "layouts/_default.html" %}
+
+
+{% block content %}
+{% include "partials/blog-billboards.html" %}
+
+{% set menu = {desktop: true} %}
+{% include "modules/_menu.html" %}
+
+{% include "components/_splash.html" %}
+
+
+
+{% endblock %}

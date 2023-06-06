@@ -1,0 +1,46 @@
+.cta__list {
+  flex-shrink: 0;
+  background-color: $gray-light;
+  display: block;
+  margin: 0 1.5rem 0 auto;
+  padding: 0 1.5rem;
+  height: inherit;
+
+  .header--internal &,
+  .header--center & {
+    background-color: $gray-darker;
+  }
+
+  .button--link {
+    .header--internal &,
+    .header--center & {
+      color: $white;
+    }
+  }
+}
+
+.cta__item {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0.5rem;
+  height: inherit;
+}
+
+// Container element for CTA links/buttons on viewports below the medium (1024)
+// breakpoint.
+.cta__buttons {
+  @include mq( $break-md ) {
+    display: none;
+    visibility: hidden;
+  }
+
+  .button {
+    color: $white;
+
+    &:hover,
+    &:focus {
+      color: $black;
+      outline-color: $outline-light;
+    }
+  }
+}

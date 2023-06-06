@@ -1,0 +1,255 @@
+/**
+ * Fluid Snippet Headings
+ * -----------------------------------------------------------------------------
+ *
+ * Fluid headings were originally applied site wide when the site redesign was
+ * launched. Soon after, it was obvious that most instances of headings using
+ * fluid type were too large - outside of their use on pages that can be
+ * considered landing pages. Since then we created heading placeholders to
+ * retain those styles and were applied with the following:
+ *
+ * [class*="ous-"],
+ * [class*="ous"] {
+ *   & .h1 { @extend %h1; }
+ *   & .h2 { @extend %h2; }
+ *   & .h3 { @extend %h3; }
+ *   & .h4 { @extend %special-bold; margin: initial; }
+ * }
+ *
+ * Since that implementation, we've added container snippets that might have
+ * their headings styled with fluid type when it shouldn't. To fix this, we've
+ * added more specific selectors to the XSL and CSS.
+ *
+ * For the four heading styles outlined above:
+ * - h1: `h1, .h1` already extend `%h1` as default h1 styling.
+ * - h2: Target selectors applied below.
+ * - h3: Removed, `h3, .h3` styles and `%h3` styles were very similar.
+ * - h4: Only applied to two snippets, applied `%h4` within snippet scope.
+ */
+
+
+
+/**
+ * H2 Fluid Type ---------------------------------------------------------------
+ *
+ * Note: See above note.
+ * Todo: Consider coming up with helper/mixin/placeholder/other to apply.
+ *
+ * Ultimately we're looking to "enhance" H2s in specific instances - typically
+ * on full-width "landing" templates and first instances in those cases. Some
+ * snippets have classes to hook into, others do not.
+ *
+ * Additional helper/scoping classes or XSL `match` templates might help
+ * simplify the application of styling.
+ */
+.callout-full-width__heading,
+.course-finder-course-cards__heading,
+.events-listing__heading,
+.featurettes__heading,
+.grid-blocks__heading,
+.news-blocks__heading,
+.stats-slider__heading,
+.two-column-inset .grid__item h2 {
+  margin-top: 0;
+  @extend %fluid-h2;
+}
+
+// Undo Fluid Type based on context.
+.main__content {
+  & .grid-blocks__heading,
+  & .events-listing__heading {
+    margin: 1.2em 0 0.5em;    // TO_SASS_VARIABLE, taken from `_typography.scss`.
+    @include font-size( 36 ); // TO_SASS_VARIABLE, taken from `_typography.scss`.
+  }
+}
+
+h2 ~ h2 {
+  .two-column-inset .grid__item & {
+    margin: 1.2em 0 0.5em;    // TO_SASS_VARIABLE, taken from `_typography.scss`.
+    @include font-size( 36 ); // TO_SASS_VARIABLE, taken from `_typography.scss`.
+  }
+}
+
+
+
+/**
+ * It would be nice to be able to do something like the following one day to
+ * apply uniform spacing to snippets.
+ */
+/*
+.ous,
+[class*="ous-"] {
+  margin-bottom: $spacing-sm;
+}
+
+// Instead of removing spacing through a list like this, maybe use an
+// `.ous--[modifier]` on the snippets.
+.ous {
+  &.columns,
+  &.content-container,
+  &.sidebar-main-content {
+    margin-bottom: 0;
+  }
+}
+*/
+
+
+
+// fixes for homepage headings
+#goals, #proud {
+  @extend %h1;
+}
+
+// Placeholders to make easy adjustments if needed.
+// This is primarily for things that aren't really
+// in snippets but are headings that could be effected
+// by these changes.
+%t-program-finder h1 {}
+%pre-footer h3, %pre-footer--college h3 {} //should probably be h2s or not headings.
+%h2#connect-with {} //college social
+
+// Placeholders to show BEM class options for snippets
+.ous-callout-full-width {} // ← DEPRECATED
+.callout-full-width {
+  &__media,
+  &__text,
+  &__title,
+  &__subtitle {}
+}
+
+.ous-callout-sidebar {}
+.callout-sidebar {
+  &__link, //optional
+  &__title,
+  &__text,
+  &__media {}
+}
+
+.ous-callout {}
+.callout {
+  &__link, //optional
+  &__title,
+  &__text,
+  &__media, //optional
+  &__button, //optional
+  &--black,
+  &--accent {}
+}
+
+.ous-news-blocks,
+.news-blocks {}
+
+.news-blocks {
+  &__item,
+  &__link,
+  &__text,
+  &__heading,
+  &__button,
+  &--feed{}
+}
+
+.ous-blocks-grid, // ← DEPRECATED
+.grid-blocks {}
+
+.blocks-grid, // ← DEPRECATED
+.grid-blocks {
+  &__title,
+  &__item,
+  &__item-title{}
+}
+
+.ous-events-listing, // ← DEPRECATED
+.events-listing {
+  &__head,
+  &__title,
+  &__button,
+  &__feed {}
+}
+
+.ous-college-slider {} // ToDo: bem refine later
+.college-slider {}
+
+.ous-stats,
+.stats {}
+
+.stats {
+  &__stat,
+  &__text {
+  }
+
+  &__stats {}
+}
+
+.ous-p-1-column {}
+
+.p-1-column {}
+
+.ous-p-1-column-grey {}
+
+.p-1-column-grey {}
+
+.sidebar__panel .h4.caps { // Hacky fix for app deadlines until it is a real snippet
+  @extend %h4;
+}
+
+
+
+/**
+ * Snippet SASS files should be named with the container CSS selector for the
+ * snippet, minus `.ous-`. If a snippet is template specific, include the
+ * template flag, i.e. program pages will be prefixed like so, `.ous-p-`. Drop
+ * the `.ous-` but not the `p-`.
+ *
+ * Filenames without a template flag should be universal snippets, can be used
+ * on all pages.
+ */
+
+@import 'contact';
+@import 'landing-featured';
+
+
+
+/**
+ * Snippets by Scope
+ * -----------------------------------------------------------------------------
+ * Despite what XSL comments or OU Labeling may suggest, the prefixes to the
+ * snippet filenames reflect their true scope. At some point we might re-label
+ * them in OU and re-organize snippet XSL. Update filename prefixes when that
+ * happens.
+ *
+ * - Universal Snippets: Available to all template types and are imported via
+ *   `snippets.xsl`.
+ * - Template Snippets: Typically used on a single page template, i.e. Landing,
+ *   College, Program, etc, but can be used on more than one. If used on more
+ *   than page template, snippet may require a named template to be defined for
+ *   that specific page template.
+ */
+
+// Universal Snippets - available to ALL template types.
+@import 'u-callout-full-width';
+@import 'u-callout-snapshot';
+@import 'u-container';
+@import 'u-content-container';
+@import 'u-courseleaf-courses';
+@import 'u-courseleaf-page-embed';
+@import 'u-embedded-media-basic';
+@import 'u-embedded-media-themed';
+@import 'u-events-listing';
+@import 'u-feature';
+@import 'u-featurettes';
+@import 'u-grid-blocks';
+@import 'u-marketing-jumbo-image-feature';
+@import 'u-people-listing';
+@import 'u-rss-feed';
+@import 'u-sidebar-main-content';
+@import 'u-stats';
+@import 'u-two-column-inset';
+
+// Programs
+@import 'p-courseleaf-course-teasers';
+@import 'p-2-column';
+@import 'u-callout-grid'; // ← See file as to why I'm here.
+
+// Template Snippets
+@import 't-course-finder-course-cards';
+@import 't-marketing-prefooter';

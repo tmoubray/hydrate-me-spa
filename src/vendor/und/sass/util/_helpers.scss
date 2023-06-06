@@ -1,0 +1,749 @@
+/**
+ * Helpers
+ *
+ * Stretched Link - .stretched-link
+ * Alignment - .align-
+ * Positioning - .inline-block
+ * Text - .text-
+ * Hide - .hide
+ * Lists - .ul-inline, .list-
+ * Horizontal rule - hr
+ * Close button (X) - .cross
+ * Line Tight
+ * Caps/Uppercase
+ * Desktop/Mobile Hide
+ * Animation Helpers
+ * Inline Definition List
+ * Nav__ (Why is this here?)
+ * Fluid Top Margin
+ * Icon List
+ */
+
+//
+// Stretched link from bootstrap
+//
+
+
+
+.top__align{
+  align-items: flex-start;
+}
+
+.minimodal__iframe{
+  width:100%;
+  height:30rem;
+
+   @include mq( $break-md ) {
+    height:50rem;
+   }
+}
+
+.size-cross-sell{
+  width: 100%;
+  max-height: 225px;
+  max-width:440px;
+  margin:auto;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.cross__sell__link{
+  text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    display: block;
+    padding-top: 1.7rem;
+    font-size: 1.2rem;
+    color: #383636;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+}
+
+.juicer-feed li.feed-item img{
+  max-height: auto;
+  cursor:pointer;
+  max-width: auto;
+  min-height: auto;
+
+   @include mq( $break-md ) {
+    max-height: 12rem;
+    cursor:pointer;
+    max-width: 14rem;
+    min-height: 12rem;
+    object-fit: cover;
+   }
+}
+
+
+.phone__slot a{
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.membership__item{
+  border-bottom:1px solid $black;
+}
+
+.membership__item:last-child{
+  border-bottom:none;
+}
+
+.feature__link{
+  color:$font-black !important;
+  font-size: .88125rem !important;
+  color: #383636 !important;
+  padding: .5rem 0 !important;
+  border: 0 !important;
+  text-transform:uppercase;
+
+
+
+}
+
+.category__heading{
+  text-align: center;
+  @include mq( $break-md ) {
+    padding: 0;
+  }
+}
+
+.category__description{
+  text-align: center;
+  @include mq( $break-md ) {
+    padding: 0;
+  }
+}
+
+ iframe {
+  background:url('../img/loader.gif') center center no-repeat; height: 100%;
+}
+
+
+.grid-block__link video{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+
+    @include mq( $break-sm ) {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: 50% 50%;
+
+    }
+
+
+    @include mq( $break-md ) {
+    width: 100%;
+    height: 356px;
+    object-fit: cover;
+    object-position: 50% 50%;
+
+    }
+
+}
+
+
+.grid-block__link img{
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+
+
+    @include mq( $break-sm ) {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: 50% 50%;
+
+  }
+
+
+    @include mq( $break-md ) {
+    width: 100%;
+    height: 356px;
+    object-fit: cover;
+    object-position: 50% 50%;
+
+    }
+
+
+}
+
+footer .social__list{
+  min-width:6.5rem;
+}
+
+
+.banner__video{
+  object-fit: cover;
+  height:250px;
+}
+
+.membership_listing{
+  padding-bottom:1rem !important;
+  .content-wrapper, .page {
+    padding-top:2rem;
+  }
+  p, ul{
+    font-size:.9rem;
+  }
+}
+
+.service__panel__listing{
+  padding: 0 .8rem 1rem;
+  @include mq( $break-md ) {
+    padding: 0 2rem 1rem;
+  }
+}
+
+.juicer-feed h1.referral a{
+  display: none;
+}
+
+.bio__title{
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom:0;
+  color:$font-black;
+  @include mq( $break-md ) {
+    color:$font-black;
+  }
+}
+
+
+.bio__job__title{
+  text-transform: uppercase;
+  text-align: center;
+  margin:0;
+  color:$white;
+  @include mq( $break-md ) {
+    color:$font-black;
+  }
+}
+
+.bio__image__container{
+    img{
+ 
+    max-width: 75%;
+    margin: auto;
+    padding: 2rem 0;
+    @include mq( $break-md ) {
+    width:300px !important;
+    height:375px !important;
+    min-width: 250px;
+
+    }
+  }
+}
+
+.non__aligned{
+  align-items:flex-start;
+}
+
+.membership__title{
+  font-size: 1.7rem;
+  display: block;
+  margin-bottom: 1rem;
+  color:$font-black;
+}
+
+.membership__price{
+  font-size:1.7rem;
+}
+
+.service__title{
+  margin-top:0;
+  color:$font-black;
+}
+
+
+.grid__divider{
+  width: 99%;
+  position: relative;
+  top: 5rem;
+}
+
+
+.star__box{
+  text-align: center;
+  padding:0 0 2rem;
+  svg{
+    width:2rem;
+    color:$font-black;
+  }
+}
+
+
+.landing-featured .container .grid__divider:last-of-type{
+
+}
+
+.product_listing_heading{
+  text-decoration: none;
+  color:$black;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.product__heading{
+  margin:0;
+  font-weight: bold;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  text-decoration: none;
+
+  a{
+    text-decoration: none;
+    &:hover{
+    text-decoration: underline;
+    }
+  }
+}
+
+
+.cross__sell__under__title{
+  text-transform: none;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+  padding-top: .5rem;
+  font-size: 1rem;
+  color: #383636;
+  @include mq( $break-md ) {
+    padding-top: 1.7rem;
+  }
+}
+
+.product__benefit{
+  text-transform: uppercase;
+}
+
+.stretched-link {
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    // Just in case `pointer-events: none` is set on a parent
+    pointer-events: auto;
+    content: "";
+    // IE10 bugfix, see https://stackoverflow.com/questions/16947967/ie10-hover-pseudo-class-doesnt-work-without-background-color
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+.align-right {
+  margin-bottom: 1rem;
+
+  // This should not be here, it is a special use-case.
+  @include mq( $break-sm ) {
+    margin-left: 1.25rem;
+    float: right;
+    max-width: 65%;
+  }
+}
+
+.align-left {
+  margin-bottom: 1rem;
+
+  @include mq( $break-sm ) {
+    margin-right: 1.25rem;
+    float: left;
+    max-width: 65%;
+  }
+}
+
+.inline-block {
+  display: inline-block;
+  margin-top: 0;
+}
+
+@for $i from 2 through 6 {
+  .text-columns--#{$i}{
+    columns: $i;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-black {
+  color: $black!important; // added important see  ous-stats-slider
+}
+
+.text-white {
+  color: $white!important; // added important see ous-landing-slider
+}
+
+.text-green {
+  color: $blue;
+}
+
+.text-primary {
+  color: $blue;
+
+  & a {
+    color: $blue;
+  }
+
+  @include themify() {
+    color: theme( 'themeColor' );
+
+    & a {
+      color: theme( 'themeColor' );
+    }
+  }
+}
+
+.text-primary-dark {
+  color: $a11y-und-green;
+
+  @include themify() {
+    color: theme( 'linkColorA11y' );
+  }
+}
+
+.text-nowrap {
+  white-space: nowrap
+}
+
+.hide {
+  @include hide;
+}
+
+// Lists
+.list--no-disc > li {
+  list-style: none;
+}
+
+.list--no-indent {
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.ul-inline {
+  list-style: none;
+  @include clean;
+
+  & li {
+    display: inline-block;
+  }
+}
+
+.list-plain {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  & li {
+    margin-top: 1.5rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.list-plain-alt {
+  @extend .list-plain;
+
+  & li {
+    margin-top: 0.5rem;
+  }
+}
+
+.list-underline {
+  padding-left: 0;
+  margin-left: 1rem;
+
+  & li {
+    position: relative;
+    padding: 0.5rem 0;
+
+    &:after {
+      position: absolute;
+      content: '';
+      display: block;
+      bottom: 0;
+      left: -1rem;
+      width: 100%;
+      border-bottom: 1px solid $gray-light;
+    }
+  }
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid $black;
+  clear: both;
+}
+
+
+.hr--green {
+  @extend hr;
+  border-color: $blue;
+
+  .grid__item & {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+}
+
+// This is the close button (X) for minimodal and...?
+.cross {
+  display: block;
+  position: relative;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: $blue;
+
+  &::before,
+  &::after {
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    margin-left: -0.0625rem;
+    border-left: 0.125rem solid;
+    content: '';
+  }
+
+  &::before {
+    transform: rotate( -45deg );
+  }
+
+  &::after {
+    transform: rotate( 45deg );
+  }
+
+  @include themify() {
+    color: $white; // THEMIFY_CALIBRATE, ¿themeColorOnDarkBackground?
+  }
+}
+
+.line-tight {
+  line-height: 1;
+}
+
+.caps,
+.uppercase {
+  text-transform: uppercase;
+}
+
+.desktop-hide {
+  @include sr-show;
+
+  @include mq( $break-sm ) {
+    @include sr-hide;
+  }
+}
+
+.mobile-hide {
+  @include sr-hide;
+
+  @include mq( $break-sm ) {
+    @include sr-show;
+  }
+}
+
+// animation helpers
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX( -25% );
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX( 0 );
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes grow {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 0;
+    transform: scale( 0 );
+  }
+  100% {
+    opacity: 1;
+    transform: scale( 1 );
+  }
+}
+
+.inline-definition-list {
+  margin: 1.25rem 0 0;
+
+  & > div:not(:last-child) {
+    margin-bottom: 1.75rem;
+  }
+
+  & dt,
+  & dd {
+    display: inline-block;
+  }
+
+  & dd {
+    margin-left: 0;
+  }
+}
+
+.nav__list--sub {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid rgba( $gray-light, 0.16 );
+
+  & li {
+    list-style-position: outside;
+    overflow: hidden;
+
+    &.subnav__current--sub {
+      overflow: visible;
+    }
+  }
+}
+
+.nav__link--sub {
+  // display: block;
+  display: flex;
+  font-family: $font-base;
+  @include fontSmoothing;
+  @include font-size( 18 );
+  letter-spacing: 0.5px;
+  color: $black;
+  padding: 0.75rem 3rem 0.75rem 0;
+  text-decoration: none;
+  padding-left: 2rem;
+  border-bottom: 1px solid rgba( $gray-light, 0.16 );
+  transition: color $transition--base;
+}
+
+// .visuallyhidden {
+//   @include sr-hide;
+// }
+
+
+/**
+ * Fluid Top Margins
+ * -----------------------------------------------------------------------------
+ *
+ * @todo If we need further fluid margins/padding create mixin and a map to help
+ * automate generation of these classes.
+ *
+ * Useful for when there's too much white space due to top margin
+ * (i.e. headings) or when you have side-by-side content and it does not align
+ * properly at desktop (due to top margin) but need the top margin for mobile
+ * spacing between elements.
+ *
+ * The sizes below are a one-to-one of the breakpoint variables in `_vars.scss`.
+ */
+.fluid-top-margin,
+.f-tm {
+
+  &-xs {
+    @include mq( $break-xs ) {
+      margin-top: 0;
+    }
+  }
+
+  &-sm {
+    @include mq( $break-sm ) {
+      margin-top: 0;
+    }
+  }
+
+  &-md {
+    @include mq( $break-md ) {
+      margin-top: 0;
+    }
+  }
+
+  &-lg {
+    @include mq( $break-lg ) {
+      margin-top: 0;
+    }
+  }
+
+  &-xl {
+    @include mq( $break-xl ) {
+      margin-top: 0;
+    }
+  }
+}
+
+.zero {
+  @include zero;
+}
+
+.list--graphics, .list--logos, .list--icons {
+  li {
+    font-size: 1rem;
+    display: inline-block;
+    margin:0 .5rem 2rem 0;
+    outline: #ccc 2px dashed;
+    outline-offset: 2px;
+
+    &:hover:after {
+      content: attr(title);
+    }
+
+    &:after {
+      margin-top: .25rem;
+      position: absolute;
+    }
+  }
+}
+
+.list--icons {
+  span {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.list--logos {
+  li {
+    width: 15rem;
+  }
+}
+
+.list--graphics {
+  li {
+    background-color: #eee;
+    width: 100%;
+    max-width: 40rem;
+  }
+}

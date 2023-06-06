@@ -1,0 +1,144 @@
+/**
+ * Minimodal
+ * -----------------------------------------------------------------------------
+ *
+ * Third-party modal library.
+ *
+ * @see https://github.com/mdmoreau/minimodal
+ */
+
+@import '../../node_modules/minimodal/minimodal';
+
+
+
+.minimodal__content {
+  max-width: $break-md;
+  margin: 0 auto;
+}
+
+.minimodal__close {
+  padding: 1rem;
+  border: 0;
+  background-color: transparent;
+  color: $white;
+  font-size: 2rem;
+}
+
+.minimodal__nav {
+  @include fill( $svgstore--caret-right-thin, $white );
+  background-repeat: no-repeat;
+  background-color: $blue;
+  background-position: center;
+  background-size: auto 50%;
+  border: none;
+  text-indent: -9999rem;
+  width: 3rem;
+  height: 3rem;
+  opacity: 0.75;
+  transition: opacity $transition--base;
+  pointer-events: auto;
+
+  &:hover,
+  &:focus,
+  &:active {
+    opacity: 1;
+  }
+
+  @include themify() {
+    background-color: theme( 'themeColor' );
+  }
+
+  // MODIFIERS
+  &--previous {
+    transform: rotate( 180deg ) translateY( 50% );
+  }
+}
+
+.minimodal__nav__wrapper {
+  @include mq( 1900px ) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX( -50% );
+    width: 100%;
+    max-width: 1920px;
+    pointer-events: none;
+    overflow: hidden;
+  }
+}
+
+.minimodal {
+  z-index: 50;
+  transition: all 600ms ease;
+  opacity: 0;
+  transform: translateY( 100% );
+
+  // MODIFIERS
+  &--active {
+    opacity: 1;
+    transform: translateY( 0 );
+  }
+}
+
+
+/* status */
+.minimodal__status {
+  transition: all 600ms ease;
+  opacity: 0;
+}
+
+.minimodal__item--loading .minimodal__status {
+  opacity: 1;
+}
+
+/* content */
+.minimodal__content {
+  // transform: scale( 0.5 );
+  transition: all 600ms ease;
+  opacity: 0;
+}
+
+.minimodal__item--loaded .minimodal__content {
+  transform: none;
+  opacity: 1;
+}
+
+.minimodal__item--removed--previous .minimodal__content,
+.minimodal__item--removed--next .minimodal__content {
+  transform: scale( 0.5 );
+}
+
+/* item */
+.minimodal__item {
+  transition: all 600ms ease;
+}
+
+/* item added, removed */
+.minimodal__item--added,
+.minimodal__item--removed {
+  opacity: 0;
+}
+
+/* item added previous, removed next */
+.minimodal__item--added--previous,
+.minimodal__item--removed--next {
+  transform: translateX( -100% );
+}
+
+/* item added next, removed previous */
+.minimodal__item--added--next,
+.minimodal__item--removed--previous {
+  transform: translateX( 100% );
+}
+
+img.minimodal__element  {
+  pointer-events: none;
+}
+
+.minimodal__viewport {
+  pointer-events: unset;
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: grab;
+}

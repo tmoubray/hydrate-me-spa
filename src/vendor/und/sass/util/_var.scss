@@ -1,0 +1,493 @@
+/**
+ * _var.scss Table of Contents
+ * -----------------------------------------------------------------------------
+ *
+ * Misc Globals
+ * Colors
+ * Center Themes
+ * Component Themes (Tints)
+ * Outline Offsets
+ * Typography
+ * Breakpoints
+ * Spacing
+ * Transitions
+ * Forms
+ * Accordions
+ * Tabs
+ * Tables
+ * Featured Slider
+ */
+
+/**
+ * Misc Globals
+ * -----------------------------------------------------------------------------
+ */
+$important: ' !important'; // Use with interpolation(#{}).
+
+// Site Paths.
+$site-domain:         'https://und.edu';
+$site-resources-path: $site-domain + '/_resources';
+
+
+
+/**
+ * Colors
+ * -----------------------------------------------------------------------------
+ *
+ * @todo Improve naming of gray colors.
+ */
+
+// Official
+$blue:  #009a44 !default;
+$blue: #00baff;
+$und-orange: #ff671f !default;
+$und-pink:   #f8a3bc !default;
+
+// Site
+$white:        #ffffff !default;
+$gray-lighter: #f8f8f8 !default;
+$gray-light:   #eaeaea !default; // whitesmoke
+$gray:         #323030 !default; // Will not override $gray defined above. Find and replace another day.
+$gray-darkish: #a8a8a8 !default;
+$gray-dark:    #747272 !default;
+$gray-darker:  #1e1e1e !default;
+$blackish:     $gray-darker !default;
+$black:        #000000 !default;
+$font-black:   #383636 !default;
+
+// A11y
+$a11y-und-green: #00662c !default;
+
+// Alerts
+$info:           #e7f5fb !default;    // Blue
+$info-border:    skyblue !default;    // Blue
+$success:        #ccebda !default;    // Green
+$success-border: $blue !default; // Green
+$warning:        #fff7cc !default;    // Yellow
+$warning-border: gold !default;       // Yellow
+$error:          #f5dede !default;    // Red
+$error-border:   indianred !default;  // Red
+
+// Outline Colors
+$outline-light: $white !default;
+$outline-dark:  $black !default;
+
+// Background Utilities
+$bg-colors: (
+  // green:     $blue, // ¿Replace with `themed`?
+  themed:    $blue, // We use `themed` vs `green` as it can be cleanly used with Center themes.
+  white:     $white,
+  black:     $black,
+  blackish:  $blackish,
+  lightgray: $gray-light // Originally `.module--gray`.
+);
+
+
+
+/**
+ *
+ * Center Themes
+ * -----------------------------------------------------------------------------
+ *
+ * `$theme-base` provides a bit of a reset that most theme colors will likely
+ * differ from the UND site styles, i.e. white text on theme color.
+ *
+ *
+ * Adding a Theme
+ * --------------
+ *
+ * 1. Create a map for the new theme, i.e. `$theme-***`.
+ * 2. Merge your theme into `$theme-base` and override the values that will
+ *    differ from the base theme styles.
+ * 3. Add theme map to the themes map `$themes`.
+ *    a. The key you use for `$themes` is the same as the CSS class that will be
+ *       added to the "Alternative Style" field in a `_props.pcf` file.
+ *
+ *
+ * Green Theme
+ * -----------
+ *
+ * As long as the green theme uses UND green as a base, then the only difference
+ * between a green theme and UND site styles are the exclusion of background
+ * arrows.
+ *
+ * Defining a green theme the way we have for other colors will introduce CSS
+ * selectors that duplicate existing styles, create color variations that will
+ * need to be reviewed and fixed. Color variations initially exist because the
+ * theming process uses a "reset" of styles that all themes extend from. Some of
+ * the resets do not align with UND site styles.
+ *
+ * Because a green theme is so minimal to implement, the green theme class
+ * `theme-green` has been implemented directly in the SCSS. Search for
+ * `.theme-green` to see where it has been defined.
+ */
+
+$theme-colors: (
+  blue:   #213f7b,
+  maroon: #a90533, // #a80532
+  brown:  #9b7b56,
+  orange: $und-orange,
+  gray:   #555555,
+  black:  $gray
+  // green: See note above.
+);
+
+// Blue Theme
+$theme-color: map-get( $theme-colors, blue );
+$theme-blue:  create-theme-map( $theme-color, dark );
+
+// Maroon Theme
+$theme-color:  map-get( $theme-colors, maroon );
+$theme-maroon: create-theme-map( $theme-color, dark );
+
+// Brown Theme
+$theme-color:    map-get( $theme-colors, brown );
+$theme-base-map: create-theme-map( $theme-color, light );
+$theme-brown:    map-merge( $theme-base-map, (
+  textColorOnDarkBackground:  $white,
+  borderColorOnThemeColor:    $white
+) );
+
+// Orange Theme (Retired)
+$theme-color:  map-get( $theme-colors, orange );
+$theme-orange: create-theme-map( $theme-color, light );
+
+// Gray Theme (Unofficial, needs contrast review)
+$theme-color: map-get( $theme-colors, gray );
+$theme-gray:  create-theme-map( $theme-color, dark );
+
+// Black Theme (Unofficial, needs contrast review)
+$theme-color: map-get( $theme-colors, black );
+$theme-black: create-theme-map( $theme-color, dark );
+
+// All themes. Used by `themify()` and `theme()` mixins.
+$themes: (
+  theme-blue:   $theme-blue,
+  theme-maroon: $theme-maroon,
+  theme-brown:  $theme-brown,
+  // theme-gray:   $theme-gray,
+  // theme-black:  $theme-black
+  // theme-green: See note above.
+);
+
+
+
+/**
+ * Component Theming (Referred to as Tints)
+ * -----------------------------------------------------------------------------
+ *
+ * Component level theming is done by "tinting" the component. Various page
+ * elements and components within a themed component will have modifications so
+ * the styling of that component matches the component level thing and meets
+ * accessibility requirements (i.e. color contrast).
+ */
+
+$tint-prefix:     '.tint-';
+$component-tints: (
+  // `themed` color will be modified by Center Themes.
+  themed: (
+    backgroundColor: $blue,
+    textColor:       $black
+  ),
+  white: (
+    backgroundColor: $white,
+    textColor:       $black
+  ),
+  black: (
+    backgroundColor: $gray,
+    textColor:       $white
+  ),
+  blackish: (
+    backgroundColor: $gray,
+    textColor:       $white
+  ),
+  // Originally `.module--gray`
+  lightgray: (
+    backgroundColor: $gray-light,
+    textColor:       $black
+  ),
+);
+
+
+
+/**
+ * Outline Offsets
+ * -----------------------------------------------------------------------------
+ *
+ * A few elements require inset outlines.
+ */
+
+// $outline-offset--xs: 0.125rem;
+$outline-offset--sm: 0.25rem;
+$outline-offset--md: 0.5rem;
+$outline-offset--lg: 1rem;
+
+// $outline-inset--xs: -$outline-offset--xs;
+$outline-inset--sm: -$outline-offset--sm;
+$outline-inset--md: -$outline-offset--md;
+$outline-inset--lg: -$outline-offset--lg;
+
+
+
+/**
+ * Typography
+ * -----------------------------------------------------------------------------
+ */
+
+$font-path:         $site-resources-path + '/fonts';
+$font-size-context: 16; // This is the base font size for/from the browser.
+
+// Fonts.
+$font-base:    'Helvetica', 'Helvetica Neue', Arial, sans-serif !default;
+$font-base:   'Sentinel SSm A', 'Sentinel SSm B', 'Trocchi', 'Georgia', serif !default;
+$font-base: 'Trade Gothic', 'Oswald Medium', 'Oswald', Arial, sans-serif !default;
+
+$font-base-size: 1rem; // 16px
+
+// Misc.
+$line-height--base: 1.562 !default;
+
+// Fluid Type
+$fluid-type-min: 320px;
+$fluid-type-max: 1440px;
+
+
+
+/**
+ * Breakpoints
+ * -----------------------------------------------------------------------------
+ */
+
+$breakpoints: (
+  mf: 0,    // mobile first / all viewports
+  xs: 32em, // 512px
+  sm: 48em, // 768px
+  md: 64em, // 1024px
+  lg: 80em, // 1280px
+  xl: 100em  // 1440px
+);
+
+$break-xs: get-breakpoint-size( 'xs' ) !default;
+$break-sm: get-breakpoint-size( 'sm' ) !default;
+$break-md: get-breakpoint-size( 'md' ) !default;
+$break-lg: get-breakpoint-size( 'lg' ) !default;
+$break-xl: get-breakpoint-size( 'xl' ) !default;
+
+// -1px from standard breakpoints.
+$break-xs-max: less-px-from-em( $break-sm, 1px );
+$break-sm-max: less-px-from-em( $break-md, 1px );
+$break-md-max: less-px-from-em( $break-lg, 1px );
+$break-lg-max: less-px-from-em( $break-xl, 1px );
+
+// +1px to standard breakpoints.
+$break-xs-plus: sum-px-to-em( $break-xs, 1px );
+$break-sm-plus: sum-px-to-em( $break-sm, 1px );
+$break-md-plus: sum-px-to-em( $break-md, 1px );
+$break-lg-plus: sum-px-to-em( $break-lg, 1px );
+$break-xl-plus: sum-px-to-em( $break-xl, 1px );
+
+
+
+/**
+ * Spacing
+ * -----------------------------------------------------------------------------
+ */
+
+$spacing: (
+  axes: (
+    a: all, // Build config value, not a CSS property.
+    t: top,
+    r: right,
+    b: bottom,
+    l: left,
+    x: left right,
+    y: top bottom
+  ),
+  sizes: (
+    auto: auto, // Margin only.
+    none: 0,
+    xs:   1rem,   // 32px  | 40px
+    sm:   2rem, // 56px  | 60px
+    md:   3rem,   // 80px  | 90px
+    lg:   4rem, // 104px | 110px
+    xl:   6rem,   // 128px | 130px
+  ),
+  types: (
+    p: padding,
+    m: margin
+  )
+);
+
+$spacing-xs: get-spacing-size( 'xs' );
+$spacing-sm: get-spacing-size( 'sm' );
+$spacing-md: get-spacing-size( 'md' );
+$spacing-lg: get-spacing-size( 'lg' );
+$spacing-xl: get-spacing-size( 'xl' );
+
+
+
+/**
+ * Fluid Spacing Definitions
+ *
+ * Each map in the array is configuration for a fluid (responsive) spacing
+ * helper class.
+ *
+ * @property {String} axis        Axis to create fluid spacing helper for.
+ * @property {List}   breakpoints List of breakpoint config lists. Each child
+ *                                list should contain two values: the first is
+ *                                the media query value, the second is the
+ *                                spacing value at that breakpoint.
+ *
+ *                                `( breakpoint, spacing )`
+ *
+ *                                For the media query value provide a key from
+ *                                the `$breakpoints` map. For the initial value
+ *                                use `null`.
+ *
+ *                                For the spacing value, provide a key from the
+ *                                `$spacing.sizes` map.
+ *
+ *                                You can also define custom values for both the
+ *                                media query value and the spacing value if the
+ *                                existing map values do not work. Example,
+ *                                `( 36em, 45px )`.
+ */
+
+$spacing-fluid-breakpoints: (
+  // Breakpoint, Spacing Size
+  ( null       , sm ),
+  ( sm         , md ),
+  ( md         , lg )
+) !default;
+
+$spacing-fluid:
+(
+  axis: t,
+  breakpoints: $spacing-fluid-breakpoints
+),
+(
+  axis: b,
+  breakpoints: $spacing-fluid-breakpoints
+),
+(
+  axis: y,
+  breakpoints: $spacing-fluid-breakpoints
+);
+
+
+
+/**
+ * Transitions
+ * -----------------------------------------------------------------------------
+ */
+
+// Speed.
+$transition-speed--base:  300ms;
+
+// Easing.
+$transition-easing--base: ease;
+
+// Shorthands.
+$transition--base: $transition-speed--base $transition-easing--base;
+
+
+
+/**
+ * Forms
+ * -----------------------------------------------------------------------------
+ */
+
+// Input Dimensions
+$input-root-size:        3rem;
+$input-radio-size:       $input-root-size / 2;
+$input-checkbox-size:    $input-root-size / 2;
+$input-checkbox-size-sm: 1.25rem;
+
+// Input Border - Default
+$input-border-width: 2px;
+$input-border-style: solid;
+$input-border-color: transparent;
+
+// Input Border - Focused
+$input-border-width--focused: $input-border-width;
+$input-border-style--focused: $input-border-style;
+$input-border-color--focused: $blue;
+
+// Input Border - Error
+$input-border-width--error: $input-border-width;
+$input-border-style--error: $input-border-style;
+$input-border-color--error: $error-border;
+
+// Input - Required
+$input-required-color: $error-border;
+
+// Input Border - Shorthands
+$input-border:          $input-border-width $input-border-style $input-border-color;
+$input-border--focused: $input-border-width--focused $input-border-style--focused $input-border-color--focused;
+$input-border--error:   $input-border-width--error $input-border-style--error $input-border-color--error;
+
+// Max Input Field Heights
+
+// Multi Select
+$multiselect-rows:        4;
+$multiselect-height:      auto;
+$multiselect-height--max: calc( 1rem * 1.261875 * #{$multiselect-rows} + 2rem + 4px );
+
+
+
+/**
+ * Accordions
+ * -----------------------------------------------------------------------------
+ *
+ * Accordions and tabs share styles. Updating an accordion value will cascade to
+ * tabs.
+ */
+
+$accordion-container-bottom-margin: $spacing-sm;
+$accordion-padding:                 1.5rem;
+$accordion-bottom-margin:           $accordion-padding;
+$accordion-border-color:            $gray-light;
+
+
+
+/**
+ * Tabs
+ * -----------------------------------------------------------------------------
+ *
+ * Tabs and accordions share styles. Tabs inherit their styles from accordions,
+ * update accordion values to change tabs.
+ */
+
+$tabs-container-bottom-margin: $accordion-container-bottom-margin;
+$tabs-padding:                 $accordion-padding;
+$tabs-bottom-margin:           $tabs-padding;
+$tabs-border-color:            $accordion-border-color;
+
+
+
+/**
+ * Tables
+ * -----------------------------------------------------------------------------
+ */
+
+$table-cell-padding: 1rem 0rem;
+
+
+
+/**
+ * Featured Slider
+ * -----------------------------------------------------------------------------
+ */
+
+$featured-slider-break:               72em !default;
+$featured-slider-break-bottom-margin: 4rem !default;
+// $slider-break-bottom-margin;
+
+
+
+/**
+ * Stats Snippet
+ * -----------------------------------------------------------------------------
+ */
+
+$stats-row-spacing: $spacing-xs;

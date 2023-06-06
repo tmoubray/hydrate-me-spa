@@ -1,0 +1,45 @@
+.skip a {
+  position: absolute;
+  left: -10000rem;
+  top: -2rem;
+  width: 0.1rem;
+  height: 0.1rem;
+  overflow: hidden;
+  z-index: 100;
+  color: $white;
+  outline: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: top 1s ease-out;
+
+  &:focus {
+    left: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    background: $black;
+    transition: top 0.1s ease-in;
+  }
+}
+
+.skip-subnav a {
+  position: absolute;
+  left: -10000rem;
+  top: -2rem;
+  width: 0.1rem;
+  height: 0.1rem;
+  overflow: hidden;
+  z-index: 10;
+  color: $white;
+  outline: 0;
+  padding: 0.5rem 1rem;
+  transition: left 1s ease-out;
+
+  &:focus {
+    left: 0;
+    width: auto;
+    height: auto;
+    background: $black;
+    transition: left 0.1s ease-in;
+  }
+}

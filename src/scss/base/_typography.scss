@@ -1,0 +1,45 @@
+/* base typography */
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+.blog-heading {
+  @include font-size(68);
+  line-height: 1.161;
+  color: $black;
+}
+
+.page-heading {
+  margin-top: 0;
+  margin-bottom: .41666em;
+  padding: 0 0 2rem 0;
+  border-bottom: 2px solid #eaeaea;
+}
+
+.main__sidebar--right {
+  @include mq($break-md) {
+    float: right;
+    clear: right;
+  }
+}
+
+.icon::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}

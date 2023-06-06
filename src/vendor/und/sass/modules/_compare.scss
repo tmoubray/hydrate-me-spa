@@ -1,0 +1,266 @@
+.compare-active {
+  overflow: hidden;
+
+  &.safari {
+    position: fixed;
+    width: 100%;
+  }
+}
+
+.compare {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 50;
+  transform: translateY( 100% );
+  transition: transform $transition--base;
+
+  .menu-active & {
+    z-index: 12;
+  }
+}
+
+.compare--show {
+  transform: translateY( calc( 100% - 92px ) );
+  box-shadow: 0 0 20px 4px rgba( $black, 0.5 );
+
+  @supports ( -ms-acceslerator: true ) {
+    transform: translateY( 0 );
+    height: 92px;
+  }
+
+  @supports ( -ms-ime-align: auto ) {
+    transform: translateY( 0 );
+    height: 92px;
+  }
+
+  @media all and ( -ms-high-contrast: none ), ( -ms-high-contrast: active ) {
+    transform: translateY( 0 );
+    height: 92px;
+
+  }
+}
+
+.compare--open {
+  transform: translateY( 0 );
+  max-height: 100vh;
+
+  .safari & {
+    max-height: calc( 100vh - 60px );
+  }
+
+  @supports ( -ms-acceslerator: true ) {
+    height: auto;
+  }
+
+  @supports ( -ms-ime-align: auto ) {
+    height: auto;
+  }
+  @media all and ( -ms-high-contrast: none ), ( -ms-high-contrast: active ) {
+    height: auto;
+
+  }
+}
+
+
+.compare__nav {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  .compare--open & {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+  }
+}
+
+.compare__text {
+  @extend %h4;
+  color: $white !important;
+  white-space: nowrap;
+}
+
+.compare__text__selected {
+  color: $blue;
+}
+
+.compare__toggle__button {
+  float: right;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+
+  &:hover,
+  &:focus {
+    .button--link {
+      &:before {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.compare__open__icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.5rem;
+  color: $blue;
+  margin-left: 0.25rem;
+  transform: rotate( 180deg );
+
+  @include mq( 42em ) {
+    margin-left: 1rem;
+  }
+
+  .compare--open & {
+    transform: rotate(0deg);
+  }
+}
+
+.compare__content {
+  background-color: $white;
+  overflow-y: scroll;
+  padding-top: 96px;
+  max-height: 100vh;
+
+  .container {
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+
+    @include mq( $break-md ) {
+      padding-bottom: 1rem;
+    }
+  }
+
+  .flickity-enabled {
+    position: static;
+  }
+}
+
+.compare__inner {
+  // position: relative;
+
+  .flickity-slider {
+    > div[data-program] {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      width: 100%;
+      top: 0;
+
+      @include mq( $break-md ) {
+        width: calc( 100% / 2 );
+      }
+
+      @include mq( $break-lg ) {
+        width: calc( 100% / 3 );
+      }
+    }
+  }
+}
+
+.flickity-resize {
+  @include mq( $break-md ) {
+    div[data-program] {
+      height: 100%;
+    }
+
+    div[data-program] div[data-program] {
+      height: calc( 100% - 1.5rem );
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+
+      .feature {
+        height: auto;
+      }
+    }
+
+    .compare__bottom {
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.compare__arrow {
+  position: absolute;
+  @include fill( $svgstore--caret-down, $blue );
+  background-color: $gray-darker;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+  right: 0;
+  top: 50%;
+  transform: translateY( -50% );
+  height: 3rem;
+  width: 3rem;
+  transform: rotate( -90deg );
+}
+
+.compare__columns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.compare__columns__item {
+  width: 50%;
+}
+
+.compare--closed {
+  display: block;
+
+  .compare--open & {
+    display: none;
+  }
+}
+
+.compare--opened {
+  display: none;
+
+  .compare--open & {
+    display: block;
+  }
+}
+
+.remove-compare {
+  @extend %h4;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  position: relative;
+  padding-left: 1.5rem;
+  text-align: left;
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: 1rem;
+    left: 0;
+    height: 1rem;
+    background-size: auto 100%;
+    @include fill( $svgstore--close, $black );
+  }
+}
+
+.clear-compare {
+  display: inline-block;
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  color: $white;
+  padding: 0;
+  @extend %h4;
+  margin-left: 0.85rem;
+  margin-top: 0.25rem;
+
+  @include mq( $break-xs ) {
+    margin-top: 0;
+  }
+}

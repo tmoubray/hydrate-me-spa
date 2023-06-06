@@ -1,0 +1,379 @@
+@import '../util/_datatables';
+@import '../util/_responsive.dataTables';
+
+.dataTables_wrapper {
+  input {
+    background-color: $gray-light;
+    border: 0;
+    padding: 0.25rem 1rem;
+    height: 2rem;
+  }
+
+  label {
+    @extend .form__label;
+    margin-bottom: 1rem;
+  }
+
+  select {
+    max-width: 100%;
+    height: 2rem;
+    padding: 0 1rem;
+    border: 0;
+    border-radius: 0;
+    background-color: $gray-light;
+    padding-right: 3rem;
+    @include fill( $svgstore--caret-down-thick, $blue );
+    background-repeat: no-repeat;
+    background-position: calc( 100% - 1rem ) center;
+    background-size: 1.25rem 1.25rem;
+    appearance: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0 5px;
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    @include themify() {
+      @include fill( $svgstore--caret-down-thick, theme( 'themeColor' ) );
+    }
+  }
+
+  .dataTables_info {
+    @extend .form__label;
+  }
+
+  .paginate_button {
+    @extend .form__label;
+  }
+}
+
+table.dataTable,
+table.dataTable th,
+table.dataTable td {
+  text-align: left;
+}
+
+.dataTables_wrapper.no-footer div.dataTables_scrollHead table.dataTable,
+.dataTables_wrapper.no-footer div.dataTables_scrollBody > table {
+  border-bottom: 4px solid $blue !important;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr[role=row] > td:first-child:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr[role=row] > th:first-child:before {
+  top: 50%;
+  transform: translateY( -50% );
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+  padding: 1rem 1.75rem 1rem 1.25rem;
+  border-bottom: 4px solid $blue;
+  @extend %h4;
+  color: $black;
+  background: $gray-light;
+
+  @include themify() {
+    color: theme( 'themeColor' );
+    border-bottom-color: theme( 'themeColor' );
+  }
+}
+
+table.dataTable.no-footer {
+  border-bottom: 4px solid $blue;
+
+  @include themify() {
+    border-bottom-color: theme( 'themeColor' );
+  }
+}
+
+table.dataTable tbody td {
+  padding: 1rem 1.25rem;
+}
+
+.table {
+  margin-bottom: 3rem;
+
+  thead {
+    border-bottom: 8px solid $blue;
+
+    @include themify() {
+      border-color: theme( 'tableBorderColor' );
+    }
+  }
+
+  table {
+    width: calc( 100% + 0.25rem );
+    margin-right: -0.125rem;
+    margin-left: -0.125rem;
+    border-collapse: collapse;
+
+    // table-layout: fixed;
+
+    th {
+      @extend %h4;
+      text-transform: initial;
+      color: $black;
+      text-transform: none;
+      color: $font-black;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: transparent;
+      padding-left: 0;
+      letter-spacing: 0;
+      font-size:25px;
+
+      @include themify() {
+        color: $black; // THEMIFY_CALIBRATE
+      }
+    }
+
+    tr:first-child td{
+      padding-top:3rem;
+    }
+
+    tr:last-child td{
+      border:none;
+    }
+
+    td {
+      font-weight:bold;
+      padding-bottom:3rem;
+      text-transform: uppercase;
+      p{
+        margin:0;
+      }
+    }
+
+    @include themify() {
+      border-color: theme( 'tableBorderColor' );
+    }
+  }
+
+  th,
+  td {
+    padding: $table-cell-padding;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: $gray-light;
+    color: white;
+    font-weight: normal;
+  }
+
+  // .nums {
+  //   text-align: right;
+  // }
+}
+
+
+/**
+ * Zebra Stripping
+ */
+.table--zebra-stripes {
+  tr:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+}
+
+/**
+ * Small "Slim" Tables
+ */
+.table--sm {
+  & th,
+  & td {
+    padding: 0.5rem 0.875rem;
+  }
+}
+
+/**
+ * @todo Create borders modifier.
+ */
+
+
+/**
+ * Vertical Table Styles
+ */
+.table--alt,
+.table--vertical {
+  border-top: 4px solid $blue;
+
+  th,
+  td {
+    // padding: $table-cell-padding;
+    border-bottom: 2px solid $white;
+  }
+
+  td {
+    border-color: $gray-light;
+  }
+
+  tr {
+    &:last-child {
+      th,
+      td {
+        border-bottom-width: 0;
+      }
+    }
+  }
+
+  @include themify() {
+    border-color: theme( 'tableBorderColor' );
+  }
+}
+
+
+/**
+ *
+ * DataTable Zebra Striping
+ * -----------------------------------------------------------------------------
+ *
+ * Alternating white with gray.
+ */
+table.dataTable--zebra-stripes {
+  & tr:nth-child( even ) {
+    background-color: $gray-lighter;
+  }
+
+  & tr:last-child td {
+    border-bottom: 0;
+  }
+}
+
+
+
+/**
+ *
+ * DataTable Borders
+ * -----------------------------------------------------------------------------
+ *
+ * @todo Create non-DataTable borders modifier.
+ */
+table.dataTable--borders {
+
+  & thead {
+    border-bottom: 4px solid $blue;
+
+    & th {
+      // color: $a11y-und-green;
+      border-right: 2px solid $gray-lighter;
+
+      &:last-of-type {
+        border-right-color: $gray-light;
+      }
+    }
+
+    // Shift sorting carets (up/down) to the left a bit, away from border.
+    & [class*="sorting"] {
+      background-position: calc( 100% - 0.5rem ) 50%;
+    }
+
+  }
+
+  & td,
+  & th {
+    border: 0;
+  }
+
+  & td {
+    box-sizing: border-box;
+    vertical-align: top;
+    border-bottom: 2px solid $gray-light;
+    border-right: 2px solid $gray-light;
+
+    &:last-of-type {
+      border-right: 0;
+    }
+
+    & p:last-child {
+      margin: 0;
+    }
+  }
+}
+
+
+
+/**
+ * Scrollable table with minimal markup.
+ *
+ * Variation of: https://codepen.io/matthewbeta/pen/fzoHI
+ */
+.scrollbox {
+  overflow: auto;
+  background:
+    linear-gradient(to right, rgba( 0, 0, 0, 0.1 ) 5%, rgba( 255,255,255, 0 ) ),
+    linear-gradient(to left, rgba( 0, 0, 0, 0.1 ) 5%, rgba( 255,255,255, 0 ) ) 100% 0;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: 10px 100%;
+  margin-bottom: $spacing-sm;
+
+  & > table {
+    background:
+      linear-gradient( to right, white 30%, rgba( 255,255,255, 0 ) ),
+      linear-gradient( to left, white 30%, rgba( 255,255,255, 0 ) ) 100% 0;
+    background-size: 50px 100%;
+    background-repeat: no-repeat;
+    max-width: none;
+    margin-bottom: 0;
+
+     // Overrides `table .table` above.
+    width: 100%; // Overrides `table .table` above.
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+
+
+// RETIRE - mStoner scrollable table, don't forget to remove any styles that are in the above `.table` block above.
+.table__shadow {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0.375rem;
+    height: 100%;
+    background-image: linear-gradient( to right, transparent, rgba( $gray, 0.5 ) );
+    content: '';
+    // pointer-events: none;
+    // @include mq( $break-sm ) {
+    //   content: unset;
+    // }
+  }
+}
+
+.table__scroll {
+  overflow: auto;
+
+  // @include mq( $break-sm ) {
+  //   overflow: hidden;
+  // }
+
+  table {
+    min-width: 64rem;
+    @include mq( $break-sm ) {
+      min-width: auto;
+      width: 100%;
+    }
+  }
+}
+
+
+.pricing__table table tr:first-child td{
+  font-size:1.1rem;
+  font-weight:bold;
+}
+
+
+.pricing__table .product__description{
+  font-size:.9rem;
+  font-weight:normal;
+  text-transform: none;
+}

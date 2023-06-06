@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
+  <meta property="og:title" content="University of North Dakota">
+  <meta property="og:description" content="Und website">
+  <meta property="og:url" content="http://und.mstoner.com">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="http://example.com/ogp.jpg">
+
+  <link href="https://cloud.typography.com/7879216/6217192/css/fonts.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+
+  <title>Examples - Template</title>
+
+  <script>
+  /**
+   * Replicate param-expose.xsl for some client side JS.
+   * ---------------------------------------------------------------------------
+   *
+   * Scripts requiring `OUC` global var:
+   * - _sidenav.js
+   */
+  var OUC = {
+    globalProps: {
+      'domain':     window.location.origin,
+      'path':       window.location.pathname,
+      'extension':  'html',
+      'index-file': 'index',
+      'navType':    'show-dropdown-indicators', // 'hide-dropdown-indicators'
+    }
+  };
+</script>
+
+
+</head>
+
+<body class="t-universal s-global">
+  <div class="skip" role="navigation" aria-label="Skip to Main Content">
+    <a href="#main-content">Skip to main content</a>
+  </div>
+
+    <div id="campus-communications">
+
+    
+
+    
+
+  </div>
+
+
+  <div class="canvas">
+
+    <header class="header">
+  
+  <div class="header__small">
+    <button class="header__small__button toggle-menu">
+      
+  <span class="header__small__menu--open svgstore svgstore--menu">
+    <svg>
+      <title>Open Menu</title>
+      <use xlink:href="#svgstore--menu"></use>
+    </svg>
+  </span>
+
+      
+  <span class="header__small__menu--close svgstore svgstore--close">
+    <svg>
+      <title>Close Menu</title>
+      <use xlink:href="#svgstore--close"></use>
+    </svg>
+  </span>
+
+    </button>
+    <a href="#" class="header__logo">
+      
+  <span class="svgstore svgstore--logotype">
+    <svg>
+      <title>University of North Dakota</title>
+      <use xlink:href="#svgstore--logotype"></use>
+    </svg>
+  </span>
+
+    </a>
+    <button class="header__small__button--search toggle-search">
+      
+  <span class="header__small__search--open svgstore svgstore--search">
+    <svg>
+      <title>Open Search</title>
+      <use xlink:href="#svgstore--search"></use>
+    </svg>
+  </span>
+
+      
+  <span class="header__small__search--close svgstore svgstore--close">
+    <svg>
+      <title>Close Search</title>
+      <use xlink:href="#svgstore--close"></use>
+    </svg>
+  </span>
+
+    </button>
+  </div>
+  <nav class="header__menu" aria-label="Main Menu">
+    
+    <div class="topbar">
+  <div class="container">
+
+    <a href="#" class="topbar__logo">
+  <span class="svgstore svgstore--logotype">
+    <svg>
+      <title>University of North Dakota</title>
+      <use xlink:href="#svgstore--logotype"></use>
+    </svg>
+  </span>
+</a>
+
+    <ul class="topbar__list">
+      <li class="topbar__item">
+        <button class="topbar__link toggle-search">
+          <span class="topbar__link__text">Search</span>
+          <span class="topbar__link__icon--search"></span>
+        </button>
+      </li>
+    </ul>
+    
+    
+    
+  </div>
+</div>
+
+
+    
+    <div class="menu menu--mobile">
+  <div class="container">
+    
+    <div class="menu__heading--mobile"><a href="#">North Dakota Procurement Technical Assistance Center</a></div>
+    
+    <ul class="menu__list">
+      <li class="menu__item"><a href="#" class="menu__link">About</a></li>
+      <li class="menu__item">
+        <a href="#" class="menu__link">Und in Action</a>
+        <button class="menu__link--toggle"><span class="hide">Toggle Menu</span></button>
+        <ul class="menu__list--sub nav__list--sub">
+          <li class="menu__item--sub"><a href="#" class="menu__link--sub nav__link--sub">Link One</a></li>
+          <li class="menu__item--sub"><a href="#" class="menu__link--sub nav__link--sub">Link Two</a></li>
+          <li class="menu__item--sub"><a href="#" class="menu__link--sub nav__link--sub">Link Three</a></li>
+          <li class="menu__item--sub"><a href="#" class="menu__link--sub nav__link--sub">Link Four</a></li>
+        </ul>
+      </li>
+      <li class="menu__item"><a href="#" class="menu__link">Academics</a></li>
+      <li class="menu__item"><a href="#" class="menu__link">Admissions &amp; Financial Aid</a></li>
+      <li class="menu__item"><a href="#" class="menu__link">Student Life</a></li>
+      <li class="menu__item"><a href="#" class="menu__link">Research</a></li>
+      <li class="menu__item menu__button">
+        <a href="#" class="button button--icon">
+          
+  <span class="svgstore svgstore--home">
+    <svg>
+      
+      <use xlink:href="#svgstore--home"></use>
+    </svg>
+  </span>
+
+          Department Home
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+    
+  </nav>
+  <div class="header__search">
+    
+
+
+
+<form class="search__form search__form--small module--blackish" action="//www.search.und.edu/s/search.html" role="search" aria-label="Site">
+    <input type="hidden" name="collection" value="und-search">
+    <input type="hidden" name="profile" value="_default">
+  
+    <div class="search__input__container">
+      <label for="search" class="hide">Search</label>
+      <input id="search" name="query" type="search" placeholder="Search" class="search__input">
+      <div class="search__button">
+        <button class="search__button--icon">
+  <span class="svgstore svgstore--search">
+    <svg>
+      <title>Submit</title>
+      <use xlink:href="#svgstore--search"></use>
+    </svg>
+  </span>
+</button>
+      </div>
+    </div>
+
+  </form>
+
+  </div>
+  
+</header>
+
+
+
+
+    <div class="page" role="main" id="main-content">
+      
+<div class="billboard--arrow py-sm">
+  <div class="container">
+    
+    <h1 class="mt-none caps"><span class="text-white">North Dakota Procurement Technical Assistance Center
+    </span></h1>
+    
+    <p class="serif-xlarge-alt">A resource for assisting North Dakota businesses in obtaining federal, state, and local government contracts.</p>
+    
+  </div>
+</div>
+
+<div class="billboard--img">
+  <picture>
+    <source srcset="//via.placeholder.com/1920x640" media="(min-width: 48em)">
+    
+<img src="//via.placeholder.com/768x960" alt="placeholder">
+
+  </picture>
+  <div>
+    <div class="container">
+      <div class="billboard__text">Billboard</div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<div class="menu menu--desktop">
+  <div class="container">
+    
+    <ul class="menu__list">
+      <li class="menu__item"><a href="#" class="menu__link">About</a></li>
+      <li class="menu__item">
+        <a href="#" class="menu__link">Und in Action</a>
+        <button class="menu__link--toggle"><span class="hide">Toggle Menu</span></button>
+        <ul class="menu__list--sub nav__list--sub">
+          <li class="menu__item--sub"><a href="#" class="menu__link--sub nav__link--sub">Link One</a></li>
+          <li class="menu__item--sub"><a href="#" class="menu__link--sub nav__link--sub">Link Two</a></li>
+          <li class="menu__item--sub"><a href="#" class="menu__link--sub nav__link--sub">Link Three</a></li>
+          <li class="menu__item--sub"><a href="#" class="menu__link--sub nav__link--sub">Link Four</a></li>
+        </ul>
+      </li>
+      <li class="menu__item"><a href="#" class="menu__link">Academics</a></li>
+      <li class="menu__item"><a href="#" class="menu__link">Admissions &amp; Financial Aid</a></li>
+      <li class="menu__item"><a href="#" class="menu__link">Student Life</a></li>
+      <li class="menu__item"><a href="#" class="menu__link">Research</a></li>
+      <li class="menu__item menu__button">
+        <a href="#" class="button button--icon">
+          
+  <span class="svgstore svgstore--home">
+    <svg>
+      
+      <use xlink:href="#svgstore--home"></use>
+    </svg>
+  </span>
+
+          Department Home
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="splash">
+  <div class="container">
+    <div class="splash__nav">
+      <button class="splash__button">Headline (H3)  — 1 This is a really Long Headline that Would Display Across Three Lines
+      </button>
+      <button class="splash__button">Headline (H3)  — 2 This is a really Long Headline that Would Display Across Three Lines
+      </button>
+      <button class="splash__button">Headline (H3)  — 3 This is a really Long Headline that Would Display Across Three Lines
+      </button>
+      <button class="splash__button">Headline (H3)  — 4 This is a really Long Headline that Would Display Across Three Lines
+      </button>
+    </div>
+    <div class="splash__slides">
+      <div class="splash__slide">
+        <div class="splash__media">
+          
+<img src="//via.placeholder.com/1024x683" alt="placeholder">
+
+        </div>
+        <div class="splash__content">
+          <h2 class="splash__headline">
+            <a href="#">1 Headline (H2) — Lorem Ipsum Dolor Sit Amet Consectetur
+            </a>
+          </h2>
+          <p class="splash__date">August 13, 2020</p>
+        </div>
+      </div>
+      <div class="splash__slide">
+        <div class="splash__media">
+          
+<img src="//via.placeholder.com/1024x683" alt="placeholder">
+
+        </div>
+        <div class="splash__content">
+          <h2 class="splash__headline">
+            <a href="#">2 Headline (H2) — Lorem Ipsum Dolor Sit Amet Consectetur
+            </a>
+          </h2>
+          <p class="splash__date">August 13, 2020</p>
+        </div>
+      </div>
+      <div class="splash__slide">
+        <div class="splash__media">
+          
+<img src="//via.placeholder.com/1024x683" alt="placeholder">
+
+        </div>
+        <div class="splash__content">
+          <h2 class="splash__headline">
+            <a href="#">3 Headline (H2) — Lorem Ipsum Dolor Sit Amet Consectetur
+            </a>
+          </h2>
+          <p class="splash__date">August 13, 2020</p>
+        </div>
+      </div>
+      <div class="splash__slide">
+        <div class="splash__media">
+          
+<img src="//via.placeholder.com/1024x683" alt="placeholder">
+
+        </div>
+        <div class="splash__content">
+          <h2 class="splash__headline">
+            <a href="#">4 Headline (H2) — Lorem Ipsum Dolor Sit Amet Consectetur
+            </a>
+          </h2>
+          <p class="splash__date">August 13, 2020</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    </div>
+
+    <footer>
+  
+  <div class="pre-footer module--black pre-footer--college">
+  <div class="container">
+    <div class="grid">
+      <div class="grid__item grid__item--3 grid__item--break-to-half">
+        <h2 class="h3">Department Name</h2>
+        <p class="serif-large">
+          Sample Hall Room 0000<br>
+          0000 Sample Dr Stop 0000<br>
+          Grand Forks, ND 58202-0000<br>
+          P 701.777.0000<br>
+          F 701.777.0000
+        </p>
+        <p>
+          <a href="#" class="button--link">Contact us</a>
+        </p>
+      </div>
+      <div class="grid__item grid__item--5 grid__item--break-to-half">
+        <h2 class="h3">Administration</h2>
+        <ul class="pre-footer__list">
+          <li><a href="#" class="pre-footer__link">Login</a></li>
+          <li><a href="#" class="pre-footer__link">Entries RSS</a></li>
+          <li><a href="#" class="pre-footer__link">Comments RSS</a></li>
+          <li><a href="#" class="pre-footer__link">wordpress.org</a></li>
+        </ul>
+      </div>
+      <div class="grid__item grid__item--5 grid__item--break-to-half">
+        <h2 class="h3">Resources</h2>
+        <ul class="pre-footer__list">
+          <li><a href="#" class="pre-footer__link">Library</a></li>
+        </ul>
+
+      </div>
+      <div class="grid__item grid__item--4">
+        <h2 class="h3">Follow Us</h2>
+        
+        <ul class="social__list">
+  
+  <li class="social__item"><a href="#" class="social__link">
+  <span class="svgstore svgstore--social-youtube">
+    <svg>
+      <title>Youtube</title>
+      <use xlink:href="#svgstore--social-youtube"></use>
+    </svg>
+  </span>
+</a></li>
+  <li class="social__item"><a href="#" class="social__link">
+  <span class="svgstore svgstore--social-instagram">
+    <svg>
+      <title>Instagram</title>
+      <use xlink:href="#svgstore--social-instagram"></use>
+    </svg>
+  </span>
+</a></li>
+  <li class="social__item"><a href="#" class="social__link">
+  <span class="svgstore svgstore--social-facebook">
+    <svg>
+      <title>Facebook</title>
+      <use xlink:href="#svgstore--social-facebook"></use>
+    </svg>
+  </span>
+</a></li>
+  <li class="social__item"><a href="#" class="social__link">
+  <span class="svgstore svgstore--social-twitter">
+    <svg>
+      <title>Twitter</title>
+      <use xlink:href="#svgstore--social-twitter"></use>
+    </svg>
+  </span>
+</a></li>
+  <li class="social__item"><a href="#" class="social__link">
+  <span class="svgstore svgstore--social-linkedin">
+    <svg>
+      <title>Linkedin</title>
+      <use xlink:href="#svgstore--social-linkedin"></use>
+    </svg>
+  </span>
+</a></li>
+  <!-- <li class="social__item"><a href="#" class="social__link">
+  <span class="svgstore svgstore--social-snapchat">
+    <svg>
+      <title>Snapchat</title>
+      <use xlink:href="#svgstore--social-snapchat"></use>
+    </svg>
+  </span>
+</a></li> -->
+  <li class="social__item"><a href="#" class="social__link">
+  <span class="svgstore svgstore--social-tiktok">
+    <svg>
+      <title>TikTok</title>
+      <use xlink:href="#svgstore--social-tiktok"></use>
+    </svg>
+  </span>
+</a></li>
+  
+</ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="footer">
+    
+    
+    <div class="footer__top module--black">
+      <div class="container">
+        
+        <a href="#" class="footer__logo">
+  <span class="svgstore svgstore--logotype">
+    <svg>
+      <title>University of North Dakota</title>
+      <use xlink:href="#svgstore--logotype"></use>
+    </svg>
+  </span>
+</a>
+        
+      </div>
+    </div>
+    
+    <div class="footer__bottom module--blackish">
+      <div class="container">
+   
+        <nav class="footer__nav" aria-label="Compliance and Disclosures">
+          <ul class="footer__list">
+            <li class="footer__item"><a class="footer__link" href="#">ADA Compliance</a></li>
+            <li class="footer__item"><a class="footer__link" href="#">Privacy Policy</a></li>
+            <li class="footer__item"><a class="footer__link" href="#">Consumer Disclosure Information</a></li>
+          </ul>
+        </nav>
+        <p class="footer__right footer__copyright">&copy;2020 Blog Name - Powered by Wordpress
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    
+  </div>
+  
+  
+  
+  <button class="back-to-top">
+  <span class="svgstore svgstore--back-to-top">
+    <svg>
+      <title>Back to Top</title>
+      <use xlink:href="#svgstore--back-to-top"></use>
+    </svg>
+  </span>
+</button>
+  
+  
+</footer>
+
+
+
+  </div>
+
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <script src="/js/script.js"></script>
+  <script>
+    if ( undefined !== typeof jQuery && undefined !== $ ) {
+      document.dispatchEvent( new Event( 'jquery.loaded' ) );
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.5/chosen.jquery.min.js"></script>
+  <script>$( '[data-jquery-chosen]' ).chosen( { width: '100%' } );</script>
+</body>
+</html>

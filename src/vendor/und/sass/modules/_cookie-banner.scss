@@ -1,0 +1,38 @@
+.cookie-banner {
+  z-index: 40;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: none;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  width: 100%;
+  @include box-shadow( $y: -2px );
+
+  & > .container {
+    display: flex;
+    flex-direction: column;
+
+    @include mq( $break-sm ) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+.cookie-banner__heading {}
+
+.cookie-banner__description {
+  padding-right: 2rem;
+  font-size: 1rem;
+  @include zero;
+}
+
+.cookie-banner__button {
+  margin-top: 1rem;
+
+  @include mq( $break-sm ) {
+    margin-top: 0;
+  }
+}

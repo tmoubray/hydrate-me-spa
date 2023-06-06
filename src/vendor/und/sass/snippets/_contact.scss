@@ -1,0 +1,19 @@
+/**
+ * Sidebar Contact Snippet
+ * -----------------------------------------------------------------------------
+ *
+ * Can be found below left sidebar navigation.
+ *
+ * @todo Update markup to use `<div>` instead of `<span>`.
+ * @todo Prefix snippet with `ous-`.
+ * @todo Possibly convert multiple address elements to a single address element.
+ */
+.contact__head {
+  margin-bottom: 0.75rem;
+}
+
+.contact__phone,
+.contact__email {
+  display: block;
+  margin-top: 0.75rem;
+}

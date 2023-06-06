@@ -1,0 +1,234 @@
+/**
+ * Pre Footer
+ * -----------------------------------------------------------------------------
+ */
+
+$pf-break-sm: 60em;
+$pf-break-md: 76em;
+
+.pre-footer {
+  overflow: hidden; // Funnelback fix.
+  
+  & p {
+    font-weight:400;
+    color:$white;
+  }
+
+  & a {
+    color: inherit;
+  }
+  & .container {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  & .columns__item {
+    padding-top: 2rem;
+
+    @include mq( $break-sm ) {
+      padding-top: 0;
+    }
+
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+
+  & h3,
+  & .h3 {
+    margin-top: 0;
+    color:$white;
+    font-size:1.5rem;
+  }
+
+  & .button {
+    margin-top: 2rem;
+
+    @include mq( $pf-break-md ) {
+      min-width: 100%;
+    }
+  }
+
+  // MODIFIERS //
+  &--global {
+    @include mq( $pf-break-sm ) {
+      background: linear-gradient( to right, $blue 0%, $blue 37%, $gray-light 37%, $gray-light 100% );
+    }
+
+    & div {
+      flex-grow: 1;
+    }
+  }
+
+  &--center {
+    border-top: 4px solid $black;
+
+    .columns__item {
+      padding-top: 0;
+    }
+    .social__list {
+      margin-top: 1rem;
+
+      @include mq( $break-sm ) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &--college,
+  &--internal {
+    & .columns {
+      flex-flow: row wrap;
+      @include clear;
+    }
+
+    & .columns__item {
+      float: left;
+      width: 100%;
+      padding-top: 2rem;
+
+      @include mq( $break-sm ) {
+        padding-top: 0;
+      }
+
+      @include mq( $break-sm ) {
+        width: 50%;
+      }
+
+      @include mq( $pf-break-md ) {
+        width: 20%;
+      }
+
+      &:nth-child( 2 ) {
+        @include mq( $max: $break-sm ) {
+          padding-top: 0;
+        }
+      }
+
+      &:last-child {
+        padding-top: 2rem;
+
+        @include mq( $pf-break-md ) {
+          padding-top: 0;
+        }
+      }
+    }
+  }
+
+  &--lia {
+    & .container {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+.pre-footer__container--global {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: $break-xl;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include mq( $break-xl ) {
+    padding-right: 4.5rem;
+    padding-left: 4.5rem;
+  }
+}
+
+.pre-footer__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  & li {
+    margin-top: 0.5rem;
+  }
+}
+
+.pre-footer__link {
+  display: inline-block;
+  padding-bottom: 0.25rem;
+  color: $black;
+  @include font-size( 17 );
+  font-family: $font-base;
+  @include fontSmoothing;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border 400ms;
+
+  &:hover,
+  &:focus {
+    border-bottom: 2px solid $blue;
+
+    .tint-themed &,
+    .module--green & {
+      border-color: $white;
+    }
+
+    @include themify() {
+      border-color: theme( 'themeColor' );
+    }
+  }
+}
+
+.pre-footer__group__inside {
+  padding: 3rem 5%;
+
+  @include mq( $break-xl ) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &:first-child {
+    @include mq( $pf-break-sm ) {
+      flex: 2;
+    }
+
+    // @include mq( 64.9em ) {
+    @include mq( $break-md-plus ) {
+      flex: 1;
+      padding-right: 2rem;
+    }
+  }
+
+  /**
+   * Add border to top of gray area of pre-footer for when page content
+   * has a gray background the same/similar color as pre-footer gray.
+   * White gap is ugly, this is better (not best).
+   *
+   * We're using pseudo elements to create the border because a regular
+   * top border would run along the top of the green area of the
+   * pre-footer, which is a bit uggo.
+   */
+  &:last-child {
+    position: relative;
+    z-index: 5;
+    padding-left: 5%;
+
+    @include mq( $pf-break-sm ) {
+      &::before {
+        content: '';
+        z-index: 0;
+        position: absolute;
+        width: 200%;
+        height: 2px;
+        background: #ddd;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+
+  & .button {
+    max-width: 250px;
+    min-width: 250px;
+
+    @include mq( $max: $pf-break-sm ) {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

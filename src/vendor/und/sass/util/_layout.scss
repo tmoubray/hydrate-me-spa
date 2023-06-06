@@ -1,0 +1,163 @@
+.canvas {
+  position: relative;
+  overflow: hidden;
+}
+
+.page,
+.content-wrapper {
+  padding-top: 5.5rem;
+
+  @include mq( $break-md ) {
+    padding-top: 0 !important; // Override inline CSS via JS.
+  }
+}
+
+.container {
+  @include container;
+
+  // MODIFIERS
+  &--relative {
+    position: relative;
+  }
+
+  &--clear {
+    @include clear;
+  }
+
+  &--margin {
+    margin-bottom: 3rem;
+
+    @include mq( $break-sm ) {
+      margin-bottom: 6rem;
+    }
+  }
+
+  &--narrow {
+    @include mq( $break-xl ) {
+      padding-left: 8rem;
+      padding-right: 8rem;
+    }
+  }
+
+  &--slim {
+    max-width: 82rem;
+  }
+
+  &--flush-small {
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 0;
+    padding-left: 0;
+    max-width: $break-xl;
+
+    @include mq( $break-sm ) {
+      padding-right: 5%;
+      padding-left: 5%;
+    }
+
+    @include mq( $break-xl ) {
+      padding-right: 4.5rem;
+      padding-left: 4.5rem;
+    }
+  }
+
+  &--flush-narrow {
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 0;
+    padding-left: 0;
+    max-width: $break-xl;
+
+    @include mq( $break-sm ) {
+      padding-right: 5%;
+      padding-left: 5%;
+    }
+
+    @include mq( $break-xl ) {
+      padding-right: 8rem;
+      padding-left: 8rem;
+    }
+  }
+}
+
+.main {
+  margin-top: 2rem;
+
+  @include make-fluid-spacing( m, b );
+}
+
+.main__container {
+  margin-top: -2rem;
+}
+
+.main__sidebar {
+  margin-top: $spacing-xs;
+
+  @include mq( $break-md ) {
+    margin-top: $spacing-md;
+    width: 26%;
+    float: left;
+    clear: left;
+    margin-right: 8%;
+    @include zero;
+
+    &:first-of-type {
+      margin-top: 3rem;
+    }
+  }
+}
+
+.main__sidebar--alt {
+  margin-top: 0 !important;
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.main__content {
+  @include zero( true );
+  margin-top: 1rem;
+
+  @include mq( $break-md ) {
+    margin-top: 3rem;
+    width: 66%;
+    float: right;
+  }
+  
+  &--left {
+    @include mq( $break-md ) {
+      float: left;
+      padding-right: 8%;
+    }
+  }
+
+  &--half {
+    @include mq ( $break-md ) {
+      width: 50%;
+    }
+
+    @include mq ( $break-lg ) {
+      width: 60%;
+    }
+  }
+
+  &--center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include mq( $break-md ) {
+      width: 100%;
+    }
+  }
+}
+
+.main__content--alt {
+  @include mq( $break-md ) {
+    margin-top: 0;
+  }
+}
+
+.sidebar-main-content {
+  @include clear;
+}

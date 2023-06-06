@@ -1,0 +1,16 @@
+.comment-icon{
+  content: $svgstore--comment;
+  justify-content: center;
+  align-items: center;
+  width:14px;
+  height:14px;
+}
+
+.tag-icon{
+  content: $svgstore--tag;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(130deg);
+  width:14px;
+  height:14px;
+}

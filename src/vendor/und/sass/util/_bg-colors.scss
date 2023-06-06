@@ -1,0 +1,27 @@
+/**
+ * Background Color Utility Classes
+ * -----------------------------------------------------------------------------
+ */
+
+@each $bg-name, $bg-color in $bg-colors {
+  .bg-#{$bg-name} {
+    background-color: $bg-color !important;
+  }
+}
+
+// Center Theme Overrides.
+.bg-themed {
+  background-color: $blue !important;
+
+  @each $name, $color in $theme-colors {
+
+    // More themes are configured than actually generated, only generate
+    // "active" themes.
+    @if ( map-has-key( $themes, 'theme-' + $name ) ) {
+      .theme-#{$name} & {
+        background-color: $color !important;
+      }
+    }
+
+  }
+}

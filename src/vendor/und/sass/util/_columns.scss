@@ -1,0 +1,34 @@
+.columns {
+  @include mq( $break-sm ) {
+    display: flex;
+    margin: 0 -1rem;
+  }
+
+  // MODIFIERS
+  &--between {
+    @include mq( $break-sm ) {
+      justify-content: space-between;
+    }
+  }
+
+  &--small {
+    margin: 0 -0.5rem;
+  }
+}
+
+.columns__item {
+  @include mq( $break-sm ) {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  // MODIFIERS
+  &--bottom {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &--small {
+    padding: 0 0.5rem;
+  }
+}

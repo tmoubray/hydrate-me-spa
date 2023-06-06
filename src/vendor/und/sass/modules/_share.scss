@@ -1,0 +1,357 @@
+/**
+ * Social Feeds
+ * -----------------------------------------------------------------------------
+ *
+ * Used on: UND homepage, college home page.
+ */
+
+$share-break-md: 66em;
+
+.share__bg,
+.share__bg--college {
+  background-color: $black;
+  padding-bottom: $spacing-sm;
+
+  p {
+    font-family: $font-base;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .grid__item {
+    padding-top: 1rem;
+
+    @include mq( $break-sm ) {
+      padding-top: 2rem;
+    }
+  }
+
+  .h1 {
+    margin-top: 0;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.share__item--flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.share__img {
+  display: block;
+  position: relative;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    .share__hover {
+      visibility: visible;
+      opacity: 1;
+      background-color: rgba( $gray-darker, 0.75 );
+    }
+  }
+
+  &.no-img {
+    .share__hover {
+      visibility: visible;
+      opacity: 1;
+      background-color: transparent;
+    }
+  }
+}
+
+.share__hover {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0 0 1rem;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $white;
+  font-family: $font-base;
+  line-height: 1.562;
+  transition: visibilty $transition--base, opacity $transition--base, background $transition--base;
+}
+
+.share__img__gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient( -180deg, rgba( 0, 0, 0, 0.00 ) 76%, rgba( 0, 0, 0, 0.64 ) 100% );
+}
+
+.share__img__card {
+  position: relative;
+  @include zero;
+  padding: 1.5rem;
+
+  @include mq( $break-sm ) {
+    // min-height: 22.5rem;
+  }
+
+  @include mq( $break-md ) {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    min-height: auto;
+    // height: 48%;
+  }
+
+  @include mq( $break-lg ) {
+    width: 50%;
+  }
+
+  p {
+    margin-bottom: 3rem;
+  }
+
+  .button--link {
+    position: absolute;
+    bottom: 1.5rem;
+  }
+}
+
+.share__img__card--left {
+  @include mq( $break-md ) {
+    left: 0;
+    right: auto;
+  }
+}
+
+.google__review{
+  text-align: center;
+  width:100%;
+  margin:auto;
+  direction: block;
+  @include mq( $break-md ) {
+    width: 80%;
+  }
+}
+
+.googe__review__attribution{
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  padding: 2rem 0 0;
+  font-size: 20px;
+}
+
+.share__half {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+
+  @include mq( $break-md ) {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+}
+
+.share__half--text {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  max-height: 300px;
+
+  
+}
+
+.share__half__text,
+.share__full__text {
+  flex: 1;
+  position: relative;
+  padding: 1.5rem 0rem 1.5rem;
+  text-align:center;
+
+  @include mq( $break-md ) {
+  padding: 0 1.5rem 1.5rem;
+  text-align:left;
+  }
+
+  p {
+    margin-bottom: 0rem;
+    font-size:14px;
+  }
+
+  hr{
+    width:30%;
+    @include mq( $break-md ) {
+      width:100%;
+    }
+  }
+}
+
+.share__half__text {
+  @include mq( $break-md ) {
+    max-width: 90%;
+    flex: 1.5;
+  }
+}
+
+.share__half__img {
+  flex: 1;
+
+  img {
+    width: 25%;
+    object-fit: cover;
+    max-height:20rem;
+    max-width:25%;
+    margin: auto;
+
+    @include mq( $break-sm ) {
+        width: 50%;
+        margin:auto;
+        max-width: 50%;
+      }
+  }
+
+  & .tall__image{
+    height:100%;
+  }
+
+  .share__half--swap & {
+    @include mq( $break-md ) {
+      order: 2;
+    }
+  }
+}
+
+.share__icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 2rem;
+  color: $white;
+  transition: color $transition--base;
+}
+
+.share__half__icon {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+
+  &:hover,
+  &:focus {
+    .share__icon {
+      color: $blue;
+    }
+  }
+}
+
+.share__tag {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  width: 100%;
+  background-color: $blue;
+  color: $white;
+  @include font-size( 24 );
+  font-family: $font-base;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 3rem 2rem;
+
+  @include mq( $break-sm ) {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @include mq( $share-break-md ) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .share__item--flex & {
+      flex-basis: 50%;
+    }
+  }
+
+  .share__icon,
+  [class^="share__icon__"] {
+    margin-left: 0.5rem;
+    flex-shrink: 0;
+
+    @include mq( $break-sm ) {
+      margin-top: 1rem;
+    }
+
+    @include mq( $share-break-md ) {
+      margin-top: 0;
+    }
+  }
+
+  .share__item--flex & {
+    padding: 2rem;
+  }
+}
+
+
+.share__block {
+  @include mq( $break-sm ) {
+    min-height: 11.5rem;
+  }
+}
+
+[class^="share__icon__"] {
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  display: block;
+  height: 2rem;
+  width: 2rem;
+}
+
+.share__icon__Instagram {
+  @include fill( $svgstore--social-instagram, $white );
+
+  &:hover,
+  &:focus {
+    @include fill( $svgstore--social-instagram, $blue );
+  }
+}
+
+.share__icon__Facebook {
+  @include fill( $svgstore--social-facebook, $white );
+
+  &:hover,
+  &:focus {
+    @include fill( $svgstore--social-facebook, $blue );
+  }
+}
+
+.share__icon__Twitter {
+  @include fill( $svgstore--social-twitter, $white );
+
+  &:hover,
+  &:focus {
+    @include fill( $svgstore--social-twitter, $blue );
+  }
+}
+
+.share__icon__Youtube {
+  @include fill( $svgstore--social-youtube, $white );
+  background-size: auto 75%;
+
+  &:hover,
+  &:focus {
+    @include fill( $svgstore--social-youtube, $blue );
+  }
+}
+
+.share__special {
+  display: flex;
+  flex-direction: column;
+}

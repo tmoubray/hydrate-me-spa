@@ -1,0 +1,238 @@
+/**
+ * Funnelback Theme Overrides and Generic Fixes mStoner/Bootstrap Styles
+ * -----------------------------------------------------------------------------
+ *
+ * All we're looking to do is override UND green with a theme color and use our
+ * theming functions and mixins so updates are not too manual for Funnelback
+ * search pages.
+ *
+ * All the selectors below the result of inspecting the DOM and copy and pasting
+ * the highest specificity selector found in Dev Tools.
+ */
+
+
+
+/**
+ * Theme Overrides
+ * -----------------------------------------------------------------------------
+ */
+
+// Text Color
+.jumbotron .input-group .input-group-addon:last-child button,
+.card-header h4 a,
+.search-contextual-navigation h3,
+.search-contextual-navigation h4,
+.search-results h4,
+.search-results > div > div .col-md-9 > .alert > strong > a,
+.search-results .search-facet h4,
+.search-result-people h4 a,
+.search-result-video h4 a,
+.dropdown-item:hover,
+.cookie-banner__heading,
+.pre-footer h3 {
+  @include themify() {
+    color: theme( 'themeColor' );
+  }
+}
+
+
+
+// Text Color with `!important`
+.search-contextual-navigation .card-text h4.text-muted,
+.search-results > div > div .col-md-9 > .alert > strong > a {
+  @include themify() {
+    color: theme( 'themeColor' ) !important;
+  }
+}
+
+
+
+// Text Color A11y
+.btn-link { // This reverses what happens on UND's site. ¿Do the same on UND site?
+  @include themify() {
+    color: $black;
+
+    &:hover {
+      color: theme( 'linkColorA11yHover' );
+    }
+  }
+}
+
+
+
+// Text Color on Theme Color
+blockquote.search-exhibit a {
+  @include themify() {
+    color: theme( 'textColorOnThemeColor' );
+  }
+}
+
+
+
+// Background Color
+.pagination-lg .page-link:hover {
+  @include themify() {
+    background-color: theme( 'themeColor' );
+    // color: theme( 'textColorOnThemeColor' ); // ¿Inverse?
+  }
+}
+
+
+
+// Background Color and Text Color on Theme Color
+li.page-item.active a.page-link,
+blockquote.search-exhibit {
+  @include themify() {
+    background-color: theme( 'themeColor' );
+    color: theme( 'textColorOnThemeColor' );
+  }
+}
+
+
+
+// Border Color
+.card,
+.jumbotron .input-group,
+.dropdown-menu.show,
+#search-tabs ul,
+.search-facets,
+.search-results > div > div .col-md-9 > .alert > strong,
+.search-results > div > div .col-md-9 > .alert > p,
+.search-results > div > div .col-md-9 > .alert > cite {
+  @include themify() {
+    border-color: theme( 'themeColor' );
+  }
+}
+
+
+
+// SVG Icon Color
+#search-sort::after {
+  @include themify() {
+    @include fill( $svgstore--caret-down, theme( 'themeColor' ) );
+  }
+}
+
+.button-plus-icon {
+  @include themify() {
+    @include fill( $svgstore--plus, theme( 'themeColorA11y' ) );
+  }
+}
+
+
+
+/**
+ * Resets
+ * -----------------------------------------------------------------------------
+ *
+ * These selectors either override a generic theme style that:
+ *
+ * 1. Got inherited like `.theme-maroon a` and needs to be reset because the
+ * original style had a selector with a lower specificity like `.dropdown-item`.
+ * 2. We're hooking into the theme class to increase specificity over an style
+ *    that was defined by mStoner or Bootstrap.
+ * 3. Special use cases related to a theme.
+ */
+
+// Sort:Relevance
+.dropdown-item {
+  @include themify() {
+    color: #212529;
+  }
+}
+
+// Solid color callout above search results, see People tab.
+blockquote.search-exhibit a {
+  @include themify() {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+blockquote {
+  @include themify() {
+    padding-left: 0;
+  }
+}
+
+
+
+/**
+ * Non Theme Fixes
+ * -----------------------------------------------------------------------------
+ */
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5 {
+  font-family: $font-base !important;
+}
+
+// Before search results, left of "Sort: Relevance."
+.search-blending .blockquote a:hover {
+  text-decoration: underline;
+}
+
+// Video
+.search-result-video .col-md-3 > a {
+  color: $white;
+
+  &:hover {
+    color: $gray-light;
+  }
+}
+
+// Show Filters Dropdown, small viewports.
+@include mq( $max: $break-xs-max ) {
+  #search-tabs ul li a {
+    display: flex;
+
+    &.active {
+      @include navigation-indicator();
+    }
+  }
+}
+
+// Sort Relevance
+.dropdown-menu[aria-labelledby="search-sort"] {
+  width: px-to-rem( 226px );
+
+  & .dropdown-item {
+    display: flex;
+
+    &:hover {
+      @include navigation-indicator();
+    }
+  }
+}
+
+
+// "Trade Gothic" bold fix.
+.blockquote strong,
+.search-results > div > div .col-md-9 > .alert > strong {
+  font-weight: normal;
+}
+
+
+
+/**
+ * Template Fixes/Additions
+ * -----------------------------------------------------------------------------
+ */
+
+// Centers Templates
+.s-center {
+
+  @include mq( $break-md ) {
+    & a.topbar__link {
+      &:hover,
+      &:focus {
+        color: $black;
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<div class="topbar">
+  <div class="container">
+
+    <a href="#" class="topbar__logo">{{ svgstore('logotype', 'University of North Dakota') }}</a>
+
+    <ul class="topbar__list">
+      <li class="topbar__item">
+        <button class="topbar__link toggle-search">
+          <span class="topbar__link__text">Search</span>
+          <span class="topbar__link__icon--search"></span>
+        </button>
+      </li>
+    </ul>
+    {% if internal %}
+    <div class="topbar__heading"><a href="#">Internal Site Name</a></div>
+    {% endif %}
+    {% if college %}
+    <div class="topbar__heading"><a href="#">College of Business and Public Administration</a></div>
+    {% endif %}
+    {% if center %}
+    <div class="topbar__heading"><a href="#"><span class="heading-text">Energy &amp; Environmental</span> <span class="heading-text">Research Center</span></a></div>
+    {% endif %}
+  </div>
+</div>
+

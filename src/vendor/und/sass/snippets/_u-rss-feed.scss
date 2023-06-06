@@ -1,0 +1,163 @@
+/**
+ * RSS Feeds
+ * -----------------------------------------------------------------------------
+ */
+.rss-feed {
+  margin: $spacing-sm 0;
+  @extend %heading_guard;
+
+  // MODIFIERS
+  &--list {
+
+    @include mq( $break-xs ) {
+      padding: 1rem;
+      background-color: $gray-light;
+    }
+  }
+
+  &--card {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include mq( $break-xs ) {
+      margin-right: -1rem; // Fix for last item in each row's margin.
+    }
+
+    @include mq( $break-md ) {
+      flex-wrap: nowrap;
+    }
+  }
+
+  // Content region location.
+  &--main {}
+  &--sidebar {}
+
+  // Conditionally hide content.
+  &--no-photo .rss-feed__img,
+  &--no-date .rss-feed__date,
+  &--no-time .rss-feed__time,
+  &--no-desc .rss-feed__desc,
+  &--no-date.rss-feed--no-time .rss-feed__date-time {
+    display: none;
+  }
+}
+
+.rss-feed__item {
+  display: flex;
+  flex-direction: column;
+  color: $black;
+  text-decoration: none;
+  background-color: $gray-light;
+  margin-bottom: 1rem;
+
+  @include themify() {
+    color: $black; // TODO: Review with Kelica. ¿Use !important for above instead?
+  }
+
+  .rss-feed--list & {
+
+    @include mq( $break-xs ) {
+      flex-direction: row;
+
+      &:not(:last-child) {
+        padding-bottom: 1rem;
+        border-bottom: 2px solid lighten( $gray, 5% );
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .rss-feed--card & {
+
+    @include mq( $break-xs ) {
+      flex-basis: calc( 50% - 1rem );
+      margin: 0 1rem 1rem 0;
+    }
+
+    @include mq( $break-md ) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.rss-feed__img {
+  flex-shrink: 0; // IE11, prevent element from expanding beyond content size.
+
+  // Override default responsive image width in an attempt to have equal height
+  // images if feed images are not the same resolution.
+  & img {
+    width: 100%;
+  }
+
+  .rss-feed--list & {
+    @include mq( $break-xs ) {
+      flex: 0 0 165px;
+      padding-right: 1rem;
+    }
+  }
+}
+
+.rss-feed__info {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  padding: 1rem;
+
+  .rss-feed--list & {
+    @include mq( $break-xs ) {
+      flex-basis: 100%; // IE11
+      padding: 0;
+    }
+  }
+}
+
+.rss-feed__title {
+  margin-bottom: 0.5rem;
+  color: $blue;
+  @include font-display( ( size: 20px, lineheight: 1 ) );
+
+  @include themify() {
+    color: theme( 'themeColor' );
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  .rss-feed--no-date.rss-feed--no-time.rss-feed--no-desc & {
+    margin-bottom: 0;
+  }
+}
+
+.rss-feed__date-time {
+  margin-top: auto; // Push to bottom.
+  font: normal 0.85rem $font-base;
+}
+
+.rss-feed__date,
+.rss-feed__time {
+  display: inline;
+}
+
+.rss-feed__date {}
+
+.rss-feed__time {
+  &::before {
+    content: ', ';
+
+    .rss-feed--no-date & {
+      content: '';
+    }
+  }
+}
+
+.rss-feed__desc {
+  margin-bottom: 1rem;
+
+  .rss-feed--no-time.rss-feed--no-date & {
+    margin-bottom: 0;
+  }
+}

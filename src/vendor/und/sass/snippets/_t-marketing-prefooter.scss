@@ -1,0 +1,83 @@
+/**
+ * Marketing Prefooter Snippet
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        [Marketing Landing] Prefooter
+ * Table Label:    Snippet: Marketing Prefooter
+ * Table Selector: .ou-snippet-marketing-prefooter
+ *
+ * This SCSS supersedes the current Marketing Prefooter snippet SCSS that uses
+ * the `.marketing-pre-footer` container/scoping class (extra hyphen) which
+ * lives in `_marketing.scss`.
+ */
+
+.marketing-prefooter {
+  #marketing-form-bottom {
+
+    @include mq( $break-md ) {
+      float: right;
+    }
+  }
+
+  & .cta__list { // Nested here for specificity.
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+    margin-left: 0;
+    padding-left: 0;
+    background: none;
+
+    .t-program-page & {
+      margin-top: 0;
+
+      & .cta__item {
+        display: block;
+        margin: 0 0 1rem;
+      }
+    }
+
+    & .cta__item {
+      margin: 0 1rem 1rem 0;
+
+      @include mq( $break-xs ) {
+        margin: 0 1rem 0 0;
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  // Program Page Templates.
+  & .program-prefooter-contacts {
+    padding-left: 2rem;
+    border-left: 2px solid $blue;
+
+    & .ous-contact {
+      @include font-size( 16 );
+      // Defensive important statement for when text/font helper classes all
+      // have `!important` applied to them (as they should). Contact snippet
+      // have `.serif-large` applied to them.
+      font-family: $font-base !important;
+    }
+
+    & .ous-contact + .ous-contact {
+      margin-top: $spacing-xs;
+    }
+
+    // Defensive style. Removes social list if a contact is inherited from an
+    // ancestor contact include or multi-edit contact include that includes
+    // social media links.
+    & .social__list {
+      display: none;
+    }
+  }
+}
+
+.marketing-prefooter__teaser {
+
+  .t-program-page & {
+    color: $blue;
+    @extend %text-serif-xl;
+  }
+}

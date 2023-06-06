@@ -1,0 +1,30 @@
+<div class="menu{% if menu.desktop %} menu--desktop{% else %} menu--mobile{% endif %}">
+  <div class="container">
+    {% if not menu.desktop %}
+    <div class="menu__heading--mobile"><a href="#">{{ identifier }}</a></div>
+    {% endif %}
+    <ul class="menu__list">
+      <li class="menu__item"><a href="#" class="menu__link">About</a></li>
+      <li class="menu__item">
+        <a href="#" class="menu__link">Und in Action</a>
+        <button class="menu__link--toggle"><span class="hide">Toggle Menu</span></button>
+        <ul class="menu__list--sub nav__list--sub">
+          <li class="menu__item--sub"><a href="#" class="menu__link--sub nav__link--sub">Link One</a></li>
+          <li class="menu__item--sub"><a href="#" class="menu__link--sub nav__link--sub">Link Two</a></li>
+          <li class="menu__item--sub"><a href="#" class="menu__link--sub nav__link--sub">Link Three</a></li>
+          <li class="menu__item--sub"><a href="#" class="menu__link--sub nav__link--sub">Link Four</a></li>
+        </ul>
+      </li>
+      <li class="menu__item"><a href="#" class="menu__link">Academics</a></li>
+      <li class="menu__item"><a href="#" class="menu__link">Admissions &amp; Financial Aid</a></li>
+      <li class="menu__item"><a href="#" class="menu__link">Student Life</a></li>
+      <li class="menu__item"><a href="#" class="menu__link">Research</a></li>
+      <li class="menu__item menu__button">
+        <a href="#" class="button button--icon">
+          {{ svgstore('home') }}
+          Department Home
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

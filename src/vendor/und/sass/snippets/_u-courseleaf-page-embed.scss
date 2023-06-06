@@ -1,0 +1,227 @@
+/**
+ * CourseLeaf Page Embed Snippet
+ * -----------------------------------------------------------------------------
+ *
+ * Legacy
+ * ------
+ *
+ * OU Name:        [Program] Program Page Embed
+ * Table Label:    Snippet: Program Page
+ * Table Selector: .ou-snippet-program-page
+
+ * 2020 Design
+ * -----------
+ * OU Name:        [Program] CourseLeaf Page Embed
+ * Table Label:    Snippet: CourseLeaf Page Embed
+ * Table Selector: .ou-snippet-courseleaf-page-embed
+ */
+
+// CourseLeaf Course Bubble ----------------------------------------------------
+
+.lfjsbubble {
+
+  $lfjs-bubble-y: 0;
+  $lfjs-bubble-spread: 2px;
+
+  z-index: 35;
+  position: absolute;
+  display: none;
+  @include font-size( 14 );
+  background-color: $white;
+  @include box-shadow( $y: $lfjs-bubble-y, $spread: $lfjs-bubble-spread );
+
+  & #lfjsbubbleclose {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    margin: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+  }
+
+  & .lfjsbubblemainwrapper {
+    position: relative;
+    z-index: 5; // Position above bubble tail.
+    padding: 1rem 2rem 1rem 1rem;
+    background-image: $svgstore--close;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    background-position: calc( 100% - 0.5rem ) 0.5rem;
+  }
+
+  & .lfjsbubblecontent > div {
+    @include zero;
+  }
+
+  // Since the parent has a z-index, we cannot push this element below it. Our
+  // hack workaround is to stack the content of the bubble on top of this
+  // element and have this element overlap the pseudo element that makes the
+  // tail of our bubble. To get the box shadow around the tail, we cannot use
+  // the border trick to create a triangle. Instead, we create a square,
+  // rotate it, and then hide enough of it so it looks like a triangle.
+  & .lfjsbubbletail {
+    position: absolute;
+    bottom: 0;
+    width: 3rem;
+    height: 3rem;
+    background-color: $white;
+
+    &.left {
+      // Nudge due to JS calculations. Cannot use `transform` as it undoes our
+      // stacking order. Might be able to do this another way.
+      margin-right: -1.75rem;
+    }
+
+    &::after {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+      transform: translate( -50%, 50% ) rotate( 45deg );
+      background-color: $white;
+      @include box-shadow( $y: $lfjs-bubble-y, $spread: $lfjs-bubble-spread );
+    }
+
+    &.top {
+      top: 0 !important;
+
+      &::after {
+        bottom: auto;
+        transform: translate( -50%, -50% ) rotate( 45deg );
+      }
+    }
+  }
+
+  & .courseblocktitle {
+    text-transform: none;
+    @include font-size( 16 );
+  }
+}
+
+
+
+// CourseLeaf Tables -----------------------------------------------------------
+
+// Note: All "plangrid" selectors appear on Four Year plan pages. These pages
+// have different markup than some of the other tables on embedded pages.
+
+.table--courseleaf-page-embed {
+
+  $coursleaf-table-bottom-margin: 3rem;
+
+    & table {
+      margin-top: 1rem;
+      line-height: $line-height--base;
+    }
+
+  & td {
+    border-bottom: none !important;
+  }
+
+  & tr {
+    border-top: 2px solid $gray-light;
+
+    // First row in CourseLeaf is labeled `.even`, even though that would make
+    // it odd.
+    &.odd {
+      background-color: $gray-lighter;
+    }
+
+    &.firstrow {
+      border-top: none;
+    }
+  }
+
+  & .codecol {
+    width: 18%;
+  }
+
+  & .orclass,
+  & .orclass td {
+    border-top: none !important;
+  }
+
+  & .orclass .codecol {
+    padding-left: 2rem;
+  }
+
+  .sc_plangrid {
+    & tr {
+      border-top: 2px solid $gray-light;
+    }
+  }
+
+  & thead th,
+  & thead td,
+  & .plangridyear th {
+    padding: 1rem 1.25rem;
+  }
+
+  & caption {
+    padding: 0.5rem 0;
+
+    &.hidden {
+      @include sr-hide;
+    }
+  }
+
+  & caption,
+  & .areaheader,
+  & .listsum,
+  & .plangridsum,
+  & .plangridtotal {
+    font-weight: bold;
+  }
+
+  & .hourscol {
+    text-align: right;
+  }
+
+  & tr.plangridyear {
+    border-top-color: $gray;
+    border-bottom: 4px solid $blue;
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  // There are a lot of `.courselistcomment` elements that don't have a
+  // `.areaheader` class on them but appear to be the same kind of content with
+  // the same purpose/intent as the ones that do. As there is no way for us to
+  // infer from the markup which `.courselistcomment` elements should be bold
+  // and which should not when `.areaheader` is not present, we will default to
+  // normal font weight when `.areaheader` is applied to a `.courselistcomment`
+  // element as there are a lot fewer of them.
+  //
+  // `.areaheader` and `plangridterm` are pseudo sub-headers.
+  & .areaheader.courselistcomment {
+    font-weight: normal;
+  }
+
+  & tr.areaheader td,
+  & tr.plangridterm {
+    border-bottom: 2px solid $gray-dark;
+  }
+
+  & tr.areaheader td,
+  & .plangridterm th {
+    background-color: $white;
+  }
+
+  & .listsum,
+  & tr.plangridtotal {
+    border-top-color: $gray;
+  }
+
+  & + .sc_footnotes {
+    margin-top: -( $coursleaf-table-bottom-margin - 1 );
+  }
+}

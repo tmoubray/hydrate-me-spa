@@ -1,0 +1,8 @@
+
+<?php
+/**
+ * Default sidebar template.
+ *
+ */
+
+ ?>

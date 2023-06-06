@@ -1,0 +1,714 @@
+/**
+ * Generate theme styles.
+ *
+ * Loops over values stored in a theme's Map of CSS property values, outputing
+ * any property values defined by a theme() function call inside the body of
+ * themify().
+ *
+ * @see https://medium.com/@dmitriy.borodiy/easy-color-theming-with-scss-bc38fd5734d1
+ * @requires /sass/util/_functions.scss::theme()
+ *
+ * @param {Map}     $themes A collection of theme maps.
+ * @param {Boolean} $concat A CSS selector that appears on the `body` tag with the
+ *                  theme class.
+ *
+ * Example Usage of $concat
+ * ------------------------
+ *
+ * `````````````````````````````````````````````````````````````````````````````
+ * .a-selector {
+ *   themify( $concat: '.alpha' ) {
+ *     color: theme( 'themeColor' );
+ *   }
+ * }
+ * `````````````````````````````````````````````````````````````````````````````
+ *
+ * Output
+ * `````````````````````````````````````````````````````````````````````````````
+ * .eerc.alpha .a-selector {
+ *   color: #a80532;
+ * }
+ * `````````````````````````````````````````````````````````````````````````````
+ */
+@mixin themify($themes: $themes, $concat: false) {
+
+  @each $theme,
+  $opts in $themes {
+
+    .#{$theme + if( $concat, $concat, '' )} & {
+
+      $theme-map: () !global; // initialize
+
+      // Make current theme properties available to @content.
+      @each $key,
+      $val in $opts {
+        $value    : map-get($opts, '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+
+      @content;
+
+      $theme-map: null !global; // reset
+
+    }
+
+  }
+
+}
+
+/**
+ * Set font rem size from px input.
+ *
+ * This mixin bases it's rem value on a base font size of 16px.
+ *
+ * @param {Number} $size Font size as pixel unit.
+ */
+@mixin font-size($size: 16) {
+  font-size: ($size / 16) + rem;
+}
+
+/**
+ * Font Smoothing.
+ */
+@mixin fontSmoothing {
+  -webkit-font-smoothing : antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/**
+ * Fluid Properties.
+ *
+ * Property values relative to viewport width, scoped by media queries.
+ *
+ * Modified from @see source below.
+ *
+ * Example
+ * -------
+ *
+ * @include fluid-property(font-size, $minScreen, $maxScreen, 30px, 40px);
+ *
+ * @note All values should use the same unit.
+ * @see https://www.sassmeister.com/gist/7f22e44ace49b5124eec
+ *
+ * @param {String} $properties One or more CSS properties separated by a space.
+ * @param {Number} $min-vw     Minimum viewport width to apply fluid type.
+ * @param {Number} $max-vw     Maximum viewport width to apply fluid type.
+ * @param {Mixed}  $min-value  Minimum value for property.
+ * @param {Mixed}  $max-value  Maximum value for property.
+ */
+@mixin fluid-property($properties, $min-vw, $max-vw, $min-value, $max-value) {
+  @each $property in $properties {
+    #{$property}: $min-value;
+  }
+
+  @media screen and (min-width: $min-vw) {
+    @each $property in $properties {
+      #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+    }
+  }
+
+  @media screen and (min-width: $max-vw) {
+    @each $property in $properties {
+      #{$property}: $max-value;
+    }
+  }
+}
+
+/**
+ * Fluid typography.
+ *
+ * Wrapper mixin for fluid-property() mixin. If you need more control use
+ * fluid-property().
+ *
+ * @note All values should use the same unit.
+ *
+ * @param {Mixed} $min-value Minimum font size.
+ * @param {Mixed} $max-value Maximum font size.
+ * @param {Mixed} $min-vw Optional. Minimum viewport width.
+ * @param {Mixed} $max-vw Optional. Maximum viewport width.
+ */
+@mixin fluid-type($min-value, $max-value, $min-vw: $fluid-type-min, $max-vw: $fluid-type-max) {
+  @include fluid-property(font-size, $min-vw, $max-vw, $min-value, $max-value);
+}
+
+/**
+ * Clearfix
+ */
+@mixin clear {
+
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+/**
+ * Generic container.
+ *
+ * @param {Mixed} $max Maximum width of container and minimum width for media
+ *                     query that takes over after maximum width of container
+ *                     is reached.
+ */
+@mixin container($max: $break-xl) {
+  max-width    : $max;
+  margin-right : auto;
+  margin-left  : auto;
+  padding-right: 5%;
+  padding-left : 5%;
+
+  @media (min-width: $break-xl) {
+    padding-right: 4.5rem;
+    padding-left : 4.5rem;
+  }
+}
+
+/**
+ * Custom text underline.
+ *
+ * @note Retired.
+ */
+// @mixin underline( $color: currentColor, $position: 90%, $size: 0.0625rem ) {
+//   background-image: linear-gradient( $color, $color );
+//   background-repeat: repeat-x;
+//   background-position: 0 $position;
+//   background-size: 100% $size;
+// }
+
+/**
+ * Reset margin and padding.
+ */
+@mixin clean {
+  margin : 0;
+  padding: 0;
+}
+
+// hide
+@mixin hide {
+  position: absolute;
+  width   : 1px;
+  height  : 1px;
+  margin  : -1px;
+  padding : 0;
+  border  : 0;
+  overflow: hidden;
+  clip    : rect(0 0 0 0); // Deprecated, use clip-path instead.
+}
+
+// show
+@mixin show {
+  position: static;
+  left    : auto;
+}
+
+// hide including screenreaders
+@mixin sr-hide {
+  position  : absolute;
+  left      : -999rem;
+  visibility: hidden;
+}
+
+// show including screenreaders
+@mixin sr-show {
+  position  : static;
+  left      : auto;
+  visibility: visible;
+}
+
+/**
+ * Media query generator.
+ *
+ * Creates ranged, min-width, and max-width media queries.
+ *
+ * @param  {Mixed} $min Optional. Minimum viewport width.
+ * @param  {Mixed} $max Optional. Maximum viewport width.
+ */
+@mixin mq($min: 0, $max: 0) {
+  @if ($min > 0 and $max > 0) {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  }
+
+  @else if ($min > 0) {
+    @media (min-width: $min) {
+      @content;
+    }
+  }
+
+  @else if ($max > 0) {
+    @media (max-width: $max) {
+      @content;
+    }
+  }
+
+  @else {
+    @content;
+  }
+}
+
+/**
+ * DEPRECATED, use function `fill-svg`.
+ *
+ * Find-and-replace an SVG's fill color.
+ *
+ * @param {String} $svg   The SVG to search fill color.
+ * @param {String} $color Hex or CSS color code.
+ */
+@mixin fill($svg, $color) {
+  $color          : str-slice(#{$color}, 2);
+  $insert         : 'fill%3D%22%23#{$color}%22%20';
+  $index          : str-index($svg, '%3Csvg%20') + 9;
+  background-image: str-insert($svg, $insert, $index);
+}
+
+/**
+ * Remove margins from first and last elements.
+ *
+ * @todo Rename this.
+ * @param {String} $important If `!important` should be applied.
+ */
+@mixin zero($important: null) {
+
+  $important: if(true==$important,  !important, $important);
+
+  &> :first-child {
+    margin-top: 0 $important;
+  }
+
+  &> :last-child {
+    margin-bottom: 0 $important;
+  }
+}
+
+/**
+ * Making an unordered list items not have a dot prevents VoiceOver from
+ * reading code as a list adding an empty space before it fixes it.
+ */
+@mixin listFix {
+  li:before {
+    content: '\200B';
+  }
+}
+
+/**
+ * Focus style.
+ *
+ * Let the font color determine outline color and manually add exceptions.
+ * themeColor is too generic for the variety of backgrounds the outline is used on.
+ */
+@mixin outline-focus {
+  outline       : 2px dashed;
+  outline-offset: $outline-offset--sm;
+}
+
+/**
+ * Box shadow.
+ *
+ * Default only adds a shadow to the bottom side of an element.
+ *
+ * @todo ¿Make variable instead?
+ *
+ * @param {String}  $x      X-Axis offset.
+ * @param {String}  $y      Y-Axis offset.
+ * @param {String}  $blur   Blur radius (size) of shadow. A value of `0` would
+ *                          create a solid edge.
+ * @param {String}  $spread The size of the box shadow.
+ * @param {String}  $color  Shadow color. Default is a transparent black.
+ * @param {Boolean} $inset  If shadow should be inset.
+ */
+@mixin box-shadow($x: 0, $y: 2px, $blur: 4px, $spread: 0, $color: rgba(0, 0, 0, 0.15), $inset: false) {
+  box-shadow: if($inset, inset, null) $x $y $blur $spread $color;
+}
+
+/**
+ * Button Box Shadow
+ *
+ * Buttons use inset box shadow instead of a standard border (why?).
+ *
+ * @param  {Color} $border-color: Button border color.
+ */
+@mixin button-box-shadow($border-color: $blue) {
+  @include box-shadow($y: 0, $blur: 0, $spread: 2px, $color: $border-color, $inset: true);
+}
+
+/**
+ * Text shadow.
+ *
+ * @todo ¿Make variable instead?
+ *
+ * @param {String} $x      X-Axis offset.
+ * @param {String} $y      Y-Axis offset.
+ * @param {String} $blur   Blur radius (size) of shadow. A value of `0` would
+ *                         create a solid edge.
+ * @param {String} $color  Shadow color. Default is a transparent black.
+ */
+@mixin text-shadow($x: 0, $y: 0, $blur: 5px, $color: rgba(0, 0, 0, 0.15)) {
+  text-shadow: $x $y $blur $color;
+}
+
+/**
+ * Navigation Dropdown Menu Indicator
+ * -----------------------------------------------------------------------------
+ *
+ * Used by:
+ * - Desktop primary menu (`.menu__link--sub`)
+ * - Desktop sticky menu (`.condensed__link--sub`)
+ * - Search Page "Show Filters" menu.
+ *
+ * Adds a square icon (◼) after link text.
+ *
+ * @param {String} $color Optional. Color of the indicator.
+ */
+@mixin navigation-indicator($color: $black) {
+  &:after {
+    content  : '\025FC';
+    margin   : auto 0 auto 0.5rem;
+    height   : 100%; // IE11_FLEXBOX
+    font-size: 0.5625rem;
+
+    @if ($color) {
+      color: $color;
+    }
+  }
+}
+
+
+
+/**
+ * Typography Mixins
+ * -----------------------------------------------------------------------------
+ */
+
+/**
+ * Font Shorthand.
+ *
+ * Outputs the `font` shorthand property if enough properties are defined.
+ * Otherwise, `font-family`.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/font
+ *
+ * @param {String} $family     Optional. Font family (`font-family`). Defaults
+ *                             to `$font-base` defined in `_vars.scss`.
+ * @param {Number} $size       Optional. Font size (`font-size`), in pixels.
+ *                             Defaults to `$font-base-size` defined in
+ *                             `_vars.scss`.
+ * @param {String} $style      Optional. Font style (`font-style`). Defaults to
+ *                             `normal`.
+ * @param {String} $varient    Optional. Font variant (`font-variant`). Defaults
+ *                             to `normal`.
+ * @param {String} $weight     Optional. Font weight (`font-weight`). Defaults
+ *                             to `normal`.
+ * @param {Float}  $lineheight Optional. Line height (`line-height`). Defaults
+ *                             to `$line-height--base` defined in `_vars.scss`.
+ */
+@mixin font($family: $font-base, $size: $font-base-size, $style: normal, $varient: normal, $weight: normal, $lineheight: $line-height--base) {
+
+  @if normal==$style {
+    $style: null;
+  }
+
+  @if normal==$varient {
+    $varient: null;
+  }
+
+  @if normal==$weight {
+    $weight: null;
+  }
+
+  @if $line-height--base==$lineheight {
+    $line-height: null;
+  }
+
+  $size       : if($font-base-size==$size, null, px-to-rem($size));
+  $size-height: $size#{ if( $lineheight and $size, '/' + $lineheight, null ) };
+
+  @if $size and $family {
+    font: $style $varient $weight $size-height $family;
+  }
+
+  @else if not $size and $family {
+    font-family: $family;
+  }
+
+}
+
+/**
+ * Base Font.
+ *
+ * Map keys do not required a dollar sign.
+ *
+ * Example Usage: `@include font-base( ( size: 48, style: italic ) );`
+ *
+ * @param {Map} $args Optional.
+ */
+@mixin font-base($args: ()) {
+  // We merge a map with `family` into user arguments to enforce base font.
+  @include font(map-merge($args, (family: #{$font-base + $important}))...);
+}
+
+/**
+ * Serif Font.
+ *
+ * Map keys do not required a dollar sign.
+ *
+ * Example Usage: `@include font-base( ( size: 48, style: italic ) );`
+ *
+ * @param {Map} $args Optional.
+ */
+@mixin font-serif($args: ()) {
+  // We merge a map with `family` into user arguments to enforce serif font.
+  @include font((map-merge($args, (family: #{$font-base + $important})))...);
+}
+
+/**
+ * Display Font.
+ *
+ * Map keys do not required a dollar sign.
+ *
+ * Example Usage: `@include font-base( ( size: 48, style: italic ) );`
+ *
+ * @param {Map} $args Optional.
+ */
+@mixin font-display($args: ()) {
+  // We merge a map with `family` into user arguments to enforce display font.
+  @include font((map-merge($args, (family: #{$font-base + $important})))...);
+}
+
+/**
+ * Generate Property/Value Pairs for Spacing Utility Classes
+ *
+ * @param  {Sting}       $type  Spacing type, `margin` or `padding`.
+ * @param  {String|List} $axes  Axis of spacing type, `top`, `right`, `bottom`,
+ *                              `left`. Can be a String or a List, allowing us
+ *                              to define multiple axes for a spacing type at
+ *                              once. If empty list, no axis will be specified
+ *                              for the property and the value will be applied
+ *                              to all four sides.
+ * @param  {String}      $value Value of CSS property.
+ * @return {CSS}                CSS property and its value.
+ */
+@mixin make-spacing-props($type, $axes, $value) {
+
+  $axes: if(list !=type-of($axes), ($axes), $axes);
+
+  @if (0==length($axes)) {
+    #{$type}: $value !important;
+  }
+
+  @else {
+
+    @each $axis in $axes {
+      #{$type}-#{$axis}: $value !important;
+    }
+
+  }
+
+}
+
+/**
+ * Generate Fluid Spacing.
+ *
+ * This mixin allows you to apply fluid spacing to an element based on the
+ * current configuration relating breakpoints and spacing sizes.
+ *
+ * Why would you use this mixin? Manually replicating spacing sizes for a given
+ * property and breakpoints will not reflect changes made to spacing
+ * configuration variables, causing the values to be fixed (and likely based on)
+ * to the settings at the time of authoring.
+ *
+ * If you see the following SCSS, replace it with this mixin to ensure that
+ * breakpoints and spacing sizes are propagated when changed.
+ *
+ * margin-top: $spacing-sm;
+ *
+ * @include mq( $break-sm ) {
+ *   margin-top: $spacing-md;
+ * }
+ *
+ * @include mq( $break-md ) {
+ *   margin-top: $spacing-lg;
+ * }
+ *
+ * @see _var.scss: `$breakpoints`, `$spacing`, and `$spacing-[size]` for
+ * configuration variables.
+ *
+ * @param  {String} $type     Property to define fluid spacing for. For this
+ *                            parameter, use a key in `$spacing.types`.
+ * @param  {String} $axis     Axis to apply fluid spacing for. For this
+ *                            parameter, use a key in `$spacing.axes`.
+ * @param  {Mixed} $adjust-by Defaults to 0. Add/Subtract from a fluid spacing
+ *                            value. This is useful for repeated elements that
+ *                            are often displayed in multiple rows and the
+ *                            spacing between each row is created by the bottom
+ *                            spacing of said repeated elements and adding a
+ *                            spacing utility class to the container (or to the
+ *                            CSS) would create additional, undesired spacing.
+ *                            Using this property to subtract the existing
+ *                            spacing will allow you to replicate proper fluid
+ *                            spacing across two elements.
+ * @return {CSS}              Media query based spacing as defined by spacing
+ *                            configuration variables.
+ */
+
+@mixin make-fluid-spacing($type, $axis, $adjust-by: 0) {
+
+  $type-name: map-get(map-get($spacing, types), $type);
+
+  @each $fluid-set in $spacing-fluid {
+
+    $fluid-set-axis: map-get($fluid-set, axis);
+
+    @if ($axis==$fluid-set-axis) {
+
+      $fluid-set-breakpoints: map-get($fluid-set, breakpoints);
+
+      @each $fluid-breakpoint in $fluid-set-breakpoints {
+
+        $breakpoint-value: get-fluid-value(nth($fluid-breakpoint, 1), $breakpoints);
+        $axis-value      : get-spacing-axis($fluid-set-axis);
+        $spacing-value   : get-fluid-value(nth($fluid-breakpoint, 2), map-get($spacing, sizes)) + $adjust-by;
+        $props-values    : ($type-name,
+            $axis-value,
+            $spacing-value);
+
+        // Default, mobile first spacing value.
+        @if (null==$breakpoint-value) {
+          @include make-spacing-props($props-values...);
+        }
+
+        @else {
+          @include mq($breakpoint-value) {
+            @include make-spacing-props($props-values...);
+          }
+        }
+      }
+
+    }
+  }
+
+}
+
+/**
+ * Remove Spacing from Fluid Spacing
+ *
+ * Expressive wrapper for `make-fluid-spacing` mixin.
+ *
+ * @see `make-fluid-spacing` for parameters and return value.
+ */
+
+@mixin slice-fluid-spacing($type, $axes, $reduce-by) {
+  @include make-fluid-spacing($type, $axes, -$reduce-by);
+}
+
+/**
+ * Add Spacing to Fluid Spacing
+ *
+ * Expressive wrapper for `make-fluid-spacing` mixin.
+ *
+ * @see `make-fluid-spacing` for parameters and return value.
+ */
+
+@mixin splice-fluid-spacing($type, $axes, $increase-by) {
+  @include make-fluid-spacing($type, $axes, $increase-by);
+}
+
+/**
+ * Apply component level theming (tint).
+ *
+ * List Syntax
+ * -----------
+ * @include tint-component( 'black' 'blackish' 'white' [, additional params ] );
+ *
+ * Unify Selector Example
+ * ----------------------
+ *
+ * .tint-black.some-class {}  // Unified selector - no space between classes.
+ * .tint-black .some-class {} // Non-unified selector - space between classes.
+ *
+ * @param  {List}    $tints List of tints to apply styling to. Note: the
+ *                          preferred syntax for passing a list to this mixin is
+ *                          space separated strings, see above.
+ * @param  {String}  $scope CSS selector to scope tint theming to. This option
+ *                          is ideal if you need to make modifications to the
+ *                          base styles of a tint. i.e. based on a template
+ *                          (Landing or Internal) or some other page or
+ *                          component scope (Tuition Calculator, Tuition Table).
+ * @param  {Boolean} $unify Unify the current CSS selector path to the tint
+ *                          scoping class. See above for example.
+ * @return {CSS}            CSS selector (list) and CSS property/value pairs
+ *                          wrapped by mixin.
+ */
+@mixin tint-component($tints, $scope: null, $unify: false) {
+
+  $tint-selectors: ();
+  $scope         : if($scope, $scope + ' ', '');
+  // $unify:          if( $unify, '', ' ' );
+
+  /**
+   * This may be due to our older version of node-sass, but using the `if()`
+   * function is not assigning the parent selector (ampersand `&`) as a list,
+   * but rather as a string. Using an `@if` does work.
+   *
+   * @todo Investigate at some point.
+   */
+  // $selector-paths: if( &, & , '' );
+  $selector-paths: &;
+
+  @if ('null'==type-of(&)) {
+    $selector-paths: '';
+  }
+
+  @each $path in $selector-paths {
+    @each $tint in $tints {
+
+      $selector     : null;
+      $tint-selector: $tint-prefix + $tint;
+
+      @if ($unify) {
+        $selector: $path + $tint-selector;
+      }
+
+      @else {
+        $selector: $tint-selector + ' '+ $path;
+      }
+
+      $tint-selectors: append($tint-selectors, $scope + $selector, comma);
+
+    }
+  }
+
+  @at-root #{$tint-selectors} {
+    @content;
+  }
+
+}
+
+/**
+   * just your basic clear fix for floats
+   */
+
+@mixin clearfix() {
+
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    display   : block;
+    clear     : both;
+    height    : 1px;
+    margin-top: -1px;
+    visibility: hidden;
+  }
+
+  & {
+    *zoom: 1;
+  }
+}

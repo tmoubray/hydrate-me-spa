@@ -1,0 +1,47 @@
+.news-group {
+  .columns__item {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: $black;
+
+    @include mq( $break-sm ) {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+}
+
+.news__item {
+  display: block;
+  margin-bottom: $spacing-sm;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    h3, // Remove after markup us updated.
+    .news__heading {
+      text-decoration: underline;
+    }
+  }
+
+  @include mq( $break-md ) {
+    margin-bottom: 0;
+  }
+}
+
+.news__content {
+  @include zero;
+  padding: 1rem 1rem 2rem;
+  min-height: 8rem;
+
+  & h3,
+  & .news__heading,
+  & .news-blocks__title {
+    font-size: 1.5rem;
+    color: $gray-lighter !important; // Override Center themes.
+  }
+
+  @include mq( $break-sm ) {
+    min-height: none;
+  }
+}

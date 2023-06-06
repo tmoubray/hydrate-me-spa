@@ -1,0 +1,39 @@
+/**
+ * Courses Snippets
+ * -----------------------------------------------------------------------------
+ *
+ * By Subject
+ * ----------
+ * OU Name:        CourseLeaf Courses by Subject
+ * Table Label:    Snippet: CourseLeaf Courses by Subject
+ * Table Selector: .ou-snippet-container-grid-generic
+ * CSS Selector:   .courseleaf-courses .courseleaf-courses--by-subject
+ *
+ * Manual List
+ * -----------
+ * OU Name:        CourseLeaf Courses Manual List
+ * Table Label:    Snippet: CourseLeaf Courses Manual List
+ * Table Selector: .ou-snippet-courseleaf-manual-list
+ * CSS Selector:   .courseleaf-courses .courseleaf-courses--manual-list
+ */
+
+.ous-courseleaf-courses, // ← DEPRECATED
+.courseleaf-courses {
+
+  .accordion__content &:first-child,
+  .tabs__main__content &:first-child {
+    & .courseblock:first-child > .courseblocktitle {
+      margin-top: 0;
+    }
+  }
+
+  // MODIFIERS
+  &--by-subject {}
+  &--manual-list {}
+}
+
+.courseblock {}
+
+.courseblocktitle {}
+
+.courseblockdesc {}

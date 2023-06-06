@@ -1,0 +1,29 @@
+/**
+ * Sidebar & Main Content Snippet
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        Sidebar & Main Content
+ * Table Label:    Snippet: Sidebar & Main Content
+ * Table Selector: .ou-snippet-sidebar-main-content
+ */
+
+.sidebar-main-content {
+  @extend %clearfix;
+
+  // Snippet Adjustments -------------------------------------------------------
+  // TODO: This can likely be more generalized to all `.main__sidebar` or even
+  // to all `.columns` in general.
+  @include mq( $break-md ) {
+
+    & .main__sidebar .stats {
+      & .columns {
+        flex-direction: column;
+      }
+
+      & .columns__item {
+        width: 100%;
+      }
+    }
+
+  }
+}

@@ -1,0 +1,38 @@
+---
+title: Examples
+global: true
+universal: true
+identifier: North Dakota Procurement Technical Assistance Center
+---
+
+{% extends "layouts/_default.html" %}
+
+
+{% block content %}
+{% include "partials/blog-billboards.html" %}
+
+{% set menu = {desktop: true} %}
+{% include "modules/_menu.html" %}
+
+
+<div class="menu__heading--mobile">
+  <div class="container">{{ identifier }}</div>
+</div>
+<div class="container container--clear">
+  {% include "modules/_breadcrumb.html" %}
+</div>
+
+<div class="main">
+  <div class="container container--clear main__container">
+    <div class="main__content main__content--center">
+
+      <ul class="list-plain-alt">
+        <li><a href="landing.html">Landing</a></li>
+        <li><a href="single.html">Single</a></li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

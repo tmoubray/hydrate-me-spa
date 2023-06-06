@@ -1,0 +1,34 @@
+/**
+ * Campus Message
+ * -----------------------------------------------------------------------------
+ *
+ * A generic, site wide message that will communicate moderate to low level
+ * (non-emergency) or extended life messaging. For high level (emergency) and
+ * short-lived messaging, use the Campus ALert.
+ */
+
+.campus-message {
+  position: relative;
+  background-color: $gray-light;
+
+  .s-internal &,
+  .s-center & {
+    border-bottom: 1px solid $gray;
+  }
+}
+
+.campus-message__text {}
+
+.campus-message__icon {
+  padding: 0.5rem;
+
+  & .svgstore {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.campus-message__link {
+  color: $black;
+  font-size: 0.875rem;
+}

@@ -1,0 +1,21 @@
+.back-to-top {
+  z-index: 11;
+  visibility: hidden;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0;
+  width: 58px; // Make sure chatbot button and back-to-top button are the same size.
+  border: 2px solid $white;
+  background-color: $black;
+  transition: opacity $transition--base;
+  @include box-shadow( $y: 0, $spread: 2px );
+  &:focus {
+    outline-color: $outline-light;
+    outline-offset: $outline-inset--md;
+  }
+}
+
+.svgstore--back-to-top {
+  z-index: -1;
+}

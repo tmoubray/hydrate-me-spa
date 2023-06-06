@@ -1,0 +1,23 @@
+/**
+ * Billboard
+ * -----------------------------------------------------------------------------
+ *
+ * - Overrides billboard
+ */
+
+ .billboard--arrow a {
+    text-decoration: none;
+}
+
+.billboard__text a {
+	text-decoration: none;
+	color: $white;
+}
+
+.billboard--img p {
+    color: white;
+}
+
+.billboard--img img {
+	max-width: none;
+}

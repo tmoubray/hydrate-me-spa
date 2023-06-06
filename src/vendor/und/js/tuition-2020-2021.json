@@ -1,0 +1,749 @@
+{
+  "programs": {
+    "undergraduate": {
+      "onCampus": {
+        "base": {
+          "title": [
+            "Other",
+            "Undecided"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military members using federal Tuition Assistance (TA) are eligible for a tuition rate of $250/credit. Military veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition or a scholarship equivalent to the difference between non-North Dakota tuition and North Dakota resident tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "business": {
+          "title": [
+            "Business"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military members using federal Tuition Assistance (TA) are eligible for a tuition rate of $250/credit. Military veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition or a scholarship equivalent to the difference between non-North Dakota tuition and North Dakota resident tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "social": {
+          "title": [
+            "Social Work"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military members using federal Tuition Assistance (TA) are eligible for a tuition rate of $250/credit. Military veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition or a scholarship equivalent to the difference between non-North Dakota tuition and North Dakota resident tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "engineering": {
+          "title": [
+            "Engineering (including Computer Science & Geology)"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition or a scholarship equivalent to the difference between non-North Dakota tuition and North Dakota resident tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "nursing": {
+          "title": [
+            "Nursing"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military members using federal Tuition Assistance (TA) are eligible for a tuition rate of $250/credit. Military veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition or a scholarship equivalent to the difference between non-North Dakota tuition and North Dakota resident tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "aviation": {
+          "title": [
+            "Aviation (including Airport Management, Aviation Management and UAS)"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition or a scholarship equivalent to the difference between non-North Dakota tuition and North Dakota resident tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "medLab": {
+          "title": [
+            "Medical Lab Science"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military members using federal Tuition Assistance (TA) are eligible for a tuition rate of $250/credit. Military veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition or a scholarship equivalent to the difference between non-North Dakota tuition and North Dakota resident tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "nutrition": {
+          "title": [
+            "Nutrition & Dietetics"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military members using federal Tuition Assistance (TA) are eligible for a tuition rate of $250/credit. Military veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition or a scholarship equivalent to the difference between non-North Dakota tuition and North Dakota resident tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        }
+      },
+      "online": {
+        "base": {
+          "title": [
+            "Other",
+            "Undecided"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester. Active duty military members using federal Tuition Assistance (TA) are eligible for a tuition rate of $250/credit. To receive military benefits, you must follow <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "business": {
+          "title": [
+            "Business"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester. Active duty military members using federal Tuition Assistance (TA) are eligible for a tuition rate of $250/credit. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "social": {
+          "title": [
+            "Social Work"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester. Active duty military members using federal Tuition Assistance (TA) are eligible for a tuition rate of $250/credit. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "engineering": {
+          "title": [
+            "Engineering (including Computer Science & Geology)"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "nursing": {
+          "title": [
+            "Nursing"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester. Active duty military members using federal Tuition Assistance (TA) are eligible for a tuition rate of $250/credit. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "nutrition": {
+          "title": [
+            "Nutrition & Dietetics"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester. Active duty military members using federal Tuition Assistance (TA) are eligible for a tuition rate of $250/credit. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "aerospace": {
+          "title": [
+            "Aerospace"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "medLab": {
+          "title": [
+            "Medical Lab Science"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester. Active duty military members using federal Tuition Assistance (TA) are eligible for a tuition rate of $250/credit. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        }
+      }
+    },
+    "graduate": {
+      "onCampus": {
+        "base": {
+          "title": [
+            "Other"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "business": {
+          "title": [
+            "Business"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "social": {
+          "title": [
+            "Social Work"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "engineering": {
+          "title": [
+            "Engineering (including Computer Science & Geology)"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "anesthesia": {
+          "title": [
+            "Nurse Anesthesia"
+          ],
+          "note": "Tuition and fees estimates are calculated at 12 credits for fall and spring terms, 9 credits for summer term. Total credits vary per semester. See <a href='https://cnpd.und.edu/student-resources/curriculum-plans'>curriculum plans</a> for program details. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "occupationalTherapy": {
+          "title": [
+            "Occupational Therapy"
+          ],
+          "note": "Tuition is billed at a flat full-time rate of $7,706.21 (ND/MN residents) and $11,559.32 (all other residents) for each fall and spring term. Summer term is billed at 60% of the semester flat full-time rate. If you are a student from a WICHE state enrolled in the Casper, WY program, see <a href=https://und.edu/admissions/cost-and-aid/cost-details/#ot>cost details</a> for tuition rates. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "physicalTherapy": {
+          "title": [
+            "Physical Therapy"
+          ],
+          "note": "Tuition is billed at a flat full-time rate of $7,706.21 (ND/MN residents) and $11,559.32 (all other residents) for each fall and spring term. Summer term is billed at 60% of the semester flat full-time rate. <a href=https://und.edu/admissions/cost-and-aid/cost-details/#pt>WICHE Certified students</a> receive support payments as a scholarship. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "physiciansAssistant": {
+          "title": [
+            "Physician Assistant"
+          ],
+          "note": "Tuition & fees are billed a flat, full-time rate for three terms (fall,spring,summer). If you are a South Dakota or Montana resident, see cost details for applicable tuition & fees. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "publicHealth": {
+          "title": [
+            "Public Health"
+          ],
+          "note": "Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "aerospace": {
+          "title": [
+            "Aerospace"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "artScience": {
+          "title": [
+            "Arts & Science"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "education": {
+          "title": [
+            "Education"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "nutrition": {
+          "title": [
+            "Nutrition & Dietetics"
+          ],
+          "note": "Academic year includes fall and spring semesters. On-campus students can take more than 12 credits per semester at no additional cost. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        }
+      },
+      "online": {
+        "base": {
+          "title": [
+            "Other"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "business": {
+          "title": [
+            "Business"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "social": {
+          "title": [
+            "Social Work"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "engineering": {
+          "title": [
+            "Engineering (including Geology)",
+            "Computer Science"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "nursing": {
+          "title": [
+            "Nursing"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "cybersecurity": {
+          "title": [
+            "Cybersecurity"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "accounting": {
+          "title": [
+            "Accountancy"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "artScience": {
+          "title": [
+            "Art & Science"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "aerospace": {
+          "title": [
+            "Aerospace"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester. Active duty military, veterans and dependents are eligible to receive military tuition rates. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "publicHealth": {
+          "title": [
+            "Public Health"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "nutrition": {
+          "title": [
+            "Nutrition & Dietetics"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "education": {
+          "title": [
+            "Education"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "medLab": {
+          "title": [
+            "Medical Lab Science"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester."
+        },
+        "counseling": {
+          "title": [
+            "Counseling"
+          ],
+          "note": "Academic year includes fall and spring semesters. Student fees are capped at 12 credits per semester. View <a href='https://und.edu/programs/counseling-k-12-school-counseling-emphasis-certificate/tuition-fees.html'>unique program rate</a> for K-12 School Counseling Emphasis Certificate program (track B only)."
+        }
+      }
+    },
+    "professional": {
+      "onCampus": {
+        "law": {
+          "title": [
+            "Law School"
+          ],
+          "note": "Academic year includes fall and spring semesters. Minnesota, Montana, South Dakota, Manitoba and Saskatchewan residents receive contiguous tuition rates. See <a href='https://https://und.edu/admissions/cost-and-aid/cost-details.html#law'>cost details</a> for more information. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        },
+        "med": {
+          "title": [
+            "Medical School"
+          ],
+          "note": "Academic year includes fall, winter, and spring trimesters. Active duty military and veterans are eligible to receive the North Dakota in-state tuition rate. Military dependents may qualify for North Dakota in-state tuition. To receive military benefits, you must follow the <a href='https://und.edu/admissions/military/apply.html'>military admissions process.</a>"
+        }
+      }
+    }
+  },
+  "programFee": {
+    "base": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "business": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "social": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "engineering": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "nursing": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "anesthesia": {
+      "fall": 72.35,
+      "spring": 72.35,
+      "summer": 634.59
+    },
+    "aviation": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "law": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "med": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "medLab": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "publicHealth": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "physiciansAssistant": {
+      "fall": 72.35,
+      "spring": 72.35,
+      "summer": 651.15
+    },
+    "physicalTherapy": {
+      "fall": 72.35,
+      "spring": 72.35,
+      "summer": 651.15
+    },
+    "occupationalTherapy": {
+      "fall": 72.35,
+      "spring": 72.35,
+      "summer": 651.15
+    },
+    "nutrition": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "aerospace": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "artScience": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "education": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "accounting": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "cybersecurity": {
+      "fall": 72.35,
+      "spring": 72.35
+    },
+    "counseling": {
+      "fall": 72.35,
+      "spring": 72.35
+    }
+  },
+  "locations": {
+    "undergraduate": {
+      "ND": {
+        "base": 355.85,
+        "business": 377.00,
+        "social": 361.25,
+        "engineering": 395.58,
+        "nursing": 416.37,
+        "aviation": 418.25,
+        "medLab": 388.02,
+        "military": 250.00,
+        "nutrition": 361.25
+      },
+      "MN": {
+        "base": 398.55,
+        "business": 422.24,
+        "social": 404.60,
+        "engineering": 443.05,
+        "nursing": 466.33,
+        "aviation": 468.44,
+        "medLab": 388.02,
+        "nutrition": 404.6
+      },
+      "nonResident": {
+        "base": 533.77,
+        "business": 565.5,
+        "social": 541.88,
+        "engineering": 593.37,
+        "nursing": 624.55,
+        "aviation": 1150.18,
+        "medLab": 388.02,
+        "nutrition": 541.88
+      },
+      "nonResidentCanadian": {
+        "base": 533.77,
+        "business": 565.5,
+        "social": 541.88,
+        "engineering": 593.37,
+        "nursing": 624.55,
+        "aviation": 1150.18,
+        "medLab": 388.02,
+        "nutrition": 541.88
+      },
+      "international": {
+        "base": 711.69,
+        "business": 754.01,
+        "social": 722.51,
+        "engineering": 791.17,
+        "nursing": 832.74,
+        "aviation": 1338.39,
+        "medLab": 388.02,
+        "nutrition": 722.51
+      },
+      "online": {
+        "base": {
+          "perCredit": 355.85,
+          "cap": "Based on Credits"
+        },
+        "business": {
+          "perCredit": 377.00,
+          "cap": "Based on Credits"
+        },
+        "social": {
+          "perCredit": 361.25,
+          "cap": "Based on Credits"
+        },
+        "engineering": {
+          "perCredit": 631.32,
+          "cap": "Based on Credits"
+        },
+        "nursing": {
+          "perCredit": 429.20,
+          "cap": "Based on Credits"
+        },
+        "medLab": {
+          "perCredit": 388.02,
+          "cap": "Based on Credits"
+        },
+        "nutrition": {
+          "perCredit": 361.25,
+          "cap": "Based on Credits"
+        },
+        "aerospace": {
+          "perCredit": 418.25,
+          "cap": "Based on Credits"
+        },
+        "military": {
+          "perCredit": 250.00,
+          "cap": "Based on Credits"
+        }
+      }
+    },
+    "graduate": {
+      "ND": {
+        "base": 460.85,
+        "artScience": 460.85,
+        "education": 460.85,
+        "business": 468.56,
+        "aerospace": 460.85,
+        "social": 468.56,
+        "engineering": 504.03,
+        "anesthesia": {
+          "perCredit": 855.28,
+          "cap": 855.28,
+          "multiplier": 33
+        },
+        "occupationalTherapy": {
+          "perCredit": "Flat Rate",
+          "cap": 10018.075
+        },
+        "physicalTherapy": {
+          "perCredit": "Flat Rate",
+          "cap": 10018.075
+        },
+        "physiciansAssistant": {
+          "perCredit": "Flat Rate",
+          "cap": 7073.45,
+          "multiplier": 3
+        },
+        "publicHealth": {
+          "perCredit": 811.20,
+          "cap": "Based on Credits"
+        },
+        "nutrition": 468.56
+      },
+      "MN": {
+        "base": 585.27,
+        "artScience": 585.27,
+        "education": 585.27,
+        "business": 595.07,
+        "aerospace": 585.27,
+        "social": 595.07,
+        "engineering": 640.11,
+        "anesthesia": {
+          "perCredit": 1086.21,
+          "cap": 1086.21,
+          "multiplier": 33
+        },
+        "occupationalTherapy": {
+          "perCredit": "Flat Rate",
+          "cap": 10018.075
+        },
+        "physicalTherapy": {
+          "perCredit": "Flat Rate",
+          "cap": 10018.075
+        },
+        "physiciansAssistant": {
+          "perCredit": "Flat Rate",
+          "cap": 7073.45,
+          "multiplier": 3
+        },
+        "publicHealth": {
+          "perCredit": 1030.22,
+          "cap": "Based on Credits"
+        },
+        "nutrition": 595.07
+      },
+      "nonResident": {
+        "base": 691.27,
+        "artScience": 691.27,
+        "education": 691.27,
+        "business": 702.84,
+        "aerospace": 691.27,
+        "social": 702.84,
+        "engineering": 756.04,
+        "anesthesia": {
+          "perCredit": 1282.92,
+          "cap": 1282.92,
+          "multiplier": 33
+        },
+        "occupationalTherapy": {
+          "perCredit": "Flat Rate",
+          "cap": 15027.115
+        },
+        "physicalTherapy": {
+          "perCredit": "Flat Rate",
+          "cap": 15027.115
+        },
+        "physiciansAssistant": {
+          "perCredit": "Flat Rate",
+          "cap": 10610.18,
+          "multiplier": 3
+        },
+        "publicHealth": {
+          "perCredit": 1216.80,
+          "cap": "Based on Credits"
+        },
+        "nutrition": 702.84
+      },
+      "nonResidentCanadian": {
+        "base": 691.27,
+        "artScience": 691.27,
+        "education": 691.27,
+        "business": 702.84,
+        "aerospace": 691.27,
+        "social": 702.84,
+        "engineering": 756.04,
+        "anesthesia": {
+          "perCredit": 1282.92,
+          "cap": 1282.92,
+          "multiplier": 33
+        },
+        "occupationalTherapy": {
+          "perCredit": "Flat Rate",
+          "cap": 15027.115
+        },
+        "physicalTherapy": {
+          "perCredit": "Flat Rate",
+          "cap": 15027.115
+        },
+        "physiciansAssistant": {
+          "perCredit": "Flat Rate",
+          "cap": 10610.18,
+          "multiplier": 3
+        },
+        "publicHealth": {
+          "perCredit": 1216.80,
+          "cap": "Based on Credits"
+        },
+        "nutrition": 702.84
+      },
+      "international": {
+        "base": 921.69,
+        "artScience": 921.69,
+        "education": 921.69,
+        "business": 937.13,
+        "aerospace": 921.69,
+        "social": 937.13,
+        "engineering": 1008.05,
+        "anesthesia": {
+          "perCredit": 1710.57,
+          "cap": 1710.57,
+          "multiplier": 33
+        },
+        "occupationalTherapy": {
+          "perCredit": "Flat Rate",
+          "cap": 15027.115
+        },
+        "physicalTherapy": {
+          "perCredit": "Flat Rate",
+          "cap": 15027.115
+        },
+        "physiciansAssistant": {
+          "perCredit": "Flat Rate",
+          "cap": 10610.18,
+          "multiplier": 3
+        },
+        "publicHealth": {
+          "perCredit": 1216.8,
+          "cap": "Based on Credits"
+        },
+        "nutrition": 937.13
+      },
+      "online": {
+        "base": {
+          "perCredit": 460.85,
+          "cap": "Based on Credits"
+        },
+        "artScience": {
+          "perCredit": 544.24,
+          "cap": "Based on Credits"
+        },
+        "education": {
+          "perCredit": 487.09,
+          "cap": "Based on Credits"
+        },
+        "business": {
+          "perCredit": 468.56,
+          "cap": "Based on Credits"
+        },
+        "aerospace": {
+          "perCredit": 658.35,
+          "discount": 460.85,
+          "cap": "Based on Credits"
+        },
+        "social": {
+          "perCredit": 624.62,
+          "cap": "Based on Credits"
+        },
+        "engineering": {
+          "perCredit": 782.43,
+          "cap": "Based on Credits"
+        },
+        "nursing": {
+          "perCredit": 784.13,
+          "cap": "Based on Credits"
+        },
+        "nutrition": {
+          "perCredit": 624.62,
+          "cap": "Based on Credits"
+        },
+        "publicHealth": {
+          "perCredit": 811.20,
+          "cap": "Based on Credits"
+        },
+        "cybersecurity": {
+          "perCredit": 816.00,
+          "cap": "Based on Credits"
+        },
+        "accounting": {
+          "perCredit": 765.00,
+          "cap": "Based on Credits"
+        },
+        "medLab": {
+          "perCredit": 492.87,
+          "cap": "Based on Credits"
+        },
+        "counseling": {
+          "perCredit": 800,
+          "cap": "Based on Credits"
+        }
+      }
+    },
+    "professional": {
+      "ND": {
+        "med": {
+          "perCredit": "Flat Rate",
+          "cap": 17380.92
+        },
+        "law": {
+          "perCredit": 461.15,
+          "cap": "Based on Credits"
+        }
+      },
+      "MN": {
+        "med": {
+          "perCredit": "Flat Rate",
+          "cap": 19031.52
+        },
+        "law": {
+          "perCredit": 691.73,
+          "cap": "Based on Credits"
+        }
+      },
+      "nonResident": {
+        "med": {
+          "perCredit": "Flat Rate",
+          "cap": 31432.44
+        },
+        "law": {
+          "perCredit": 1383.46,
+          "cap": "Based on Credits"
+        }
+      },
+      "nonResidentCanadian": {
+        "med": {
+          "perCredit": "Flat Rate",
+          "cap": 31432.44
+        },
+        "law": {
+          "perCredit": 691.73,
+          "cap": "Based on Credits"
+        }
+      },
+      "international": {
+        "med": {
+          "perCredit": "Flat Rate",
+          "cap": 31432.44
+        },
+        "law": {
+          "perCredit": 1383.46,
+          "cap": "Based on Credits"
+        }
+      }
+    }
+  }
+}

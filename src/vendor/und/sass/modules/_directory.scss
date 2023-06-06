@@ -1,0 +1,49 @@
+/**
+ * UND Directory
+ * -----------------------------------------------------------------------------
+ *
+ * @see https://und.edu/directory
+ */
+
+
+
+/**
+ * Search Form A to Z Links
+ * -----------------------------------------------------------------------------
+ *
+ * @todo ¿Turn this into a utility class? Possibly change name from `.a-to-z`.
+ */
+.a-to-z {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 !important;
+  padding: 0;
+  list-style: none;
+}
+
+.a-to-z__item {
+  display: flex;
+  margin: 0 0.5rem 0.5rem 0 !important;
+  padding: 0;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.a-to-z__link {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: $black;
+  font-weight: bold;
+  line-height: 2.5rem;
+  text-decoration: none !important;
+  text-align: center;
+  background-image: none;
+  background-color: $gray-light;
+
+  &:hover,
+  &:focus {
+    background-color: $blue;
+  }
+}

@@ -1,0 +1,22 @@
+@import url( "https://cloud.typography.com/7879216/6217192/css/fonts.css" );
+@import url( "https://fast.fonts.net/t/1.css?apiType=css&projectid=5a90c641-098e-4972-ad52-57e006c7fc58" );
+
+@font-face{
+  font-family: "Helvetica Neue";
+  src: url( "#{$font-path}/bf7ef4ce-de2a-4213-a9d7-826a3ee323cd.eot?#iefix" );
+  src: url( "#{$font-path}/bf7ef4ce-de2a-4213-a9d7-826a3ee323cd.eot?#iefix" ) format( "eot" ),
+       url( "#{$font-path}/3dac71eb-afa7-4c80-97f0-599202772905.woff2" ) format( "woff2" ),
+       url( "#{$font-path}/34e0e4c0-c294-49bb-9a8e-1b2cafd54e32.woff" ) format( "woff" ),
+       url( "#{$font-path}/8a8bfee3-197c-4942-9b11-71508cc9f406.ttf" ) format( "truetype" ),
+       url( "#{$font-path}/5101995a-e73b-4cf9-84e8-f99eb43277b1.svg#5101995a-e73b-4cf9-84e8-f99eb43277b1" ) format( "svg" );
+}
+
+@font-face{
+  font-family: "Trade Gothic";
+  src: url( "#{$font-path}/f0708d82-47f5-4497-afac-8c5a771250e8.eot?#iefix" );
+  src: url( "#{$font-path}/f0708d82-47f5-4497-afac-8c5a771250e8.eot?#iefix" ) format( "eot" ),
+       url( "#{$font-path}/520ed712-50ad-4591-aa63-b242b83a3694.woff2" ) format( "woff2" ),
+       url( "#{$font-path}/c9083b7e-ba26-4e45-8f1b-34ad32e924e5.woff" ) format( "woff" ),
+       url( "#{$font-path}/84c568ba-a16d-43bb-ad9f-783ab985108f.ttf" ) format( "truetype" ),
+       url( "#{$font-path}/398af540-cbbe-49ac-8de9-7246da632d63.svg#398af540-cbbe-49ac-8de9-7246da632d63" ) format( "svg" );
+}

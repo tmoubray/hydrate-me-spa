@@ -1,0 +1,65 @@
+/**
+ * Alert Text
+ * -----------------------------------------------------------------------------
+ *
+ * Used to highlight important information.
+ */
+
+.alert {
+  position: relative;
+  padding: 1rem;
+  margin: 2rem 0;
+  background-color: $gray-light;
+  border-left: 4px solid $gray; // ¿Use a darker gray?
+  @include zero;
+
+  // MODIFIERS
+  &--info {
+    border-color: $info-border;
+    background-color: $info;
+  }
+  &--success {
+    border-color: $success-border;
+    background-color: $success;
+  }
+  &--warning {
+    border-color: $warning-border;
+    background-color: $warning;
+  }
+  &--error {
+    border-color: $error-border;
+    background-color: $error;
+  }
+
+  & a,
+  & h2, & .h2,
+  & h3, & .h3,
+  & h4, & .h4 {
+    color: $black;
+  }
+
+  & .button {
+    box-shadow: inset 0 0 0 2px $black;
+
+    &:hover {
+      color: $white;
+    }
+
+    &::before {
+      background: $black;
+    }
+
+    &::after {
+      background: rgba( 0, 0, 0, 0.5 );
+    }
+  }
+
+  & .button--link {
+    border-bottom-color: $black;
+
+    &::before {
+      background-color: $black;
+    }
+  }
+
+}

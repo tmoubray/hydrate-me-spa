@@ -1,0 +1,83 @@
+{%- from "util/_svgstore.html" import svgstore -%}
+{%- from "util/_placeholder.html" import ph -%}
+{%- from 'macros/snippets/_button-links.html' import button_links -%}
+{%- from 'macros/snippets/_grid-blocks.html' import grid_blocks -%}
+{%- from 'macros/_cta-list.html' import cta_list -%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta property="og:title" content="University of North Dakota">
+  <meta property="og:description" content="Und website">
+  <meta property="og:url" content="http://und.mstoner.com">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="http://example.com/ogp.jpg">
+
+  <link href="https://cloud.typography.com/7879216/6217192/css/fonts.css"rel="stylesheet" >
+  <link href="/css/style.css" rel="stylesheet">
+
+  <title>{{ title }} - Template</title>
+
+  {% include 'modules/_param-expose.html' %}
+
+</head>
+
+<body class="
+{% if home %}           t-home
+{% elif collegehome %}  t-college-home
+{% elif landing %}      t-landing
+{% elif marketing %}    t-marketing
+{% elif program %}      t-program-page t-universal
+{% elif lia %}          t-leaders-in-action
+{% elif lia_landing %}  t-leaders-in-action-landing
+{% else %}              t-universal
+{% endif %}
+
+{% if college %}      s-college
+{% elif center %}     s-center
+{% elif internal %}   s-internal
+{% elif program %}    s-program
+{% else %}            s-global
+{% endif %}
+
+{% if course_finder %} t-course-finder
+{% endif %}
+
+{% if home %}         home {% endif %}
+{% if theme_name %}   {{ theme_name }} {% endif %}
+">
+  <div class="skip" role="navigation" aria-label="Skip to Main Content">
+    <a href="#main-content">Skip to main content</a>
+  </div>
+
+  {% include "partials/campus-communications.html" %}
+
+  <div class="canvas">
+
+    {% include "modules/_header.html" %}
+
+
+    <div class="page" role="main" id="main-content">
+      {% block content %}{% endblock %}
+    </div>
+
+    {% include "modules/_footer.html" %}
+
+
+  </div>
+
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <script src="/js/script.js"></script>
+  <script>
+    if ( undefined !== typeof jQuery && undefined !== $ ) {
+      document.dispatchEvent( new Event( 'jquery.loaded' ) );
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.5/chosen.jquery.min.js"></script>
+  <script>$( '[data-jquery-chosen]' ).chosen( { width: '100%' } );</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+/**
+ * Gird Blocks Snippet
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        [Landing] Grid Blocks
+ * Table Label:    Snippet: Grid Blocks
+ * Table Selector: .ou-snippet-grid-block
+ *
+ * Grid based layout with card "like" elements.
+ *
+ * End user can choose 2, 3, or 4 columns to be generated. Each column will
+ * contain a single card. Each card defines an image, title and content. The
+ * image, title, and content are stacked vertically at all viewports.
+ *
+ * @note Despite OU and XSL labeling, this is a Universal/global snippet. This
+ * happens due to placement in the XSL which allows it to be rendered on
+ * Universal templates and desire to use it on Universal Templates. It could
+ * also be lack of oversight on usage in OU.
+ */
+
+.ous-blocks-grid, // ← DEPRECATED
+.grid-blocks {
+  margin-bottom: $spacing-sm;
+
+  & h2 {
+    .t-marketing &,
+    .s-marketing & {
+      text-align: center;
+    }
+  }
+
+  // Default to H2 top margin if preceeded by normal elements.
+  *:not([class*="ous"]):not([class*="ous-"]) + & {
+    .landing-lead-in &,
+    .college-lead-in & {
+      & .grid-blocks__heading {
+        margin-top: 1.2em; // TO_SASS_VARIABLE, taken from `_typography.scss`.
+      }
+    }
+  }
+
+  // Using `.container--narrow` in the following selectors instead of
+  // `.container` because of SASS_EXTEND_ISSUE.
+  // SASS_EXTEND_AVOID
+  .featured-slider--college + .container--narrow > &:first-child {
+    @include mq( $featured-slider-break ) { // SPLICE_SPACING
+      // `.grid-blocks__item` top margin - at this viewport size
+      // +
+      // `.featured-slider__slider` bottom margin
+      margin-top: #{$spacing-lg + $featured-slider-break-bottom-margin} !important;
+    }
+  }
+}
+
+.block__item, // ← DEPRECATED
+.grid-block__item {
+  @include zero;
+  margin-bottom: $spacing-sm;
+
+  img {
+    @include mq( $break-md ) {
+      width: 100%;
+    }
+  }
+
+  /**
+   * Last Row Spacing
+   *
+   * We remove the bottom margin from all "cards" that could potentially be in
+   * the last row and allow the snippet wrapper element to provide the correct
+   * spacing. This prevents doubling of vertical spacing between some elements
+   * and this snippet, i.e. headings follow the snippet.
+   */
+  .grid__item:last-child > & {
+    margin-bottom: 0 !important;
+  }
+
+  @include mq( $break-xs ) {
+    .grid__item--4:nth-last-child(-n+2) > & {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  @include mq( $break-sm ) {
+    .grid__item--2:nth-last-child(-n+2) > &,
+    .grid__item--3-alt:nth-last-child(-n+2) > & {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  @include mq( $break-md ) {
+    .grid__item--3-alt:nth-last-child(-n+3) > &,
+    .grid__item--4:nth-last-child(-n+4) > & {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+.block__link, // ← DEPRECATED
+.grid-block__link {
+
+  display: block;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    & .block__heading {
+      text-decoration: underline;
+    }
+  }
+}
+
+.block__heading, // ← DEPRECATED
+.grid-block__heading {
+  @extend %h3;
+  margin-top: 1rem;
+}
+
+.block__content { // ← DEPRECATED
+  padding: 1rem;
+}
+
+.block__list {} // ← DEPRECATED
+
+.block-group {} // ← DEPRECATED

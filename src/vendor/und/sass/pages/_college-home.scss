@@ -1,0 +1,21 @@
+/**
+ * College Home Pages
+ * -----------------------------------------------------------------------------
+ */
+
+.college-lead-in {
+  @extend %clearfix; // MARGIN_COLLAPSE_HACK
+
+  // Using `.container--narrow` in the following selectors instead of
+  // `.container` because of SASS_EXTEND_ISSUE.
+  // SASS_EXTEND_AVOID
+  & > .container--narrow {
+    &:first-child {
+      @include make-fluid-spacing( m, t );
+    }
+    & > :last-child {
+      @include make-fluid-spacing( m, b );
+    }
+  }
+}
+

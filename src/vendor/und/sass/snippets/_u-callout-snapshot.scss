@@ -1,0 +1,111 @@
+/**
+ * Callout Snapshot Snippet
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        Snapshot
+ * Table Label:    Program-Snapshot
+ * Table Selector: .ou-snippet-callout-snapshot
+ *
+ * Note: Program pages output markup that is identical to this snippet with the
+ * exception of the block name where `p-` has been inserted.
+ */
+
+.ous-callout-snapshot, // ← DEPRECATED
+.callout-snapshot {
+
+  .program-lead-in & {
+    background-color: transparent;
+    margin-bottom: $spacing-sm;
+
+    @include mq( $break-md ) {
+      margin-bottom: $spacing-sm;
+    }
+
+    & .feature__content {
+      margin: 0;
+      border-left: 0;
+      padding: 0;
+    }
+  }
+
+  &__title, // ← DEPRECATED
+  &__heading {}
+
+  &__text {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    .program-lead-in & {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -#{$spacing-xs} 0 0 -#{$spacing-xs};
+      font-family: $font-base;
+    }
+  }
+
+  &__pair {
+    .program-lead-in & {
+      border-top: 0.0625rem solid $blue;
+      margin: $spacing-xs 0 0 $spacing-xs !important;
+      padding-top: 1rem;
+      width: 100%;
+
+      @include mq( $break-sm ) {
+        width: calc( 50% - #{$spacing-xs} );
+      }
+    }
+  }
+
+  &__key,
+  &__value {
+    .program-lead-in & {
+      display: block;
+    }
+  }
+
+  &__key {
+    @extend %h4;
+    font-size: 1rem; // SCSS_IMPORT_ORDER
+    margin: 0;
+
+    .program-lead-in & {
+      @include font-size( 22 );
+      color: $white;
+      font-family: inherit;
+      text-transform: inherit;
+      letter-spacing: inherit;
+    }
+  }
+
+  &__value {
+    .program-lead-in & {
+      margin-top: 1rem;
+      color: $blue;
+    }
+  }
+}
+
+// Used by legacy Program Pages via `program-modal.xsl`.
+.ous-p-callout-snapshot, // ← DEPRECATED
+.p-callout-snapshot { // ← DEPRECATED (after Program Page Refresh, should use `.callout-snapshot`).
+
+  &__title, // ← DEPRECATED
+  &__heading {}
+
+  &__text {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__pair {}
+
+  &__key {
+    @extend %h4;
+    font-size: 1rem; // SCSS_IMPORT_ORDER
+    margin: 0;
+  }
+
+  &__value {}
+}

@@ -1,0 +1,165 @@
+.splash {
+  margin-top: 3rem;
+
+
+  @include mq($break-md) {
+    margin-top: 0;
+  }
+
+  & .container {
+    @include mq($max: $break-sm-max) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.splash__nav {
+  display: none;
+
+  @include mq($break-md) {
+    display: block;
+    width: 50%;
+    padding: 2rem 3rem 2rem 0;
+  }
+}
+
+.splash__button {
+  border: 0;
+  border-bottom: 0.0625rem solid $gray;
+  background-color: transparent;
+  text-align: left;
+  @extend %h3;
+  color: $black;
+  text-decoration: none;
+  margin: 0;
+  padding: 1rem 0;
+  min-width: 25rem;
+  cursor: pointer;
+  display: block;
+  &:first-child {
+    border-top: 0.0625rem solid $gray;
+  }
+
+  &:hover {
+    color: $blue;
+    @include themify() {
+      color: theme( 'textColorOnThemeColor' );
+    }
+  }
+  &:focus {
+    color: $blue;
+    @include themify() {
+      color: theme( 'textColorOnThemeColor' );
+    }
+  }
+}
+
+.splash__slides {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  @include mq($break-md) {
+    flex-grow: 1;
+  }
+
+  .flickity-prev-next-button {
+    border: 0;
+    position: absolute;
+    z-index: 1;
+    display: none;
+    @include mq($break-lg) {
+      display: block;
+    }
+  }
+
+  .flickity-page-dots {
+    margin: 1rem;
+    height: 1rem;
+    display: none;
+    @include mq($break-md) {
+      display: none;
+    }
+  }
+
+  .dot {
+    display: inline-block;
+    margin: 0 0.5rem 0 0;
+    border: 0.1rem solid $blue;
+    color: $blue;
+    border-color: $blue;
+
+    @include themify() {
+      border: 0.1rem solid theme( 'themeColor' );
+      color: theme( 'themeColor' );
+      border-color: theme( 'themeColor' );
+    }
+  }
+
+}
+
+.splash__slide {
+  position: relative;
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: fit-content;
+    object-fit: cover;
+  }
+  .splash__headline a {
+    display: none;
+  }
+  &.is-selected {
+    .splash__headline a {
+      display: inline-block;
+    }
+  }
+}
+
+.splash__content {
+  @include zero;
+  padding: 3rem 1rem 1rem 1rem;
+
+  @include mq($break-md) {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 3rem;
+    color: $white;
+
+
+  }
+}
+
+.splash__headline a {
+  @include font-size(24);
+  line-height: 1.076;
+  display: inline-block;
+  color: $black;
+
+  @include mq($break-md) {
+    font-size: inherit;
+    color: $white;
+  }
+
+  @include themify() {
+    color: theme( 'textColorOnDarkBackground' );
+  }
+}
+
+.splash__date {
+  //display: none;
+
+  @include mq($break-md) {
+    display: block;
+    @include font-size(14);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}

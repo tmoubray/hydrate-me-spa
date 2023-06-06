@@ -1,0 +1,26 @@
+{%- from "util/_svgstore.html" import svgstore -%}
+{%- from "util/_placeholder.html" import ph -%}
+<div class="billboard--arrow py-sm">
+  <div class="container">
+    
+    <h1 class="mt-none caps"><span class="text-white">North Dakota Procurement Technical Assistance Center
+    </span></h1>
+    
+    <p class="serif-xlarge-alt">A resource for assisting North Dakota businesses in obtaining federal, state, and local government contracts.</p>
+    
+  </div>
+</div>
+{% if blogLanding %}
+<div class="billboard--img">
+  <picture>
+    <source srcset="//via.placeholder.com/1920x640" media="(min-width: 48em)" />
+    {{ ph('768x960') }}
+  </picture>
+  <div>
+    <div class="container">
+      <div class="billboard__text">Billboard</div>
+    </div>
+  </div>
+{% endif %}
+</div>
+

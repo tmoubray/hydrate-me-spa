@@ -1,0 +1,142 @@
+/**
+ * Tabs
+ * -----------------------------------------------------------------------------
+ * BEM Note
+ * Todo: This module contains a lot of bad BEM which needs to be refactored.
+ *
+ * Focus Styling Note
+ * The normal dashed box outside of the tab button didn't look good because the tabs
+ * have stylized backgrounds. The negative outline-offset makes the dashed boxes nice
+ * and consistent inside the tab nav items.
+ */
+
+.tabs {
+  margin-bottom: $tabs-container-bottom-margin;
+  clear: both;
+
+  @include mq( $break-sm ) {
+    margin-top: 3rem;
+  }
+
+  h1+&,
+  h2+&,
+  h3+&,
+  h4+&,
+  h5+& {
+    margin-top: 0;
+  }
+}
+
+// .tabs-nav
+.tabs__nav {
+  @include clean;
+  display: none;
+
+  @include mq( $break-sm ) {
+    display: flex;
+    border-bottom: 4px solid $blue;
+
+    @include themify() {
+      border-color: theme( 'themeColor' );
+    }
+  }
+}
+
+// .tabs-nav__item
+.tabs__nav__item {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
+  margin-right: 0.25rem;
+
+  &:last-of-type {
+    margin: 0;
+  }
+}
+
+// .tabs-nav__link
+.tabs__nav__link {
+  flex-grow: 1;
+  border: none;
+  text-align: left;
+  background-color: $gray-light;
+  color: $black;
+  @extend %h4;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: initial;
+  padding: 1rem;
+
+  &:focus {
+    outline-offset: $outline-inset--md;
+  }
+
+  // .tabs-nav__item--active
+  .tabs__nav__item--active & {
+    background-color: $blue;
+    color: $black;
+
+    @include themify() {
+      color: theme( 'textColorOnThemeColor' );
+      background-color: theme( 'themeColor' );
+    }
+  }
+}
+
+// .tabs-main__item
+.tabs__main__item {
+  margin-bottom: $tabs-bottom-margin;
+
+  @include mq( $break-sm ) {
+    margin-bottom: 0;
+  }
+}
+
+// .tabs-main__toggle
+.tabs__main__toggle {
+  @extend .accordion__toggle;
+
+  @include mq( $break-sm ) {
+    display: none;
+  }
+
+  // .tabs-main__item--active
+  .tabs__main__item--active & {
+    background-color: $blue;
+
+    @include themify() {
+      color: theme( 'textColorOnThemeColor' );
+      background-color: theme( 'themeColor' );
+    }
+  }
+}
+
+// .tabs-main__toggle-icon
+// .tabs__main__toggle__icon {
+//   @extend .accordion__toggle__icon;
+
+//   // .tabs-main__item--active
+//   .tabs__main__item--active & {
+//     color: $black;
+//     transform: rotate( -90deg );
+
+//     @include themify() {
+//       color: theme( 'textColorOnThemeColor' );
+//     }
+//   }
+// }
+
+//.tabs-main__content
+.tabs__main__content {
+  @include sr-hide;
+  @extend .accordion__content;
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  // .tabs-main__item--active
+  .tabs__main__item--active & {
+    @include sr-show;
+  }
+}

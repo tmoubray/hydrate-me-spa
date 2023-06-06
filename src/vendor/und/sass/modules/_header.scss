@@ -1,0 +1,291 @@
+.header {
+  position: relative;
+  z-index: 40;
+
+  // MODIFIERS
+
+  // Implemented for third-party use.
+  &--sticky {
+    position: fixed;
+    width: 100%;
+    box-shadow: 0 2px 4px 0 rgba( $black, 0.15 );
+
+    @include mq( $break-md ) {
+      & + .page {
+        // 2rem = counteract the -2rem that `.main__container` within `.page` has.
+        // 70px = ~height of `.header` (UND Logotype only).
+        margin-top: calc( 2rem + 70px );
+      }
+    }
+  }
+
+  // Hide Primary Navigation.
+  &--no-primary-nav {
+    & .menu > .container,          // Mobile Nav
+    & .condensed__list__container, // Sticky Nav
+    & .condensed__list__button {   // Sticky Nav
+      display: none;
+    }
+
+    // "Hide" (by taking up no space) on medium breakpoint and above so site
+    // title can be visible in the mobile dropdown menu.
+    @include mq( $break-md ) {
+      .menu {
+        padding: 0;
+        border: 0;
+      }
+    }
+
+    & .condensed__logo {
+      margin-left: 0;
+    }
+
+    .s-center & .condensed__search__button {
+      margin-left: auto;
+    }
+
+    // Centers Logo - remove `auto` margins so logo does not center within the
+    // `max-width` of `.condensed__logo`.
+    & .condensed__logo__img {
+      margin: 0;
+    }
+  }
+
+  // Hide Tactical Navigation
+  &--no-tactical-nav {
+    // Hide everything but "Search."
+    & .topbar__list > .topbar__item:not(:last-child) {
+      display: none;
+    }
+  }
+
+  // Hide hamburger icon (☰) on mobile.
+  &--no-primary-nav#{&}--no-tactical-nav {
+    .header__small__button > span {
+      display: none;
+    }
+  }
+}
+
+
+.mobile-number{
+  display: flex;
+  color: white;
+  justify-content: center;
+  width: 100%;
+  font-weight:bold;
+  font-size: 1.1rem;
+  padding-top: 0.3rem;
+
+  @include mq( $break-md ) {
+    display: none;
+  }
+
+  a{
+    color:$white;
+  }
+}
+
+.header__small {
+  flex-wrap: wrap-reverse;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  @include container;
+  background-color: $black;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 5.5rem;
+  @include box-shadow;
+
+  @include mq( $break-md ) {
+    @include sr-hide;
+  }
+
+  .header--center &,
+  .header--internal & {
+    background-color: $gray-light;
+  }
+}
+
+/**
+ * Things like the commented out selector below need to be documented. It's not
+ * clear why an attribute selector is being used instead of a regular class
+ * selector.
+ *
+ * The original intent might have been to target the modified and non-modified
+ * states of an element with one selector.
+ *
+ * It appears that `.header__small__button--search` is not necessary as it does
+ * not modify the base BEM element selector of `.header__small__button`.
+ *
+ * These are used in `.header__small` which appears when viewport is <1024px for
+ * the hamburger and search icons.
+ */
+// [class^="header__small__button"],
+.header__small__button,
+.header__small__button--search {
+  flex-shrink: 0;
+  display: block;
+  padding: 0;
+  width: 1.5rem;
+  color: $blue;
+  border: none;
+  background-color: transparent;
+  @include mq( $break-md ) {
+  width: 1.25rem;
+  margin-right: 1.3rem;
+  color: $black;
+  }
+
+  @include themify() {
+    color: theme( 'themeColorA11y' );
+  }
+}
+
+.header__small__menu {
+
+  // MODIFIERS //
+  &--open {
+    display: block;
+    visibility: visible;
+
+    .menu-active & {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+  &--close {
+    display: none;
+    visibility: hidden;
+
+    .menu-active & {
+      display: block;
+      visibility: visible;
+    }
+  }
+}
+
+.header__small__search {
+
+  // MODIFIERS //
+  &--open {
+    display: block;
+    visibility: visible;
+
+    .search-active & {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+  &--close {
+    display: none;
+    visibility: hidden;
+
+    .search-active & {
+      display: block;
+      visibility: visible;
+    }
+  }
+}
+
+.header__menu {
+  .menu-active & {
+    max-height: 100vh;
+    height: 100vh;
+    transform: translateY( 0 );
+    overflow-y: auto;
+    visibility: visible;
+
+    @include mq( $break-md ) {
+      height: auto;
+      transform: none;
+      overflow-y: visible;
+    }
+  }
+}
+
+.header__menu,
+.header__search {
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 4rem;
+  width: 100%;
+  max-height: 0;
+  background-color: $gray-darker;
+  transform: translateY( -100% );
+  transition:
+    max-height ease 500ms,
+    transform ease 500ms,
+    visibility ease 500ms;
+  visibility: hidden;
+  overflow: hidden;
+
+  @include mq( $break-md ) {
+    position: static;
+    padding-top: 0;
+    max-height: none;
+    height: auto;
+    transform: none;
+    transition: none;
+    visibility: visible;
+    overflow: visible;
+  }
+}
+
+.header__search {
+  .search-active & {
+    max-height: 20rem;
+    visibility: visible;
+    transform: translateY( 0 );
+    overflow-y: auto;
+  }
+
+  @include mq( $break-md ) {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.header__logo {
+  display: block;
+  margin: 0 1.5rem;
+  width: 100%;
+  max-width: 13rem;
+  color: $white;
+
+
+  @include mq( $break-sm ) {
+    max-width: 13rem;
+  }
+
+  @include mq( $break-lg ) {
+    max-width: 20rem;
+  }
+
+  .header--internal & {
+    color: $black;
+  }
+
+  @include themify() {
+    color: theme( 'themeColorA11y' ); // THEMIFY_CALIBRATE
+  }
+}
+
+.header__logo__img {
+  max-height: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.svgstore--social-facebook:before {
+    padding-bottom: 100%;
+}

@@ -1,0 +1,170 @@
+.hero {
+  position: relative;
+
+  // MODIFIERS
+  &--home {
+
+    @media screen and ( max-height: 500px ) {
+      height: 125vh;
+    }
+
+    & img {
+      @media screen and ( max-height: 500px ) {
+        height: 125vh;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &--video {
+    overflow: hidden;
+    background-color: $gray-darker;
+
+    @include mq( $break-md ) {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    & video {
+      display: none;
+
+      @include mq( $break-sm ) {
+        display: block;
+      }
+    }
+
+    & img {
+      display: block;
+
+      @include mq( $break-sm ) {
+        display: none;
+      }
+    }
+  }
+
+}
+
+.hero__image {
+  & img,
+  & video {
+    width: 100%;
+  }
+}
+
+.hero__content {
+  position: absolute;
+  bottom: 3rem;
+  z-index: 2;
+  width: 100%;
+
+  @media screen and ( max-height: 500px ) {
+    bottom: 1rem;
+  }
+
+  .h1-large-alt {
+    color: $white;
+  }
+
+  .hero--home & {
+    top: 50%;
+    transform: translateY( -50% );
+  }
+}
+
+
+.hero__gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient( -180deg, rgba( 0, 0, 0, 0.00 ) 31%, rgba( 0, 0, 0, 0.6 ) 85% );
+}
+
+.hero__title {
+  @extend %h1;
+  text-transform: uppercase;
+  color: $white;
+  margin: 0;
+  line-height: 0.9;
+  opacity: 0;
+  animation: slideIn 500ms ease-out 300ms forwards;
+
+  &--course {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+.hero__headline {
+  color: $blue;
+  // @include fluid-type( font-size, $minScreen, $maxScreen, 81px, 234px );
+  @include fluid-type( 81px, 234px );
+  @include font-size( 234 );
+  font-family: $font-base;
+  line-height: 0.9;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: slideIn 500ms ease-out 500ms forwards;
+
+  @include mq( $break-sm ) {
+    margin-left: -0.5rem;
+  }
+
+  &--course {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+.hero__welcome {
+  display: block;
+  margin: 5rem auto 0;
+  font-family: $font-base;
+  text-align: center;
+  text-decoration: none;
+  color: $white;
+
+  /**
+   * Following two media queries were implemented because the Hero Welcome Text
+   * was sliding off the hero image and only partially accessible with the
+   * vertical centering of hero__content on the home page.
+   *
+   * Hiding for now.
+   */
+  @include mq( $break-sm ) {
+    display: none;
+  }
+
+  @include mq( $break-lg ) {
+    display: block;
+  }
+}
+
+.hero__welcome__icon {
+  display: block;
+  margin: 1rem auto 0;
+  width: 2rem;
+  animation: welcomeSteps 1250ms ease-out infinite forwards;
+}
+
+// ANIMATION_FILE
+@keyframes welcomeSteps {
+
+  0% {
+    opacity: 0.5;
+    transform: translate( 0 );
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY( 25% );
+  }
+
+  100% {
+    opacity: 0.5;
+    transform: translate( 0 );
+  }
+
+}

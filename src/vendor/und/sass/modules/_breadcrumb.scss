@@ -1,0 +1,174 @@
+.breadcrumb {
+  padding: 1.5rem 0;
+  border-bottom: 2px solid $gray-light;
+
+  .t-program-page & {
+    border-bottom-color: $gray-darkish;
+  }
+
+  @include mq( $break-sm ) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.breadcrumb__list {
+  @include clean;
+  list-style: none;
+}
+
+.breadcrumb__item {
+  display: none;
+  @include font-size( 13 );
+
+  @include mq( $break-sm ) {
+    display: inline-block;
+  }
+
+  &.show {
+    display: inline-block;
+  }
+
+  & + & {
+    padding-left: 0.5rem;
+
+    &:before {
+      content: '/';
+      padding-right: 0.5rem;
+      font-weight: normal;
+      color: $blue;
+
+      @include themify() {
+        color: theme( 'themeColor' );
+      }
+    }
+  }
+
+  &:first-child {
+    display: inline-flex;
+  }
+
+  &:last-child {
+    display: none;
+
+    @include mq( $break-sm ) {
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    &:after {
+      content: unset;
+    }
+  }
+}
+
+.breadcrumb__link {
+  display: inline-block;
+  color: $black;
+
+  @include themify() {
+    color: theme( 'textColor' );
+  }
+
+  .tint-black & {
+    color: $white !important;
+  }
+
+  &:hover,
+  &:focus {
+    color: $a11y-und-green;
+    outline-color: $outline-dark;
+
+    @include themify() {
+      color: theme( 'linkColorA11y' );
+    }
+
+    .tint-black & {
+      outline-color: $outline-light;
+    }
+  }
+}
+
+.breadcrumb__link__icon {
+  display: block;
+  width: 1rem;
+  transition: color $transition--base;
+
+  .tint-black & {
+    color: $blue;
+
+    &:hover,
+    &:focus {
+      color: $white;
+    }
+  }
+}
+
+.breadcrumb__expand {
+  @include fill( $svgstore--caret-right-thin, $black );
+  margin-left: 0.5rem;
+  padding: 0.25rem;
+  border: 0;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: auto 100%;
+
+  .tint-black & {
+    @include fill( $svgstore--caret-right-thin, $white );
+  }
+
+  @include mq( $break-sm ) {
+    display: none;
+  }
+}
+
+.breadcrumb__print {
+  display: none;
+
+  .tint-black & {
+    color: $white;
+  }
+
+  @include mq( $break-md ) {
+    display: inline-block;
+    margin-top: 0;
+    color: $black;
+    font-family: $font-base;
+    line-height: 1;
+    letter-spacing: 0.72px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    @include themify() {
+      color: theme( 'textColor' );
+    }
+  }
+}
+
+.breadcrumb__print__icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  width: 1.5rem;
+  color: $blue;
+
+  @include themify() {
+    color: theme( 'themeColorA11y' );
+  }
+}
+
+.breadcrumb-swap {
+  @include mq( $break-md ) {
+    display: flex;
+    flex-direction: column-reverse;
+
+    & >:last-child {
+      width: 100%;
+    }
+
+    & .breadcrumb {
+      border-bottom: 0;
+    }
+  }
+}

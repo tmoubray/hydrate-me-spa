@@ -1,0 +1,18 @@
+/**
+ * Campus Communications
+ * -----------------------------------------------------------------------------
+ *
+ * Wrapper element for any site wide alerts or messages that need to appear
+ * above the site header.
+ */
+
+#campus-communications {
+  z-index: 45;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  @include mq( $break-md ) {
+    position: static;
+  }
+}

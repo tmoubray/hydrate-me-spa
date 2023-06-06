@@ -1,0 +1,167 @@
+.program__split {
+  @include clear;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+  margin-bottom:8rem;
+  max-height: 100%;
+
+  @include mq( $break-sm ) {
+    max-height: 15rem;
+  }
+}
+
+.bio__grid{
+  position: initial;
+  align-items: flex-start;
+
+  @include mq( $break-sm ) {
+    position: relative;
+    bottom: 0rem;
+    justify-content:center;
+    align-items: flex-start;
+  }
+  @include mq( $break-md ) {
+    position: relative;
+    bottom: 5rem;
+    justify-content:center;
+    align-items: flex-start;
+  }
+}
+
+
+.bio__grid__image{
+  width:100%;
+  @include mq( $break-sm ) {
+    width:30%;
+  }
+}
+
+
+
+.program__split__heading {
+  color: $black;
+  text-transform: uppercase;
+  line-height: .9;
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 0;
+  @include fluid-type( 54px, 72px );
+
+  @include mq( $break-sm ) {
+    text-align: left;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+  }
+}
+
+.program__split__left,
+.program__split__right {
+  width: 100%;
+
+  @include mq( $break-sm ) {
+    float: left;
+  }
+}
+
+.program__split__left {
+  @include zero;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+  padding: 0 2rem $spacing-sm;
+
+  @include mq( $break-sm ) {
+    padding: 0;
+    background-image: none;
+    width: 50%;
+  }
+
+  @include mq( $break-md ) {
+    width: 33.333%;
+  }
+}
+
+.program__split__right {
+  width: 100%;
+
+  @include mq( $break-sm ) {
+    width: 50%;
+    padding-left: 5%;
+  }
+
+  @include mq( $break-md ) {
+    width: 66.666%;
+    padding-left: 10%;
+  }
+}
+
+.program__search {
+
+  .search__input {
+    @include mq( $break-md ) {
+      @include font-size( 72 );
+      height: 6rem;
+    }
+
+    &::placeholder {
+      color: $gray-light;
+    }
+  }
+
+  .search__button {
+    @include mq( $break-md ) {
+      bottom: 0.5rem;
+    }
+  }
+
+  .search__button--icon {
+    @include mq( $break-md ) {
+      width: 4rem;
+    }
+  }
+
+  .button-group {
+    margin: $spacing-sm -1rem 0;
+  }
+}
+
+.program__finder {}
+
+.program__finder__content {
+  padding: 1rem 0 3rem;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  @include sr-hide;
+
+  li {
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+    flex-basis: 100%;
+
+    @include mq( $break-sm ) {
+      display: flex;
+      flex-grow: 1;
+      flex-basis: 30%;
+    }
+
+    .button {
+      display: flex;
+      flex-grow:1;
+      flex-basis: 0;
+      align-items: center;
+      justify-content: center;
+      min-width: auto;
+    }
+  }
+
+  .program__finder__expand--active & {
+    @include sr-show;
+    animation: fadeIn 500ms ease-in-out;
+  }
+}

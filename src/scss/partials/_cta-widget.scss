@@ -1,0 +1,17 @@
+/* CTA Widget */
+
+.cta-widget {
+
+  h2 {
+    @include font-size(20);
+    margin-bottom: 1rem;
+    font-family: $font-base;
+    text-transform: capitalize;
+    line-height: 1.3;
+    color: $black;
+  }
+
+  .widget {
+    padding-bottom: 2em;
+  }
+}

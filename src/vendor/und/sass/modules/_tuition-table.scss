@@ -1,0 +1,177 @@
+/**
+* Tuition Tables (Program Pages etc.)
+* -----------------------------------------------------------------------------
+*
+* TODO: Update form field selectors. Form elements for the Tuition Calculator
+* need to use the base form classes and not apply styles directly to the
+* elements themselves. Any Tuition Calculator specific styles/modifications
+* should be done through a modifier class or a scoping class (current
+* implementation - discuss continued usage).
+*
+* Part of the reason that Tuition Calculator form fields, specifically radios
+* and checkboxes, have their custom CSS selectors is because the base form
+* classes for those elements had event handlers attached to them (because of the
+* class name applied to the element) that prevented the default events from
+* being emitted, which the Tuition Calculator needs to function. The event
+* handlers were shipped to with the site. As of 01/02/20, the event handlers
+* have been removed from the site JS. The custom CSS selectors used for the
+* Tuition Calculator are no longer needed to work around the event suppression
+* the original site JS applied and the custom CSS selectors should be normalized.
+*/
+
+.tuition-table-heading {
+  @include font-size( 26 );
+  margin-bottom: 1.7rem;
+  margin-top: 0;
+  color: $black;
+}
+
+
+.tuition-table__table { // TUITION_SIMPLIFY
+  margin: 0;
+
+  table {
+    width: calc( 100% + 0.25rem );
+    margin-right: -0.125rem;
+    margin-left: -0.125rem;
+    border-collapse: collapse;
+
+    @include mq( $break-sm ) {
+      table-layout: fixed;
+    }
+  }
+
+  th,
+  td {
+    padding: 1rem .5rem;
+    @include mq( $break-sm ) {
+      padding: 2rem;
+    }
+  }
+
+  th {
+    font-family: $font-base;
+    @include font-size( 16 );
+    letter-spacing: 0;
+
+    @include mq( $break-sm ) {
+      @include font-size( 20 );
+    }
+  }
+
+  td { // SERIF_XL_ALT
+    color: $black;
+    font-family: $font-base;
+    @include font-size( 16 );
+
+    @include mq( $break-sm ) {
+      @include font-size( 19 );
+    }
+  }
+
+  thead th,
+  tbody td {
+    text-align: right;
+
+    @include mq( $break-sm ) {
+      text-align: left;
+    }
+  }
+
+  thead {
+    border-bottom: 5px solid $blue;
+
+    & th:first-child {
+      width: 25%;
+    }
+  }
+
+  tbody {
+    & tr {
+      border-top: 1px solid $gray-dark;
+
+      &:first-child {
+        border-top: 0;
+      }
+
+      &:last-child {
+        border-bottom: 5px solid $blue;
+        font-weight: bold;
+      }
+    }
+
+    & th {
+      text-align: left;
+    }
+
+    & td {
+      // white-space: nowrap;
+    }
+  }
+}
+
+.tuition-table {
+  .tuition__radio__label {
+    @extend .radio__label;
+    height: 1.5rem;
+    margin-bottom: 2rem;
+
+    & span {
+      font-size: 1rem;
+      text-transform: uppercase;
+
+      &:first-of-type::before {
+        // Cannot use `transparent` as box-shadow creates a ring inside the UND green circle.
+        box-shadow: inset 0 0 0 0.2em $gray-light !important;
+      }
+    }
+  }
+
+  .tuition__radio {
+    @extend .form__selections; // SASS_EXTEND_ISSUE
+    margin-top: 1rem;
+    margin-left: .5rem;
+
+    legend {
+      @include hide;
+    }
+  }
+
+  select { // TUITION_SIMPLIFY
+
+    // Tuition Table specific.
+    max-width: 20rem;
+    overflow: hidden;
+    font-family: $font-base;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-color: $blue;
+    cursor: pointer;
+
+    &:focus {
+      background-color: $white;
+    }
+
+    & option {
+      font-family: $font-base;
+      text-transform: none;
+    }
+  }
+
+}
+
+.tuition-table__table--desktop { // ¿Viewport modifier still applicable?
+  display: block;
+  visibility: visible;
+}
+
+.tuition-table-note {
+  @include font-size( 16 );
+  margin-top: 2rem;
+}
+
+.tuition-table-disclaimer {
+  @extend .button--link; // SASS_EXTEND_ISSUE, TO_XSL
+  margin-top: 1.5rem;
+}

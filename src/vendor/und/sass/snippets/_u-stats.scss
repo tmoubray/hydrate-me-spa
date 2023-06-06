@@ -1,0 +1,218 @@
+/**
+ * Stats & Stats Slider Snippets
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        Stats
+ * Table Label:    Snippet: Stats
+ * Table Selector: .ou-snippet-stats
+ */
+
+.stats {
+  margin-bottom: $spacing-sm;
+
+  & .columns {
+    @include mq( $break-xs ) {
+      display: flex;
+      margin: 0 -1rem;
+    }
+
+    &:first-child .columns__item {
+      &:first-child {
+        margin-top: 0;
+      }
+
+      @include mq( $break-xs ) {
+        & {
+          margin-top: 0;
+        }
+      }
+    }
+
+    .main__sidebar & {
+      @include mq( $break-md ) {
+        flex-direction: column;
+      }
+    }
+  }
+
+  & .columns__item {
+    @include zero;
+    margin-top: $stats-row-spacing;
+
+    @include mq( $break-xs ) {
+      width: 50%;
+      padding: 0 1rem;
+
+      .main__sidebar & {
+        width: 100%;
+      }
+    }
+
+    @include mq( $break-md ) {
+      .main__sidebar &:not(:first-child) {
+        margin-top: $stats-row-spacing;
+      }
+    }
+  }
+}
+
+.stats__heading {
+  display: flex;
+  align-items: baseline; // So symbols to line up with bottom of stat.
+  @include font-display( ( size: 64 ) );
+  @include fluid-type( 64px, 108px ); // 108px = h1
+  margin: 0 0 1rem !important; // ← Why is this "important?"
+  color: $blue;
+  line-height: 1;
+  border-bottom: 1px solid $gray-light; // `.stats__heading--border` has been DEPRECATED.
+
+  @include tint-component( 'lightgray' ) {
+    border-bottom-color: $gray;
+  }
+
+  @include tint-component( 'black' ) {
+    @include themify() {
+      color: theme( 'largeTextColorOnDarkBackground' );
+    }
+  }
+
+  @include tint-component( 'themed' ) {
+    color: $white;
+
+    @include themify() {
+      color: theme( 'largeTextColorOnThemeColor' );
+    }
+  }
+
+  @include themify() {
+    color: theme( 'themeColor' );
+  }
+}
+
+.stats__number {}
+
+.stats__symbol {
+
+  // Modifiers.
+  &--md,
+  &--sm,
+  &--xs {
+    @include font-size( 48 );
+  }
+
+  @include mq( $break-xs ) {
+    &--xs {
+      @include font-size( 32 );
+    }
+  }
+
+  @include mq( $break-sm ) {
+    &--md {
+      @include font-size( 64 );
+    }
+
+    &--sm {
+      @include font-size( 56 );
+    }
+
+    &--xs {
+      @include font-size( 48 );
+    }
+  }
+
+  @include mq( $break-md ) {
+    &--md {
+      @include font-size( 80 );
+    }
+
+    &--sm {
+      @include font-size( 72 );
+    }
+
+    &--xs {
+      @include font-size( 64 );
+    }
+  }
+}
+
+.stats__description {}
+
+.stats__source {
+  &::before {
+    content: "-";
+    display: inline;
+    padding-right: 0.25rem;
+  }
+}
+
+// As of 5/19/20, number of matches
+// - SiteImprove: 0
+// - Local Build: 0
+// - XSL:         0
+// - OU:          7 (that don't count, result of building below selector)
+// DEPRECATED
+/*
+.ous-stats__stats,
+.stats__stats {
+  @extend %special-bold;
+}
+*/
+
+
+
+// Stats Slider ----------------------------------------------------------------
+
+.stats-slider {
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+.stats-slider__heading {
+  color: $black;
+  text-align: center;
+}
+
+.stats--slider {
+
+  // Add `button` for slight specificity bump due to SASS reorganization.
+  button.flickity-prev-next-button {
+    background-color: transparent !important; // `!important` to override theme styling.
+
+    &.previous {
+      margin-left: -2%;
+    }
+
+    &.next {
+      margin-right: -2%;
+    }
+
+    & .arrow {
+      fill: $black;
+    }
+  }
+}
+
+.stats__slider__item {
+  @include zero;
+  text-align: center;
+  width: 100%;
+
+  @include mq( $break-sm ) {
+    width: calc( 100% / 2 );
+  }
+
+  @include mq( $break-md ) {
+    width: calc( 100% / 3 );
+  }
+
+  & p {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  & .stats__heading {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,234 @@
+
+/**
+ * Flags
+ * -----------------------------------------------------------------------------
+ *
+ * Flags are being added as updates are made to identify issues or areas that
+ * might need modification in the future. Flags take the form of a comment
+ * that contains a word or phrase that looks like a global constant in many
+ * languages, i.e. THIS_IS_A_FLAG.
+ *
+ * -----
+ *
+ * SASS_EXTEND_AVOID - a different selector is being used than preferred because
+ * of the SASS_EXTEND_ISSUE. Once extend issues are fixed, selectors marked with
+ * this flag can be changed.
+ *
+ * TO_SASS_VARIABLE - CSS property value is boilerplate value or used in many
+ * places. Define a variable in `_vars.scss`.
+ *
+ * VIEWPORT_FULL_WIDTH - Can be replaced by a viewport helper class/mixin.
+ *
+ * SCSS_IMPORT_ORDER - Properties identified by this flag are properties that
+ * are overrides and might be fixed by swapping up import order and/or not auto-
+ * loading SCSS files.
+ *
+ * EDITABLE_REGION_MARKER - We need our editable regions to be defined in the
+ * markup to so we can get consistent spacing between templates, snippets, etc.
+ * Right now we sometimes have to write ugly selectors because wrapper DIVs do
+ * not exist for our editable regions.
+ *
+ * MANUAL_FLUID_SPACING - Although some of these situations cannot be avoided,
+ * like targeting a specific breakpoint or two, the problem with manual fluid
+ * spacing implementations is that they are not directly tied to how fluid
+ * spacing and breakpoints are configured. If the `$spacing-fluid` variable is
+ * updated to use different values, that change will not be reflected with these
+ * elements. So we need to mark them for easy discovery if spacing configuration
+ * is changed. This closely related to, and can overlap, implementations marked
+ * SLICE_SPCAING or SPLICE_SPACING.
+ *
+ * SLICE_SPACING - References a method where we remove top/bottom spacing,
+ * typically for snippets, where inner elements provide their own bottom spacing
+ * and outer spacing is also defined. In these instances, the inner spacing and
+ * outer spacing combine to create more spacing than is desired; inner spacing
+ * is subtracted from the outer spacing.
+ *
+ * This flag is applied where the `slice-fluid-spacing()` mixin cannot be used
+ * or a modification(s) is made to a breakpoint that the mixin has applied.
+ *
+ * This flag also overlaps with MANUAL_FLUID_SPACING flag.
+ *
+ * Example: The Stats Snippet has inner elements that provide 1rem bottom margin
+ * and the snippet itself applies 3.5rem of bottom margin. This will combine to
+ * 4.5rems of spacing (depending on styling between the margins, they won't
+ * always collapse). To get our 3.5rem visually spacing we subtract 1rem from
+ * 3.5rem.
+ *
+ * SPLICE_SPACING - See SLICE_SPCAING, but adding spacing.
+ *
+ * RENAME - CSS selector needs renaming. Reasons for renaming may include:
+ * - ambiguous name
+ * - be more expressive/accurate
+ * - not consistent with existing naming conventions
+ * - re-align to new naming conventions
+ * - synonym for existing selector
+ * - not quite BEM
+ *
+ * TINT_REQUIRED - Check if the current property needs to be set for component
+ * theming (tints). This is most often applied to the `color` property when the
+ * value being set on the element is the same value as the tint value. New
+ * component level theming sets `color` by default for all tints. Some `color`
+ * properties may still need to be applied due to an ancestor element changing
+ * `color` within a tint element.
+ *
+ * COMPONENT_THEME_DEPRECATED - NEEDS TESTING. CSS selector may be an candidate
+ * to be removed or replaced by component level theming (tints). Specifically,
+ * can/will `.module--themed` be replaced by `.tint-themed`.
+ *
+ * COMPONENTIFY - This feature has the potential to become a base component as
+ * it has been used more than once or many times.
+ *
+ * DUPLICATION - Catch all for styles that might have been unnecessarily
+ * duplicated. Investigate first before creating mixin/placeholder/function etc.
+ *
+ * DEPRECATED - CSS selector, often in combination with an implementation
+ * approach, that is being phased out.
+ *
+ * SPACING_PLACEHOLDER - uses fixed and/or temporary var/mixin/placeholders
+ * until official spacing updates arrive. Placeholder versions of this could be
+ * converted to a `fluid-spacing()` mixin built on the `$spacing-fluid` variable.
+ *
+ * TUITION_SIMPLIFY - `_tuition-calc.scss` and `_tuition-table.scss` have
+ * duplicated styling. Merge duplicated styling into a single, reusable class.
+ * VERIFY WHAT CLASSES THE JS IS USING BEFORE DOING THIS.
+ *
+ * TO_XSL - Helper class can be added to XSL. Possibly add modifier class to
+ * target for styling.
+ *
+ * SERIF_XL_ALT - Create mixin, utility class or similar to do what `-alt` does
+ * in `.serif--xl-alt`. In this instance `-alt` is a font re-sizing feature.
+ *
+ * FONT_ISSUE - The default font for the most comment elements (p, ul, li) are
+ * set to the least used of our three brand fonts. This requires a lot of
+ * resetting, i.e. `.content p`. We need to undo this as Sentinel leaks
+ * through too often when it shouldn't. Helvetica Neue should be the default.
+ *
+ * IE11_FLEXBOX - As the name implies, adjustments specifically for IE11 and
+ * Flexbox. Explains why a possible atypical property and/or value of a property
+ * is being used. Informational.
+ *
+ * IE11_SVG - As the name implies, adjustments specifically for IE11 and
+ * Flexbox. Explains why a possible atypical property and/or value of a property
+ * is being used. Informational.
+ *
+ * THEMIFY_CALIBRATE - Designates a theme key that might need to be adjusted
+ * in the future or have a new theme key created to handle contrast issues.
+ *
+ * ANIMATION_FILE - Move all animations to a single location/file.
+ *
+ * SNIPPET_HEADING_ISSUE - After launching the site, we updated the size,
+ * color, and fonts of headings.
+ *
+ * This flag has to do with the way we attempted to maintain the styles of
+ * headings in snippets after that update. The current issue is that we cannot
+ * simply apply `.h4` to desired elements as the snippet attribute selector in
+ * `_snippets.scss` (i.e. `[class^="ous-"]`) is too specific so we have to
+ * resort to `@extend h4`. Investigate solutions.
+ *
+ * SNIPPET_HEADING_SPACING - some snippets have a top margin that, if
+ * proceeded with a heading (h2, h3, etc) will create more whitespace than we
+ * would like. This flag exists to mark places where it is currently being
+ * used and to signify that we need to review if the current implementation is
+ * adequate (i.e. add all headings vs some).
+ *
+ * This fix is currently being applied with the placeholder `%heading_guard`.
+ *
+ * SASS_EXTEND_ISSUE - using SASS `@extend` can cause issues if used with
+ * little knowledge of what it does.
+ *
+ * 1) It can create selectors that you were not expecting. This is mostly
+ *    related to using the child combinator (`>`). These selectors can bloat
+ *    your CSS and introduce unintended styles. Though gzip likely mitigates
+ *    most of the bloat.
+ * 2) Introduce non-obvious specificity issues, specifically those related to
+ *    the cascade. Extensions occur at the location of the class being extended.
+ *    This can be fixed by using `!important`, though that fix sometimes causes
+ *    a cascade of `!important` statements. Avoid if possible.
+ *
+ * See, https://webinista.com/updates/dont-use-extend-sass/ for examples.
+ *
+ * Example #1
+ * ----------
+ *
+ * `````````````````````````````````````````````````````````````````````````````
+ * .alpha {
+ *   border-color: blue;
+ *   & > .beta {
+ *     color: orange;
+ *   }
+ * }
+ * .beta {
+ *   color: red;
+ * }
+ * .charlie {
+ *   border: 1px solid black;
+ *   & > div {
+ *     @extend .alpha;
+ *   }
+ * }
+ * `````````````````````````````````````````````````````````````````````````````
+ *
+ * Compiles to:
+ *
+ * `````````````````````````````````````````````````````````````````````````````
+ * .alpha, .charlie > div {
+ *   border-color: blue;
+ * }
+ *
+ * .alpha > .beta,
+ * .charlie > div > .beta {
+ *   color: orange;
+ * }
+ *
+ * .beta {
+ *   color: red;
+ * }
+ *
+ * .charlie {
+ *   border: 1px solid black;
+ * }
+ * `````````````````````````````````````````````````````````````````````````````
+ *
+ * The intent here is for any `.beta` that is a child of `.alpha` to have orange
+ * text. But notice that any child `<div>` of `.charlie` that has a child
+ * `.beta` will also have orange text (instead of red). While these types of
+ * class nesting issues rarely appear, it is something to be aware of when using
+ * `@extend`.
+ *
+ *
+ * Example #2
+ * ----------
+ *
+ * `````````````````````````````````````````````````````````````````````````````
+ * .alpha {
+ *   @extend .charlie;
+ *   border-color: blue;
+ * }
+ * .beta {
+ *   color: red;
+ * }
+ * .charlie {
+ *   border: 1px solid black;
+ * }
+ * `````````````````````````````````````````````````````````````````````````````
+ *
+ * Compiles to:
+ *
+ * `````````````````````````````````````````````````````````````````````````````
+ * .alpha {
+ *   border-color: blue;
+ * }
+ * .beta {
+ *   color: red;
+ * }
+ * .charlie,
+ * .alpha {
+ *   border: 1px solid black;
+ * }
+ * `````````````````````````````````````````````````````````````````````````````
+ *
+ * Although there was an attempt to override the border color of `.charlie` in
+ * `.alpha`, `.alpha` is extended at the location of `.charlie` which is after
+ * `.alpha`. Both selectors have the same specificity so the cascade determines
+ * which selector gets to define the border color.
+ */

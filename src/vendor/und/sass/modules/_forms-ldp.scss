@@ -1,0 +1,11 @@
+.form__ldp-datepicker {
+  @extend .form__input;
+}
+
+.ou-form legend {
+  @extend .form__label;
+}
+
+.form__ldp-instructional-text {
+  margin-bottom: 2em;
+}

@@ -1,0 +1,77 @@
+/**
+ * Background Arrows Utility Classes
+ * -----------------------------------------------------------------------------
+ *
+ * REPLACES
+ * --------
+ * .module--arrow-***
+ * .module--arrows-***
+ *
+ *
+ *
+ * Applies an SVG with alpha transparency to the background of an element.
+ *
+ * - Background colors need to be applied independently from background arrows.
+ *   You'll likely need to use component level theming utility classes vs
+ *   background color utility classes as the component level theming utility
+ *   classes ensure that proper coloring, contrast, etc. changes are made to
+ *   child elements. Theming utility classes being with `.tint-` and background
+ *   utility classes begin with `.bg-`.
+ * - Default color of background arrows is white and intended to be used with
+ *   colored backgrounds.
+ *   - Darker arrows are achieved by stacking arrows with 10%(?) opacity instead
+ *     of each arrow having different opacity values.
+ * - Gray background arrows are a special use case.
+ *
+ * Example
+ * -------
+ * <div class="bg-themed arrows">
+ * <div class="tint-themed arrows">
+ * <div class="bg-lightgray arrows arrows--gray">
+ *
+ *
+ * Available Classes
+ * -----------------
+ * .arrows
+ * .arrows--gray
+ */
+
+.arrows {
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+  background-image: $svgstore--background-arrows-sm-white;
+
+  @include mq( $break-md ) {
+    background-image: $svgstore--background-arrows-lg-white;
+  }
+
+  // MODIFIERS
+  /**
+   * Gray version exists because:
+   * - Contrast between each arrow is too low when placing white arrows above
+   *   light backgrounds.
+   * - Pattern of arrows varies between white and gray versions.
+   *
+   * @todo Look into if we can replace the gray version with a second white
+   *       version that increases the opacity per arrow to overcome the current
+   *       contrast issue for light backgrounds.
+   */
+  &--gray {
+    background-image: $svgstore--background-arrows-sm-gray;
+
+    @include mq( $break-md ) {
+      background-image: $svgstore--background-arrows-lg-gray;
+    }
+  }
+
+  // THEMES
+  /**
+   * Background arrows are only applied to the UND theme (green). Center themes
+   * get a solid background - per Marketing after initial release.
+   */
+  @include themify( map-merge( $themes, ( theme-green: () ) ) ) { // THEME_GREEN
+    background-image: none;
+  }
+
+}

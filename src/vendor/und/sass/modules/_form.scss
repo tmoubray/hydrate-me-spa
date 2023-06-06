@@ -1,0 +1,612 @@
+/**
+ * Forms and Form Elements
+ * -----------------------------------------------------------------------------
+ *
+ * - LDP Forms have their own file, `_forms-ldp.scss`.
+ *
+ * On 01/02/20, we started moving towards a more simplified form field
+ * implementation - less HTML, JS, and CSS. There is a long way to go and the
+ * final implementation will be a ways out.
+ *
+ * What has been started:
+ * - Removed JS event suppression for radios and checkboxes.
+ * - Removed JS for focus styles for multi selects.
+ * - Dual Support - this means that the old implementation is still active while
+ *   at the same time the new implementation is active. Will both approaches are
+ *   supported, there may be CSS selectors the have been specifically crafted to
+ *   allow this. Once all old implementation instances have been updated, these
+ *   selectors will need to be reviewed and possibly updated.
+ * - Generalized base form styles with `.form__control`. This selector is an
+ *   alias of `.form__input` but with a more generalized descriptor. Similar to
+ *   Twitter Bootstrap, this class will need to be applied to `<input>`,
+ *   `<select>`, and `<textarea>` elements to opt into our base form styles. Our
+ *   base styles SHOULD NOT be applied to an element directly, a CSS selector
+ *   MUST BE applied somewhere to enable our base form styles.
+ *   - Currently `.form__control` is only being applied to a very small set of
+ *   `<select>` elements. Most form fields still use their legacy selectors to
+ *   apply base form styles.
+ * - Duplicated `readonly` styles for `disabled` styles. We need to review this.
+ *
+ * What needs to be done:
+ * - Finalize new implementation details: naming conventions, ??.
+ * - Adjust selectors using `%input-base` like has been done with `<textarea>`.
+ * - Adjust/Remove select SASS placeholders.
+ * - Update existing forms to new implementation: LDP (XSL), Sendmail, custom
+ *   forms, etc.
+ * - Move RMI specific styles to a new namespace instead of using generic naming
+ *   conventions in the general form style namespace.
+ * - ???
+ */
+
+// Form element.
+.form {
+  margin: 2rem 0;
+
+  &--request {
+
+    // Is this properly structured? Verify.
+    & .form {
+      padding: 0 2rem 2rem;
+    }
+
+    @include mq( $break-md ) {
+      margin-left: -2rem;
+      margin-right: -2rem;
+    }
+  }
+}
+
+// Group form inputs and/or labels.
+.form__group {
+  display: flex;
+  margin-bottom: 2rem; // Match <input> etc. bottom margin.
+
+  &--no-label {
+    margin-top: 26px;
+  }
+
+  &--snug {
+    margin-top: -1rem;
+  }
+}
+
+/**
+ * Form Header Image.
+ *
+ * One-off usage, Program Page RMI form.
+ * @todo Create scoping selector.
+ */
+.form__image {
+  position: relative;
+
+  & img {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border: 2px solid $black;
+  }
+
+  &:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba( $black, 0.41 );
+  }
+}
+
+/**
+ * Form Header Image.
+ *
+ * One-off usage, Program Page RMI form.
+ * @todo Create scoping selector.
+ */
+.form__content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 99%;
+  transform: translate( -50%, -50% );
+  text-align: center;
+
+  @include mq( $break-md ) {
+    bottom: 2rem;
+  }
+
+  & .h2 {
+    color: $white;
+    margin-bottom: 0rem;
+    // @include fluid-type( font-size, $minScreen, $maxScreen, 38px, 48px );
+    @include fluid-type( 38px, 48px );
+  }
+
+  & p {
+    margin-bottom: 0.5rem;
+  }
+
+  &__icon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 2rem;
+  }
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: $black;
+  @include font-size( 13 );
+  font-weight: bold;
+  letter-spacing: 0.15px;
+  line-height: 1.461;
+
+  &--required {
+    color: $input-required-color;
+  }
+
+  .tint-black &,
+  .module--black & {
+    color: $white;
+  }
+  .module--white & {
+    color: $black;
+  }
+}
+
+// Todo: Remove at some point.
+.label__required {
+  color: $input-required-color;
+}
+
+// Moving forward (1/1/2020), use `.form__control` instead of `.form__input`.
+// `.form__input` has nothing specific to `<input>` elements and is generic
+// enough to be applied like Bootstrap's `.form-control` class.
+.form__control,
+.form__input {
+  @extend %input-base;
+
+  // &:focus,
+  // &:active {
+  //   border-color: $input-border-color--focused;
+
+  //   @include themify() {
+  //     border-color: theme( 'inputBorderColorFocused' );
+  //   }
+  // }
+
+  // &[readonly] {
+  //   @extend %readonly;
+  // }
+
+  &--no-label {
+    margin-top: 26px;
+  }
+
+  &--inline {
+    @extend %inline;
+  }
+
+  &--error {
+    border-color: $input-border-color--error !important;
+  }
+
+  .tint-black &,
+  .module--black & {
+    background-color: $white;
+  }
+
+  .module--white & {
+    background-color: $gray-light;
+  }
+}
+
+.form__textarea { // DEPRECATED
+  @extend %input-base;
+}
+
+.form__textarea, // <= DEPRECATED
+textarea.form__control {
+  height: auto;
+  padding: 1rem;
+}
+
+// TODO: Not sure why selects are multiple elements, convert to single element
+// and eliminate JS if there is not a good reason to keep it multiple elements.
+// Cross- browser styling of the `<select>` element is possible.
+.form__select { // DEPRECATED
+  @extend %input-base;
+  position: relative;
+  padding: 0;
+  border: 0;
+
+  & select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    opacity: 0;
+  }
+}
+
+.form__select__text { // DEPRECATED
+  height: 3rem;
+  padding: 0 3rem 0 1rem;
+  margin: 0;
+  color: $black;
+  line-height: calc( 3rem - ( 2 * 2px ) );
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: $gray-light;
+  border: $input-border;
+
+  &--focus {
+    border-color: $blue;
+
+    @include themify() {
+      border-color: theme( 'inputBorderColorFocused' );
+    }
+
+    html[data-whatinput=keyboard] & {
+      @include outline-focus;
+    }
+  }
+
+  &[readonly] {
+    font-color: $gray-darker;
+    background-color: $warning;
+    resize: none;
+    cursor: not-allowed;
+
+    &:focus,
+    &:active {
+      border-color: transparent !important; // `!important` to override theme styles.
+    }
+  }
+  .tint-black &,
+  .module--black & {
+    background-color: $white;
+  }
+}
+
+.form__select__arrow { // DEPRECATED
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 1rem;
+  width: 3rem;
+  height: 3rem;
+  color: $blue;
+  pointer-events: none;
+  transform: rotate( 90deg );
+
+  @include themify() {
+    color: theme( 'themeColorA11y' );
+  }
+}
+
+.form__multi__select > select[multiple], // DEPRECATED
+select.form__control {
+  @extend %input-base;
+  @extend %simple-select;
+}
+
+.form__upload__wrapper {
+  @extend %input-base;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  border: 0;
+
+  &--hidden {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    left: -9999px;
+  }
+}
+
+.form__upload__input {
+  @extend %input-base;
+  flex-grow: 1;
+  flex-basis: 0;
+  border: $input-border;
+
+  &:focus {
+    border-color: $input-border-color--focused;
+  }
+}
+
+.form__upload__button {
+  @extend .button;
+  padding: 0.75rem 0;
+  width: 170px;
+  min-width: unset;
+  background-color: $white;
+
+  &:focus {
+    outline-color: $outline-dark;
+  }
+}
+
+.form__button {
+  display: block;
+  min-width: unset;
+
+  &:focus {
+    outline-color: $outline-dark;
+  }
+}
+
+/**
+ * Creates a reset button with an ╳ and no outline to distinguish it
+ * from submit buttons. Is common on sendmail forms.
+ */
+.form__reset {
+  @extend .remove-compare;
+  margin: 1em 0;
+  max-width:100%
+}
+
+/**
+ * Wrap multiple radio buttons.
+ *
+ * One-off usage? Used in tactical navigation search drawer. Might have been
+ * intended to group multiple checkbox/radio inputs.
+ *
+ * @todo Review and possibly replace with `.form__group` and modifiers.
+ */
+.form__selections {
+
+  margin-bottom: 1.5rem;
+
+  & fieldset {
+    border: 0;
+    margin: 0 0 1rem;
+    padding: 0;
+  }
+
+  & label {
+    margin-right: 1rem;
+    margin-bottom: .5rem;
+  }
+
+  & legend {
+    @extend .form__label;
+  }
+
+  & + .help-block {
+    margin-top: -1.5rem;
+  }
+
+  .search__form & {
+    order: 2;
+    margin-bottom: 0;
+
+    & fieldset {
+      margin: 0;
+    }
+
+    & legend {
+      @include hide;
+    }
+
+    .radio__label {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Radios and Checkboxes.
+.radio__label,
+.checkbox__label {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  margin-bottom:.5rem;
+
+  & span {
+
+    &:first-of-type {
+      position: relative;
+      height: inherit;
+    }
+
+    &:last-of-type {
+      @include font-size( 14 );
+      line-height: 1;
+
+      .filter & {
+        @include font-size( 12 );
+      }
+    }
+  }
+
+  &--inline {
+    @extend %inline;
+  }
+}
+
+/**
+ * Radio Buttons
+ * -----------------------------------------------------------------------------
+ *
+ * Custom radio button styles are created by a border and background color. This
+ * by itself will create a solid circle with no distinction between border and
+ * background color. An inset `box-shadow` is used to create a stroke around
+ * the element that is the same color as the background to mimic transparency
+ * between border and inner dot/circle.
+ */
+.radio__label {
+  height: $input-radio-size;
+
+  & span:first-of-type {
+    padding-left: calc( #{$input-radio-size} + 10px );
+  }
+
+  & input[type="radio"] {
+    position: absolute;
+    border: 0;
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect( 0px, 0px, 0px, 0px );
+
+    & + span::before {
+      content: '\a0';
+      position: absolute;
+      left: 0;
+      height: $input-radio-size;
+      width: $input-radio-size;
+      background-color: transparent;
+      // border-radius: 0;
+      border-radius: 50%;
+      border: 0.15em solid $blue;
+
+      @include themify() {
+        border-color: theme( 'inputBorderColor' ); // THEMIFY_CALIBRATE
+      }
+
+      .tint-black &,
+      .tint-blackish &,
+      .module--blackish &,
+      .module--black & {
+        @include themify() {
+          border-color: theme( 'inputBorderColorOnDarkBackground' ); // THEMIFY_CALIBRATE
+        }
+      }
+    }
+
+    &:checked + span::before {
+      opacity: 1;
+      background-size: 150%;
+      box-shadow: inset 0 0 0 0.2em $white;
+      background-color: $blue;
+
+      @include themify() {
+        background-color: theme( 'inputBorderColor' ); // THEMIFY_CALIBRATE
+      }
+
+      .tint-black &,
+      .tint-blackish &,
+      .module--blackish &,
+      .module--black & {
+        box-shadow: inset 0 0 0 0.2em $gray-darker;
+
+        @include themify() {
+          background-color: theme( 'inputBorderColorOnDarkBackground' ); // THEMIFY_CALIBRATE
+        }
+      }
+    }
+
+    &:focus + span::before {
+      [data-whatinput='keyboard'] & {
+        @include outline-focus;
+      }
+    }
+  }
+}
+
+
+
+/**
+ * Checkboxes
+ * -----------------------------------------------------------------------------
+ * Checkboxes do not have `module--blackish` and `module--black` scoped styles
+ * like radio buttons.
+ */
+.checkbox__label {
+  height: $input-checkbox-size;
+
+  .filter & {
+    height: $input-checkbox-size-sm;
+  }
+
+  & span:first-of-type {
+    padding-left: calc( #{$input-checkbox-size} + 10px );
+
+    .filter & {
+      padding-left: calc( #{$input-checkbox-size-sm} + 10px );
+    }
+  }
+
+  & input[type="checkbox"] {
+    position: absolute;
+    border: 0;
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect( 0px, 0px, 0px, 0px );
+
+    & + span {
+      &::before {
+        content: '\a0';
+        position: absolute;
+        left: 0;
+        height: $input-checkbox-size;
+        width: $input-checkbox-size;
+        background-color: transparent;
+        border: 0.15em solid $blue;
+
+        @include themify() {
+          border-color: theme( 'inputBorderColor' ); // THEMIFY_CALIBRATE
+        }
+
+        .filter & {
+          height: $input-checkbox-size-sm;
+          width: $input-checkbox-size-sm;
+        }
+      }
+
+      &::after {
+        position: absolute;
+        content: '';
+        left: 0.3em;
+        top: 0.4em;
+      }
+    }
+
+    &:checked + span::after {
+      @include fill( $svgstore--check-mark, $blue );
+      width: calc( #{$input-checkbox-size} - 0.55em );
+      height: calc( #{$input-checkbox-size} - 0.55em );
+      background-repeat: no-repeat;
+      background-position-y: -1px;
+
+      @include themify() {
+        @include fill( $svgstore--check-mark, theme( 'inputOptionColorChecked' ) ); // THEMIFY_CALIBRATE
+      }
+
+      .filter & {
+        width: calc( #{$input-checkbox-size-sm} - 0.55em );
+        height: calc( #{$input-checkbox-size-sm} - 0.55em );
+      }
+    }
+
+    &:focus + span::before {
+      [data-whatinput='keyboard'] & {
+        @include outline-focus;
+      }
+    }
+  }
+}
+
+// Todo: Move this to a different file.
+.helper-text {
+  display: none;
+  font-size: 0.75rem;
+  color: $gray-light;
+}
+
+// Add jQuery Chosen styles.
+@import '../util/jquery-chosen';

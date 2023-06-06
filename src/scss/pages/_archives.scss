@@ -1,0 +1,30 @@
+/* archive listing template */
+
+.archives{
+
+    .columns__item{
+        ul {
+            list-style   : none;
+            margin-bottom: 0;
+            padding      : 0;
+        
+            li {
+              margin-bottom: 0.25em;
+              line-height: 1.7;
+        
+              a {
+                text-decoration: none;
+                color: $black;
+              }
+            }
+        }
+    }
+
+    hr {
+        margin: $spacing-sm 0;
+        border: 0;
+        border-top: 2px solid $gray-light;
+        clear: both;
+    }
+
+}

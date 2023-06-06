@@ -1,0 +1,18 @@
+/**
+ * Program Two Column Section Snippet
+ * -----------------------------------------------------------------------------
+ *
+ * OU Name:        [Program] Section: 2 Column
+ * Table Label:    Program Section: 2 Column
+ * Table Selector: .ou-snippet-program-section-two-column
+ *
+ * Used for "Career" info and stats on Program pages.
+ */
+.ous-p-2-column {
+
+  @include mq( $max: $break-sm-max ) {
+    .main__content > .stats {
+      margin-top: $spacing-sm !important;
+    }
+  }
+}

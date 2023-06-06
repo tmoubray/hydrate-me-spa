@@ -1,0 +1,353 @@
+/**
+ * Featured Slider
+ * -----------------------------------------------------------------------------
+ *
+ * Landing and College Templates.
+ * - College Template: uses the snippet as a built-in feature of the template
+ *   via MultiEdit.
+ * - Landing Template: user can place slider like a regular snippet in the
+ *   Additional Content region only.
+ *
+ * The slider has two configuration options:
+ * - Color Scheme/Style: black, themed
+ * - ImageAlignment:     left, right
+ *
+ * -----
+ *
+ * As we move helper classes out of snippets to ease the burden of updating them
+ * across sites, we need to consider the impact of removing helper classes like
+ * `.module--black`. `.module--black` does some nice things for us like making
+ * it simple to change the look of `.button--link` elements because of its
+ * addition to a container element.
+ *
+ * At first thought, extending `.module--black` might seem like a good idea. But
+ * that generates A LOT of extraneous selectors that won't ever target anything
+ * inside of `.featured-slider`. If you extend an element with `.module--black`
+ * multiple times, we'll end up adding quite a bit of bloat.
+ *
+ * It's also not ideal to re-create styles that are applied by the simple
+ * addition of `.module--black` on a container element. Which is what we are
+ * doing (for now) for this snippet.
+ *
+ * This might mean creating mixins or placeholders that do what `.module--black`
+ * is doing now. Further investigation is required.
+ */
+
+.featured-slider {
+
+  // MODIFIERS
+  &--college {}
+
+  &--arrows {}
+
+  // Slider images/videos aligned to the left.
+  &--media-left {
+    & .dot {
+      @include mq( $featured-slider-break ) {
+        color: $blue;
+        border-color: $blue;
+
+        @include themify() {
+          color: theme( 'themeColor' ) !important;
+          border-color: theme( 'themeColor' ) !important;
+        }
+      }
+    }
+  }
+
+  // Slider images/videos aligned to the right.
+  &--media-right {}
+
+}
+
+/**
+ * Flickity Previous and Next buttons use an inline SVG unrelated to SVGStore.
+ * It is flying solo. It does not use a data URI or `<use>` element like we see
+ * everywhere else.
+ *
+ * Color styles for these icons are modified via CSS class and the CSS property
+ * `fill`.
+ *
+ * @todo Investigate if we need to normalize this. Either move icons towards
+ * this method or this icon to the other methods; data URI or `<use>` element.
+ */
+.flickity-prev-next-button {
+
+  &,
+  &:hover { // Override background color in `_flickity.scss`.
+    background-color: $blue;
+
+    @include themify() {
+      background-color: theme( 'themeColorOnDarkBackground' );
+    }
+  }
+
+  .tint-themed &,
+  .module--green & {
+    background-color: $black;
+  }
+
+  .tint-themed &,
+  .module--themed & {
+    @include themify() {
+      background-color: theme( 'textColorOnThemeColor' );
+    }
+
+    & .arrow {
+      @include themify() {
+        /**
+         * THEMIFY_CALIBRATE, dark themes use theme color for the fill but there
+         * may be times where it should be black. Create new theme map key or
+         * switch the default from theme color to black.
+         */
+        fill: theme( 'textColorOnThemeColorInverse' );
+      }
+    }
+  }
+
+  .tint-black &,
+  .module--black & {
+    // `background-color` is `themeColorOnDarkBackground`.
+    & .arrow {
+      @include themify() {
+        fill: theme( 'textColorOnThemeColorOnDarkBackground' );
+      }
+    }
+  }
+}
+
+.featured-slider__container {
+  .featured-slider--media-left & {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1920px;
+  }
+}
+
+.featured-slider__slider {
+
+  .featured-slider--media-left & {
+
+    @include mq( $break-sm ) {
+      padding-top: 3rem;
+      padding-right: 5%;
+    }
+
+    @include mq( $featured-slider-break ) {
+      margin-bottom: $featured-slider-break-bottom-margin;
+
+      @at-root .featured-slider--college#{&} {
+        @include splice-fluid-spacing( m, b, $featured-slider-break-bottom-margin );
+      }
+    }
+
+    &.flickity-enabled {
+      position: static;
+    }
+
+    .flickity-viewport {
+      overflow: visible;
+    }
+
+    & .flickity-page-dots {
+      @include mq( $break-sm ) {
+        position: relative;
+        left: auto;
+        margin-top: -2rem;
+        margin-right: 0;
+        margin-left: auto;
+        padding-top: 0;
+        padding-bottom: 2rem;
+        width: 45%;
+        text-align: left;
+      }
+
+      @include mq( $featured-slider-break ) {
+        position: absolute;
+        left: 56.5%;
+        margin-top: 2rem;
+        margin-right: auto;
+        margin-left: auto;
+        width: 100%;
+        max-width: $break-xl;
+      }
+    }
+  }
+
+  .featured-slider--media-right & {
+    position: relative;
+
+    & .flickity-prev-next-button {
+      @include mq( $break-sm ) {
+        &.previous {
+          left: -3rem;
+        }
+        &.next {
+          right: -3rem;
+        }
+      }
+    }
+
+    & .flickity-page-dots {
+      @include mq( $break-sm ) {
+        bottom: 2rem;
+        width: auto;
+        margin-left: 5%;
+      }
+
+      @include mq( $break-xl ) {
+        margin-left: 2.5rem;
+      }
+    }
+  }
+
+  & .flickity-prev-next-button {
+    z-index: 2;
+  }
+
+  & .flickity-page-dots {
+    z-index: 1;
+    bottom: auto;
+    padding-top: 1rem;
+  }
+}
+
+.featured-slider__slide {
+  width: 100%;
+
+  @include mq( $break-sm ) {
+    display: flex;
+    align-items: center;
+  }
+
+  .featured-slider--media-left & {
+    align-items: flex-start;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $break-xl;
+    opacity: 0;
+    transition: opacity $transition--base;
+
+    @include mq( $featured-slider-break ) {
+      align-items: flex-end;
+    }
+
+    &.is-selected {
+      opacity: 1;
+    }
+  }
+
+  .featured-slider--media-right & {}
+}
+
+// Right aligned
+.featured-slider__media,
+.featured-slider__content {
+  &,
+  .featured-slider--media-right & {
+    @include mq( $break-sm ) {
+      width: 50%;
+    }
+  }
+}
+
+.featured-slider__media {
+  .featured-slider--media-right & {
+    position: relative;
+    align-self: normal;
+    order: 2;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .featured-slider--media-left & {
+    @include mq( $featured-slider-break ) {
+      margin-bottom: -4rem;
+      width: 60%;
+    }
+  }
+}
+
+.featured-slider__content {
+  padding: $spacing-sm 5%;
+
+  @include mq( $break-sm ) {
+    padding-bottom: $spacing-md;
+  }
+
+  .featured-slider--media-right & {
+    margin-right: auto;
+    margin-left: auto;
+
+    @include mq( $break-xl ) {
+      padding-left: 2.5rem;
+      padding-right: 10%;
+    }
+  }
+
+  .featured-slider--media-left & {
+    position: relative;
+
+    @include mq( $break-sm ) {
+      padding-top: 0;
+      padding-right: 0;
+      padding-left: 0;
+      margin-right: 0;
+      margin-left: auto;
+      width: calc( 100% - 55% );
+    }
+
+    @include mq( $featured-slider-break ) {
+      padding-left: 3%;
+    }
+
+    @include mq( $break-lg ) {
+      margin-bottom: 4rem;
+    }
+  }
+
+  .tint-themed &,
+  .module--green & {
+    color: $black;
+  }
+}
+
+.featured-slider__heading {
+
+  &,
+  &.h2 {
+    color: $white;
+  }
+
+  .tint-themed &,
+  .module--themed & {
+    @include themify() {
+      color: theme( 'largeTextColorOnThemeColor' );
+    }
+  }
+}
+
+.featured-slider__subheading {
+  .tint-black &,
+  .module--black & {
+    color: $blue;
+
+    @include themify() {
+      color: theme( 'textColorOnDarkBackground' );
+    }
+  }
+
+  @include themify() {
+    color: theme( 'textColorOnThemeColor' );
+  }
+}
+
+.featured-slider__teaser {
+}
+
+.featured-slider__link {}

@@ -1,0 +1,74 @@
+/**
+ * Embedded Media (Video)
+ * -----------------------------------------------------------------------------
+ */
+
+.media {
+  position: relative;
+  padding: 3rem 3rem;
+
+
+  img {
+    width: 100%;
+  }
+
+  .main__content--center & {
+    display: inline-block;
+  }
+}
+
+
+.landing-featured__media{
+  padding:0;
+  margin-top:0rem;
+  @include mq( $break-md ) {
+    padding: .8rem 2rem;
+
+  }
+}
+
+.media__item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate( -50%, -50% );
+  background-color: rgba( $blue, 0.89 );
+  padding: 1rem;
+
+  &:hover,
+  &:focus {
+    .media__item__icon {
+      color: rgba( $white, 0.8 );
+    }
+  }
+
+  @include mq( $break-sm ) {
+    padding: 2rem;
+  }
+
+  @include themify() {
+    background-color: theme( 'themeColor' );
+  }
+}
+
+.media__item__icon {
+  display: block;
+  width: 1.5rem;
+  color: $white;
+  transition: color $transition--base;
+
+  @include mq( $break-sm ) {
+    width: 2.5rem;
+  }
+}
+
+.media__embed {
+  position: relative;
+  padding-bottom: 56.25%;
+
+  & > * {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
